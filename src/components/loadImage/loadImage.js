@@ -45,7 +45,6 @@ function handleFileSelect(evt) {
 refs.fileMult.addEventListener('change', handleFileSelect);
 
 
-
 // Шаблон для вставки в HTML для загрузчика файлів
 
 {/* <div class="wrap_mult_img">
