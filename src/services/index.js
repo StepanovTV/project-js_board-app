@@ -16,6 +16,7 @@ export default {
   product: null,
 
 
+
   //Методы для всплывающих оповещений... 
   notice(title, text) {
     this.PNotify.notice({
