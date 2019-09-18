@@ -1,10 +1,5 @@
 import services from '../../services/index';
 
-// const refs = {
-//   outputMult: document.getElementById('outputMulti'),
-//   fileMult: document.querySelector('#fileMulti'),
-// };
-
 // Функція записує в масив images[] загружені фотографії користувача
 function handleFileSelect(evt) {
   let file = evt.target.files; // FileList object
