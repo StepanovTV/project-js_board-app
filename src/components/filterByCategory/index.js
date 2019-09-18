@@ -19,7 +19,7 @@ function findCategory(event) {
 
 services.getAdsByCategory
   .then(data => addsContainer.insertAdjacentHTML('beforeend', data))
-  .catch(err =>
+  .catch(alert =>
     alert('Виникла помилка, будь ласка спробуйте перезавантажити сторінку ;)'),
   );
 
