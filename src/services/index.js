@@ -14,6 +14,7 @@ export default {
   infiniteScroll: infiniteScroll,
   image: [],
   product: null,
+  category : '',
 
 
   //Методы для всплывающих оповещений... 
@@ -42,6 +43,16 @@ export default {
     });
   },
 
- 
+  giveCategory(){
+   return this.category
+  },
+  getCategory(category){
+    //
+    this.category = category
+    console.log('services',this.category)
+  },
+  clearCategiry(cleanArr){
+
+  }
 
 };
