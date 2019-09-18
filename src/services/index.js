@@ -16,10 +16,12 @@ export default {
   product: null,
 
   refs: {
-    btnRegAutoriz : document.querySelector('.authorization'),
+    btnRegAutoriz: document.querySelector('.authorization'),
+    outputMult: document.getElementById('outputMulti'),
+    fileMult: document.querySelector('#fileMulti'),
   },
 
-  //Методы для всплывающих оповещений... 
+  //Методы для всплывающих оповещений...
   notice(title, text) {
     this.PNotify.notice({
       title: title,
@@ -44,7 +46,4 @@ export default {
       text: text,
     });
   },
-
- 
-
 };

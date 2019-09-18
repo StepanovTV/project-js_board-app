@@ -1,9 +1,9 @@
 import services from '../../services/index';
 
-const refs = {
-  outputMult: document.getElementById('outputMulti'),
-  fileMult: document.querySelector('#fileMulti'),
-};
+// const refs = {
+//   outputMult: document.getElementById('outputMulti'),
+//   fileMult: document.querySelector('#fileMulti'),
+// };
 
 // Функція записує в масив images[] загружені фотографії користувача
 function handleFileSelect(evt) {
@@ -30,7 +30,7 @@ function handleFileSelect(evt) {
           e.target.result,
           '" />',
         ].join('');
-        refs.outputMult.insertBefore(span, null);
+        services.refs.outputMult.insertBefore(span, null);
         // console.log(e.target.result);
 
         // запис фотографії в масив фотографій
@@ -42,24 +42,6 @@ function handleFileSelect(evt) {
   }
   console.log(services);
 }
-refs.fileMult.addEventListener('change', handleFileSelect);
+services.refs.fileMult.addEventListener('change', handleFileSelect);
 
-
-// Шаблон для вставки в HTML для загрузчика файлів
-
-{/* <div class="wrap_mult_img">
-  <label>Загрузити файли:</label>
-  <input
-    type="file"
-    id="fileMulti"
-    name="fileMulti[]"
-    multiple
-    accept="image/x-png,image/gif,image/jpeg"
-  />
-  <!--accept: для того щоб ігнорувати всі файли не вказаного формату в accept-->
-</div>
-<!-- місце для вставки фото -->
-<div class="wrap_img_add">
-  <span id="outputMulti"></span>
-</div> */}
 
