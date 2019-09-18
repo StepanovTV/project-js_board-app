@@ -1,31 +1,50 @@
 import services from './../../services/';
 import template from './../../template/renderingAd.hbs'
-
-
-const refs = {
-  renderingAd: document.querySelector(".renderingAd")
-}
-
-// *********** Отрисовка  ***************************//
-// console.log(services);
-
-// services
-//   .getAd(idAd)
-//   .then(data => {
-//     console.log(data.id);
-//     const renderToHtml = template(data.id);
-//     refs.renderingAd.insertAdjacentHTML('beforeend', renderToHtml);
-//   })
-//   .catch(error => console.log(error));
-
-
-
-
-
 import * as basicLightbox from 'basiclightbox'
 
-const instance = basicLightbox.create(
-	document.querySelector('template')
-)
 
-instance.show()
+console.log('a.renderingAd')
+
+
+document.querySelector('div.renderingAd').onclick = () => {
+  basicLightbox.create(`
+  <div class="list">
+  <h2 class="title">Продам автомобиль</h2>
+  <p class="author">Иванов</p>
+  <p class="telphone">38067957485</p>
+  <img src="{{image}}" alt="фото автомобиля" width = '300'>
+  <p class="description">Супер авто</p>
+  <p class="price">20 000,00 грн. </p>
+</div>
+
+	`).show()
+}
+
+document.querySelector('div.renderingAd1').onclick = () => {
+  basicLightbox.create(`
+  <div class="list">
+  <h2 class="title">Продам автомобиль</h2>
+  <p class="author">Иванов</p>
+  <p class="telphone">38067957485</p>
+  <img src="{{image}}" alt="фото автомобиля" width = '300'>
+  <p class="description">Супер авто</p>
+  <p class="price">20 000,00 грн. </p>
+</div>
+
+	`).show()
+}
+
+
+document.querySelector('div.renderingAd2').onclick = () => {
+  basicLightbox.create(`
+  <div class="list">
+  <h2 class="title">Продам автомобиль</h2>
+  <p class="author">Иванов</p>
+  <p class="telphone">38067957485</p>
+  <img src="{{image}}" alt="фото автомобиля" width = '300'>
+  <p class="description">Супер авто</p>
+  <p class="price">20 000,00 грн. </p>
+</div>
+
+	`).show()
+}

@@ -5,6 +5,6 @@ import 'pnotify/dist/PNotifyBrightTheme.css';
 import 'basiclightbox/dist/basicLightbox.min.css';
 import './components/renderingAd';
 import './styles.css';
-
+import '././components/renderingAd/renderingAd.css';
 
 services.success('DONE', 'Все работает!!!');
