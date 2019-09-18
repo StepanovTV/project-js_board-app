@@ -16,6 +16,9 @@ export default {
   product: null,
   category : '',
 
+  refs: {
+    btnRegAutoriz : document.querySelector('.authorization'),
+  },
 
   //Методы для всплывающих оповещений... 
   notice(title, text) {
