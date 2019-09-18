@@ -19,10 +19,6 @@ export default {
     btnRegAutoriz : document.querySelector('.authorization'),
   },
 
-  isAuthorized() {
-    return { name: 'User', id: '1585', mail: 'jkkkkkkkkkkk@list.ua' };
-  },
-
   //Методы для всплывающих оповещений...
   notice(title, text) {
     this.PNotify.notice({
