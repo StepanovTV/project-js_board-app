@@ -1,0 +1,94 @@
+.login-widows {
+  width: 300px;
+  padding-bottom: 20px;
+  padding-top: 2px;
+  text-align: center;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid black;
+  border-radius: 15px;
+  -webkit-box-shadow: 0px 10px 13px -7px #000000,
+    5px 5px 15px 5px rgba(0, 0, 0, 0);
+  box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+}
+
+.activ-color {
+  background-color: rgb(89, 208, 89);
+  -webkit-box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+  box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+}
+
+
+.disactiv-color {
+  background-color: darkgray;
+  box-shadow: none;
+}
+
+.activ-form {
+  display: block;
+}
+
+.disactiv-form {
+  display: none;
+}
+
+
+.wraper-login {
+  margin-bottom: 30px;
+}
+
+.but_title_login {
+  width: 145px;
+  margin: 0;
+  padding: 0;
+  font-size: 15px;
+}
+
+.but_title_registration {
+  width: 145px;
+  margin: 0;
+  padding: 0;
+  font-size: 15px;
+}
+
+.change_options_login {
+  width: 145px;
+  height: 20px;
+  display: inline-block;
+  border-radius: 15px 0 0 0;
+}
+
+.change_options_registration {
+  width: 145px;
+  height: 20px;
+  display: inline-block;
+
+  border-radius: 0 15px 0 0;
+}
+
+.form_input {
+  width: 190px;
+  margin-bottom: 20px;
+}
+
+.form_sedn_btn1,
+.form_sedn_btn2 {
+  border-style: none;
+  color: white;
+  background-color: rgb(89, 208, 89);
+  margin-top: 10px;
+  width: 190px;
+  height: 40px;
+  border-radius: 10px;
+}
+
+.form_sedn_btn1:hover,
+.form_sedn_btn2:hover {
+  color: rgb(255, 255, 255);
+  background-color: rgb(240, 164, 23);
+}
+
+.form_sedn_btn_1 {
+  background-color: aquamarine;
+}
+
+.form_sedn_btn_2 {}

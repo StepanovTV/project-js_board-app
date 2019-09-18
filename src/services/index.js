@@ -15,8 +15,15 @@ export default {
   image: [],
   product: null,
 
+  refs: {
+    btnRegAutoriz : document.querySelector('.authorization'),
+  },
 
-  //Методы для всплывающих оповещений... 
+  isAuthorized() {
+    return { name: 'User', id: '1585', mail: 'jkkkkkkkkkkk@list.ua' };
+  },
+
+  //Методы для всплывающих оповещений...
   notice(title, text) {
     this.PNotify.notice({
       title: title,
@@ -41,7 +48,4 @@ export default {
       text: text,
     });
   },
-
- 
-
 };
