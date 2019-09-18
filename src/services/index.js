@@ -14,13 +14,15 @@ export default {
   infiniteScroll: infiniteScroll,
   image: [],
   product: null,
-  category : '',
+  category: '',
 
   refs: {
-    btnRegAutoriz : document.querySelector('.authorization'),
+    btnRegAutoriz: document.querySelector('.authorization'),
+    categoryList: document.querySelector('.filter-wrap'),
+    addsContainer: document.querySelector('#ads-container'),
   },
 
-  //Методы для всплывающих оповещений... 
+  //Методы для всплывающих оповещений...
   notice(title, text) {
     this.PNotify.notice({
       title: title,
@@ -46,17 +48,14 @@ export default {
     });
   },
 
-  giveCategory(){
-    //with this fn you can take chosen by user category  
-   return this.category
+  giveCategory() {
+    //with this fn you can take chosen by user category
+    return this.category;
   },
-  getCategory(category){
+  getCategory(category) {
     //returns chosen by user category
-    this.category = category
-    console.log('services',this.category)
+    this.category = category;
+    console.log('services', this.category);
   },
-  clearCategiry(cleanArr){
-
-  }
-
+  clearCategiry(cleanArr) {},
 };

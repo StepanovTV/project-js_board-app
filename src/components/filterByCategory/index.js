@@ -1,33 +1,46 @@
 import services from '../../services';
 
-const refs = {
-  categoryList: document.querySelector('.filter-wrap'),
-  addsContainer: document.querySelector('#ads-container')
-  //   chooseCategory:
-};
-
-refs.categoryList.addEventListener('click', findCategory);
+services.refs.categoryList.addEventListener('click', findCategory);
 
 function findCategory(event) {
   event.preventDefault();
   // console.log(event.target.dataset.name);
   let chosenOne = event.target.dataset.name;
-  services.getCategory(chosenOne);
   console.log(chosenOne);
+  if (chosenOne === 'clear') {
+    services.refs.addsContainer.innerHTML(' ');
+    services.getAds(page).then(data => {
+      let renderToHtml = data.map(elem => {
+        return services.hbs(elem);
+      });
+      services.refs.addsContainer.insertAdjacentHTML('beforeend', renderToHtml);
+    });
+    chosenOne = '';
+  }
+  services.getCategory(chosenOne);
   return chosenOne;
 }
 
-services.getAdsByCategory
-  .then(data => addsContainer.insertAdjacentHTML('beforeend', data))
+services
+  .getAdsByCategory(idCat, page)
+  .then(data => {
+    let eachObj = data.map(elem => {
+      return services.hbs(elem);
+    });
+    services.refs.addsContainer.insertAdjacentHTML('beforeend', data);
+  })
   .catch(alert =>
     alert('Виникла помилка, будь ласка спробуйте перезавантажити сторінку ;)'),
   );
 
-//   refs.categoryList.addEventListener('click', getAdsByCategory)
+
+  
+
+//   services.refs.categoryList.addEventListener('click', getAdsByCategory)
 //       getAdsByCategory(idCat, page).then(event=>{
 //         event.preventDefault();
 
-//               const activelink = refs.categoryList.querySelector('.activeCategory')
+//               const activelink = services.refs.categoryList.querySelector('.activeCategory')
 //               if(event.currentTarget===event.target){
 //                   return
 //               }
@@ -41,7 +54,7 @@ services.getAdsByCategory
 //   function filterCat(event){
 //       event.preventDefault();
 
-//       const activelink = refs.categoryList.querySelector('.activeCategory')
+//       const activelink = services.refs.categoryList.querySelector('.activeCategory')
 //       if(event.currentTarget===event.target){
 //           return
 //       }
