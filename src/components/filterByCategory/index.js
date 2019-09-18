@@ -1,8 +1,9 @@
-import services from '../../services'
+import services from '../../services';
 
 const refs = {
   categoryList: document.querySelector('.filter-wrap'),
-//   chooseCategory: 
+  addsContainer: document.querySelector('#ads-container')
+  //   chooseCategory:
 };
 
 refs.categoryList.addEventListener('click', findCategory);
@@ -11,12 +12,16 @@ function findCategory(event) {
   event.preventDefault();
   // console.log(event.target.dataset.name);
   let chosenOne = event.target.dataset.name;
-  services.getCategory(chosenOne)
+  services.getCategory(chosenOne);
   console.log(chosenOne);
-  
   return chosenOne;
-  
 }
+
+services.getAdsByCategory
+  .then(data => addsContainer.insertAdjacentHTML('beforeend', data))
+  .catch(err =>
+    alert('Виникла помилка, будь ласка спробуйте перезавантажити сторінку ;)'),
+  );
 
 //   refs.categoryList.addEventListener('click', getAdsByCategory)
 //       getAdsByCategory(idCat, page).then(event=>{

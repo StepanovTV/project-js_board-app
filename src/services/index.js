@@ -44,10 +44,11 @@ export default {
   },
 
   giveCategory(){
+    //with this fn you can take chosen by user category  
    return this.category
   },
   getCategory(category){
-    //
+    //returns chosen by user category
     this.category = category
     console.log('services',this.category)
   },
