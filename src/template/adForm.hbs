@@ -1,0 +1,27 @@
+<form class="adForm js-ad-form">
+  <h3>Додати оголошення</h3>
+  <label>Оберіть категорію</label>
+  <select required name="category">
+    <option value="" disabled="" selected="">Оберіть категорію</option>
+    <option value="1">Пункт 1</option>
+    <option value="2">Пункт 2</option>
+    <option value="3">Пункт 3</option>
+    <option value="4">Пункт 4</option>
+    <option value="5">Пункт 5</option>
+  </select>
+  <label>Заголовок</label>
+  <input  type="text" name="title" value="{{phone}}" />
+  <label>Ціна</label>
+  <input  type="tel" name="price" value="{{price}}" />
+  <label>Телефон</label>
+  <input type="tel" name="phone" value="{{phone}}" />
+  <label>Опис</label>
+  <textarea name="description" value="{{phone}}"></textarea>
+  <label>Оберіть фото</label>
+  <div class="wrap_img_add">
+    <span id="outputMulti"></span>
+  </div>
+  <input  type="file" id="fileMulti" name="images" multiple accept="image/x-png,image/gif,image/jpeg,image/jpg"
+    value="{{phone}}" />
+  <button>Створити оголошення</button>
+</form>

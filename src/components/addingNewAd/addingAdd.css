@@ -1,0 +1,19 @@
+.adForm {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  text-align: center;
+  padding: 20px;
+}
+.adForm input,
+.adForm select,
+.adForm textarea {
+  margin-bottom: 10px;
+}
+.adForm label {
+ margin-bottom: 5px;
+}
+.adForm textarea {
+  height: 5rem;
+}

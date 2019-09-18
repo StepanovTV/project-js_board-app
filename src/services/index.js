@@ -42,6 +42,10 @@ export default {
     });
   },
 
- 
+  refs: {
+    newAdBut: document.querySelector(".js-new-ad"),
+    adForm: document.querySelector(".js-ad-form"),
+    popupfom: document.querySelector(".popupfom"),
+  }
 
 };
