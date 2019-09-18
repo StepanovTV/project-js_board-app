@@ -15,6 +15,9 @@ export default {
   image: [],
   product: null,
 
+  refs: {
+    btnRegAutoriz : document.querySelector('.authorization'),
+  },
 
   //Методы для всплывающих оповещений... 
   notice(title, text) {
