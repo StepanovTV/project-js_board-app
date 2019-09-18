@@ -16,7 +16,7 @@ export default {
   product: null,
 
 
-  //Методы для всплывающих оповещений... 
+  //Методы для всплывающих оповещений...
   notice(title, text) {
     this.PNotify.notice({
       title: title,
@@ -42,6 +42,6 @@ export default {
     });
   },
 
- 
+
 
 };
