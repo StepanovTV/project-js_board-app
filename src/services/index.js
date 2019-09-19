@@ -19,29 +19,16 @@ export default {
   userName: false,
   userToken: false,
   isAuthorized : false,
+  url: `https://dash-ads.goit.co.ua/api/v1`,
+  pageLimit: 10,
 
   refs: {
     btnRegAutoriz: document.querySelector('.authorization'),
+    outputMult: document.getElementById('outputMulti'),
+    fileMult: document.querySelector('#fileMulti'),
   },
 
-  // async register(email, password, name) {
-  //   const obj = {
-  //     email: email,
-  //     password: password,
-  //     name: name,
-  //   };
-  //   try {
-  //     let result = await this.axios.post(
-  //       'https://dash-ads.goit.co.ua/api/v1/auth/register',
-  //       obj,
-  //     );
-  //     return result.data;
-  //   } catch (error) {
-  //     throw new Error(error);
-  //   }
-  // },
-
-   //Методы для всплывающих оповещений...
+  //Методы для всплывающих оповещений...
   notice(title, text) {
     this.PNotify.notice({
       title: title,
@@ -66,4 +53,55 @@ export default {
       text: text,
     });
   },
+
+
+  
+  // get all ads by 10 per page
+  async getAll() {
+    try {
+      const result = await this.axios.get(`${this.url}/ads/all`);
+      return result.data.ads;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+
+  // search by keyword
+  async searchAds(keyword, page) {
+    try {
+      const result = await this.axios.get(
+        `${this.url}/ads/all?search=${keyword}&limit=${this.pageLimit}&page=${page}`,
+      );
+      return result.data.ads.docs;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+
+  //get ads by category id
+  async getAdsByCategory(categoryId) {
+    const result = await axios.get(
+      `${this.url}/ads/all?category=${categoryId}`,
+    );
+
+    return result.data.ads.docs;
+  },
+  
+  async register(email, password, name) {
+    const obj = {
+      email: email,
+      password: password,
+      name: name,
+    };
+    try {
+      let result = await this.axios.post(
+        `${this.url}/auth/register`,
+        obj,
+      );
+      return result.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+
 };
