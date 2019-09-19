@@ -15,8 +15,17 @@ export default {
   image: [],
   product: null,
 
+  refs: {
+    btnRegAutoriz: document.querySelector('.authorization'),
+    outputMult: document.getElementById('outputMulti'),
+    fileMult: document.querySelector('#fileMulti'),
+    newAdBut: document.querySelector(".js-new-ad"),
+    adForm: document.querySelector(".js-ad-form"),
+    popupfom: document.querySelector(".popupfom"),
+    adWrapper: document.querySelector(".ad-wrapper"),
+  },
 
-  //Методы для всплывающих оповещений... 
+  //Методы для всплывающих оповещений...
   notice(title, text) {
     this.PNotify.notice({
       title: title,
@@ -41,11 +50,4 @@ export default {
       text: text,
     });
   },
-
-  refs: {
-    newAdBut: document.querySelector(".js-new-ad"),
-    adForm: document.querySelector(".js-ad-form"),
-    popupfom: document.querySelector(".popupfom"),
-  }
-
 };

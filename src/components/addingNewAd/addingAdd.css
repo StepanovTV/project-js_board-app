@@ -1,19 +1,41 @@
 .adForm {
-  background-color: #fff;
   display: flex;
   flex-direction: column;
-  width: 400px;
-  text-align: center;
+  /* text-align: center; */
+  background-color: #fff;
+  width: 360px;
   padding: 20px;
 }
 .adForm input,
 .adForm select,
 .adForm textarea {
   margin-bottom: 10px;
+  padding: 5px;
+  border: 1px solid #ddd;
+}
+.adForm button {
+  background-color: green;
+  padding: 8px;
+  color: #fff;
 }
 .adForm label {
- margin-bottom: 5px;
+  margin-bottom: 5px;
 }
 .adForm textarea {
   height: 5rem;
+}
+.basicLightbox__placeholder {
+  max-height: 90%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.adForm .thumb {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+.adForm .thumb:not(:last-of-type) {
+  margin-right: 10px;
 }
