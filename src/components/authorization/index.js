@@ -116,7 +116,6 @@ if(localStorage.getItem("userToken")){
   services.isAuthorized = true;
 };
 
-console.log(services.isAuthorized);
 
 
 if(services.isAuthorized){
