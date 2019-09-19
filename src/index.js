@@ -1,6 +1,6 @@
 import services from './services';
-// import './components/authorization';
-import './components/filterByCategory';
+import './components/authorization';
+// import './components/filterByCategory';
 
 CSS
 import 'material-design-icons/iconfont/material-icons.css';
@@ -9,9 +9,3 @@ import 'basiclightbox/dist/basicLightbox.min.css';
 import './styles.css';
 import './components/displayAdsCards/displayAdsCards.js';
 
-// // <<<<<<< HEAD
-// services.success('DONE', 'Все работает!!!');
-// // =======
-
-
-// // >>>>>>> dev
