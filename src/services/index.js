@@ -7,6 +7,8 @@ import infiniteScroll from 'infinite-scroll';
 PNotify.defaults.styling = 'material';
 PNotify.defaults.icons = 'material';
 
+
+
 export default {
   axios: axios,
   PNotify: PNotify,
@@ -14,10 +16,22 @@ export default {
   infiniteScroll: infiniteScroll,
   image: [],
   product: null,
+  category: '',
+  userName: false,
+  userToken: false,
+  isAuthorized : false,
+  url: `https://dash-ads.goit.co.ua/api/v1`,
+  pageLimit: 10,
 
   refs: {
     btnRegAutoriz : document.querySelector('.authorization'),
     renderingAd: document.querySelector('.ad-wrapper'),
+    categoryList: document.querySelector('.filter-wrap'),
+    addsContainer: document.querySelector('#ads-container'),
+    addPageBtn: document.querySelector('.addPage'),
+    outputMult: document.getElementById('outputMulti'),
+    fileMult: document.querySelector('#fileMulti'),
+
   },
 
   //Методы для всплывающих оповещений...
@@ -45,4 +59,55 @@ export default {
       text: text,
     });
   },
+
+
+
+  // get all ads by 10 per page
+  async getAll() {
+    try {
+      const result = await this.axios.get(`${this.url}/ads/all`);
+      return result.data.ads;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+
+  // search by keyword
+  async searchAds(keyword, page) {
+    try {
+      const result = await this.axios.get(
+        `${this.url}/ads/all?search=${keyword}&limit=${this.pageLimit}&page=${page}`,
+      );
+      return result.data.ads.docs;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+
+  //get ads by category id
+  async getAdsByCategory(categoryId) {
+    const result = await axios.get(
+      `${this.url}/ads/all?category=${categoryId}`,
+    );
+
+    return result.data.ads.docs;
+  },
+
+  async register(email, password, name) {
+    const obj = {
+      email: email,
+      password: password,
+      name: name,
+    };
+    try {
+      let result = await this.axios.post(
+        `${this.url}/auth/register`,
+        obj,
+      );
+      return result.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+
 };
