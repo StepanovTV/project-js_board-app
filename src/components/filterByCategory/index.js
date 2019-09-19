@@ -10,7 +10,7 @@ function addNewPage(e) {
   console.log(e.target.attributes.page.value);
 }
 
-// poopa.then(data =>data.map(elem => {
+// arr.then(data =>data.map(elem => {
 //   console.log('each buttom' + elem);
 //     return elem.category;
 //   }));
