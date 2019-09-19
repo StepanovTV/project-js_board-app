@@ -23,6 +23,7 @@ export default {
     adForm: document.querySelector(".js-ad-form"),
     popupfom: document.querySelector(".popupfom"),
     adWrapper: document.querySelector(".ad-wrapper"),
+    spinner: document.querySelector("#spinner"),
   },
 
   //Методы для всплывающих оповещений...
