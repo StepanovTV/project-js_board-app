@@ -1,84 +1,59 @@
 .login-widows {
   width: 300px;
-  padding-bottom: 20px;
-  padding-top: 2px;
-  text-align: center;
+  padding: 15px;
   background-color: rgb(255, 255, 255);
   border: 1px solid black;
-  border-radius: 15px;
+  border-radius: 4px;
   -webkit-box-shadow: 0px 10px 13px -7px #000000,
     5px 5px 15px 5px rgba(0, 0, 0, 0);
   box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
 }
 
-.activ-color {
-  background-color: rgb(89, 208, 89);
-  -webkit-box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
-  box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+.login-widows form{
+display: none;
 }
-
-
-.disactiv-color {
-  background-color: darkgray;
-  box-shadow: none;
-}
-
-.activ-form {
-  display: block;
-}
-
-.disactiv-form {
-  display: none;
-}
-
-
 .wraper-login {
-  margin-bottom: 30px;
+  display: flex;
+  margin: -15px -15px 40px -15px;
+  border-bottom: 2px solid rgb(240, 164, 23);
 }
 
-.but_title_login {
-  width: 145px;
-  margin: 0;
-  padding: 0;
-  font-size: 15px;
+.wraper-login button {
+  flex: 1 0 50%;
+  background: grey;
+  color: aliceblue;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 10px;
+  border-radius: 4px 4px 0 0;
 }
 
-.but_title_registration {
-  width: 145px;
-  margin: 0;
-  padding: 0;
-  font-size: 15px;
+.wraper-login button:focus {
+  background-color: rgb(122, 113, 113);
+  outline: 1px solid #cef544
 }
 
-.change_options_login {
-  width: 145px;
-  height: 20px;
-  display: inline-block;
-  border-radius: 15px 0 0 0;
+.wraper-login button:hover {
+  background-color: rgb(122, 113, 113);
 }
 
-.change_options_registration {
-  width: 145px;
-  height: 20px;
-  display: inline-block;
-
-  border-radius: 0 15px 0 0;
+.wraper-login .activ-btn {
+  color: white;
+  background-color: rgb(89, 208, 89);
 }
 
-.form_input {
-  width: 190px;
-  margin-bottom: 20px;
+.wraper-login .activ-btn:hover,
+.wraper-login .activ-btn:focus {
+  background-color: rgb(71, 189, 71);
 }
 
 .form_sedn_btn1,
 .form_sedn_btn2 {
-  border-style: none;
-  color: white;
-  background-color: rgb(89, 208, 89);
-  margin-top: 10px;
-  width: 190px;
-  height: 40px;
-  border-radius: 10px;
+  border: none;
+  color: rgb(255, 255, 255);
+  background-color: rgb(71, 189, 71);
+  padding: 10px 0;
 }
 
 .form_sedn_btn1:hover,
@@ -87,8 +62,94 @@
   background-color: rgb(240, 164, 23);
 }
 
-.form_sedn_btn_1 {
-  background-color: aquamarine;
+.signIn-form,
+.registration-form {
+  flex-direction: column;
 }
 
-.form_sedn_btn_2 {}
+.login-widows .activ-form {
+  display: flex;
+}
+
+
+
+
+@media screen and (min-width:768px) {
+  .login-widows {
+    width: 500px;
+  }
+}
+
+@media screen and (min-width:1200px) {}
+
+.group {
+  overflow: hidden;
+  position: relative;
+}
+
+label {
+  position: absolute;
+  top: 28px;
+  color: darkgrey;
+  font: 400 16px Roboto;
+  cursor: text;
+  transition: 0.25s ease;
+  padding-bottom: 20px;
+}
+
+input {
+  display: block;
+  width: 100%;
+  padding-top: 26px;
+  border: none;
+  border-bottom: 1px solid darkgrey;
+  border-radius: 0;
+  color: black;
+  transition: 0.3s ease;
+}
+
+input:valid~label {
+  top: 0;
+  font: 700 20px Roboto;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+input:focus {
+  outline: none;
+}
+
+input:focus~label {
+  top: 0;
+  font: 700 18px Roboto;
+  color: #000000;
+}
+
+input:focus~.bar:before {
+  transform: translateX(0);
+}
+
+
+.bar {
+  background: rgba(255, 255, 255, 0.5);
+  content: "";
+  height: 4px;
+  transition: 0.3s ease;
+  position: relative;
+}
+
+.bar:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 150%;
+  background: #b2f105;
+  transform: translateX(-100%);
+}
+
+.wrapinput {
+  margin-bottom: 50px;
+}
+
+.registration-form input:focus {
+  border-bottom: 1px solid black;
+}

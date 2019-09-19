@@ -17,7 +17,13 @@ export default {
 
   refs: {
     btnRegAutoriz : document.querySelector('.authorization'),
+  }, 
+ 
+  isAuthorized(){
+    return false;
+    // { id: 'str',  name: 'str', mail: 'str', pass: 'md5'};
   },
+
 
   //Методы для всплывающих оповещений...
   notice(title, text) {

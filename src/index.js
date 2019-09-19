@@ -6,4 +6,3 @@ import 'pnotify/dist/PNotifyBrightTheme.css';
 import 'basiclightbox/dist/basicLightbox.min.css';
 import './styles.css';
 
-services.success('DONE', 'Все работает!!!');
