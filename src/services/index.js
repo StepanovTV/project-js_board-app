@@ -7,6 +7,8 @@ import infiniteScroll from 'infinite-scroll';
 PNotify.defaults.styling = 'material';
 PNotify.defaults.icons = 'material';
 
+
+
 export default {
   axios: axios,
   PNotify: PNotify,
@@ -14,13 +16,16 @@ export default {
   infiniteScroll: infiniteScroll,
   image: [],
   product: null,
+  userName: false,
+  userToken: false,
+  isAuthorized : false,
+  url: `https://dash-ads.goit.co.ua/api/v1`,
+  pageLimit: 10,
 
   refs: {
     btnRegAutoriz: document.querySelector('.authorization'),
     outputMult: document.getElementById('outputMulti'),
     fileMult: document.querySelector('#fileMulti'),
-    url: `https://dash-ads.goit.co.ua/api/v1`,
-    pageLimit: 10,
   },
 
   //Методы для всплывающих оповещений...
@@ -48,6 +53,8 @@ export default {
       text: text,
     });
   },
+
+
   
   // get all ads by 10 per page
   async getAll() {
@@ -79,4 +86,22 @@ export default {
 
     return result.data.ads.docs;
   },
+  
+  async register(email, password, name) {
+    const obj = {
+      email: email,
+      password: password,
+      name: name,
+    };
+    try {
+      let result = await this.axios.post(
+        `${this.url}/auth/register`,
+        obj,
+      );
+      return result.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+
 };
