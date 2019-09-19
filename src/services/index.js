@@ -14,16 +14,22 @@ export default {
   infiniteScroll: infiniteScroll,
   image: [],
   product: null,
+  category: '',
   userName: false,
   userToken: false,
   isAuthorized: false,
   url: `https://dash-ads.goit.co.ua/api/v1`,
   pageLimit: 10,
-
+  
   refs: {
+    btnRegAutoriz: document.querySelector('.authorization'),
+    categoryList: document.querySelector('.filter-wrap'),
+    addsContainer: document.querySelector('#ads-container'),
+    addPageBtn: document.querySelector('.addPage'),
     btnRegAutoriz: document.querySelector('.authorization'),
     outputMult: document.getElementById('outputMulti'),
     fileMult: document.querySelector('#fileMulti'),
+
   },
 
   //Методы для всплывающих оповещений...
