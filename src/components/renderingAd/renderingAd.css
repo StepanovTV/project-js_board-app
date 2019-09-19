@@ -1,10 +1,9 @@
-.list {
-  font-size: 26px;
-  font-weight: 700;
-  color: white;
+.template {
+  width: 500px;
+  height: 800px;
+  background-color: white;
+  color: black;
 }
 
 
-li :hover {
-  cursor: pointer;
-}
+

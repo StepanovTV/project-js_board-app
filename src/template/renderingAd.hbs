@@ -1,12 +1,15 @@
-    <li class="list">
-          <h2 class="title">{{title}}</h2>
-          <p class="author">{{author}}</p>
-          <p class="telphone"></p>
-          {{#each this}}
-          <img src="{{image}}" width = '300'>
-          {{/each}}
-          <p class="description">{{description}}</p>
-          <p class="price">{{price}}</p>
-    </li>
+                  {{!-- шаблонизация одного объявления --}}
 
+<li class="template">
+  <p>Привет</p>
+    <h2 class="title">{{title}}</h2>
+    <p class="description">{{description}}</p>
+      {{#each this}}
+        <img src="{{image}}" width = '300'>
+      {{/each}}
+    <p class="expDate">{{expDate}}</p>
+    <p class="price">{{price}}</p>
+    <p class="phone">{{phone}}</p>
+    <p class="author">{{author}}</p>
+</li>
 

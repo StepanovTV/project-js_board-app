@@ -17,6 +17,7 @@ export default {
 
   refs: {
     btnRegAutoriz : document.querySelector('.authorization'),
+    renderingAd: document.querySelector('.ad-wrapper'),
   },
 
   //Методы для всплывающих оповещений...
@@ -44,7 +45,4 @@ export default {
       text: text,
     });
   },
-
-
-
 };
