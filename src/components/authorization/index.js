@@ -4,31 +4,85 @@ import tplAutoFofm from '../../template/authorization.hbs';
 
 const instanseLb = services.basicLightbox.create(tplAutoFofm());
 
-//activ-form
+// activ-form
 function FormAnaliz(event) {
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    const formDataObj = {};
-    formData.forEach((val, key) => {
-      formDataObj[key] = val;
-    });
-    if(formDataObj.pass1 !== formDataObj.pass2){
-      services.error('Помилка!', 'Паролі не співпадають');
-      return
-    }
+  event.preventDefault();
+  const formData = new FormData(event.currentTarget);
+  const formDataObj = {};
+  formData.forEach((val, key) => {
+    formDataObj[key] = val;
+  });
+  if (formDataObj.pass1 !== formDataObj.pass2) {
+    services.error('Помилка!', 'Паролі не співпадають');
+    return;
+  }
+  services
+    .register(formDataObj.mail, formDataObj.pass1, formDataObj.login)
+    .then(data => {
+      if (data.status == 'error') {
+        if ('E11000' == data.error.slice(0, 6)) {
+          services.error(
+            'Помилка!',
+            'Користувач з таким емейлом вже існує, Авторизуйтесь, або вкажіть інший емейл.',
+          );
+          // data: {status: "error", error: "E11000 duplicate key error collection: test.users …ail_1 dup key: { : "stvstudio.com.ua@gmail.com" }"}
+          return;
+        }
+        services.error('Помилка!', 'Нажаль в нас технічна проблема!');
+        return;
+      }
+      services.userName = data.userData.name;
+      services.userToken = data.token;
+      localStorage.setItem('userToken', data.token);
+      localStorage.setItem('userName', data.userData.name);
+      services.success(
+        'Ви успішно зареєстровані',
+        'Тепер ви можете почати продавати свої оголошення',
+      );
+      instanseLb.close();
+      document.querySelector('.authorization').style.display = 'none';
+      document.querySelector('.userCabinet').style.display = 'flex';
+      //   {
+      //     "status": "success",
+      //     "userData": {
+      //         "userId": "5d836b3eca3ed838fd535223",
+      //         "name": "Taras",
+      //         "email": "lodddgin@gmail.com"
+      //     },
+      //     "token": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkODM2YjNlY2EzZWQ4MzhmZDUzNTIyMyIsImlhdCI6MTU2ODg5Mzc1OH0.VVbUkGqO9Zom3G8QsX-1JaihoINgm4mvGmJRfR9T7KA"
+      // }
+    })
+    .catch(err => {
+      console.error(err);
+      services.error(
+        'Помилка!',
+        'Нажаль в нас технічна проблема на сервері. Спробуйте пізніше!!!',
+      );
+      instanseLb.close();
   
-    
-    
-    
-//     {
-//     login: "SHP_KD_LIFE_1", 
-//     mail: "stvstudio.com.ua@gmail.com", 
-//     pass1: "cxvcxcv",
-//     pass2: "xcvxcv"
-// }
+    });
+  //   {
+  //     "status": "success",
+  //     "userData": {
+  //         "userId": "5d834f8781406f3911bff598",
+  //         "name": "Taras",
+  //         "email": "login@gmail.com"
+  //     },
+  //     "token": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkODM0Zjg3ODE0MDZmMzkxMWJmZjU5OCIsImlhdCI6MTU2ODg4NjY2M30.iXv_Ou8VR8zG1bvd1LpWHZFuaj6xzCMyUYyua39qJP0"
+  // }
+}
 
-    
-}  
+// const getUser = () => {
+//   services.axios.get("https://dash-ads.goit.co.ua/api/v1/ads",
+//       {headers: {
+//           Authorization:
+//             "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkODM1MWU1Y2EzZWQ4MzhmZDUzNTIxOCIsImlhdCI6MTU2ODg5MzkwMX0.iqW2YHtcpb4D2723V0W9aLanX_2FFU6sCfbQKKNUgXw"
+//         }
+//       }
+//     ).then(data => console.log(data))
+// }
+// getUser();
+
 function hendalClicReg(e) {
   e.preventDefault();
   instanseLb.show();
@@ -55,78 +109,20 @@ function hendalClicReg(e) {
   RegistrationForm.addEventListener('submit', FormAnaliz);
 }
 services.refs.btnRegAutoriz.addEventListener('click', hendalClicReg);
-// instance.show();// втроенная функция лайтбокса для отображения
 
-// // выбираю элементы формы что бы потом на них вешать класы и листенеры
-// const refs = {
-//   htmlDivLogin: document.querySelector('.change_options_login'),
-//   htmlDivRegistration: document.querySelector('.change_options_registration'),
-//   htmlButLogin: document.querySelector('.but_title_login'),
-//   htmlButRegistration: document.querySelector('.but_title_registration'),
-//   htmlSignInForm: document.querySelector('.signIn-form'),
-//   htmlRegistrationForm: document.querySelector('.registration-form'),
-//   htmlformSednBtn1: document.querySelector('.form_sedn_btn_1'),
-//   htmlformSednBtn2: document.querySelector('.form_sedn_btn_2'),
-//   htmlChangers: document.querySelector('.changers'),
-// };
 
-// // отслеживаю нажатие кнопок выбора форм
-// refs.htmlChangers.addEventListener('click', e => {
-//   if (e.target == refs.htmlButRegistration) {
-//     //скрываю форму входа
-//     refs.htmlSignInForm.classList.remove('activ-form');
-//     refs.htmlSignInForm.classList.add('disactiv-form');
-//     //отображаю форму регистрации
-//     refs.htmlRegistrationForm.classList.add('activ-form');
-//     refs.htmlRegistrationForm.classList.remove('disactiv-form');
-//     // меняю цвета верхних кнопочек с зеленой на серую
-//     refs.htmlDivLogin.classList.remove('activ-color');
-//     refs.htmlDivLogin.classList.add('disactiv-color');
-//     refs.htmlDivRegistration.classList.add('activ-color');
-//     refs.htmlDivRegistration.classList.remove('disactiv-color');
-//   } else {
-//     //скрываю форму регистрации
-//     refs.htmlSignInForm.classList.add('activ-form');
-//     refs.htmlSignInForm.classList.remove('disactiv-form');
-//     //отображаю форму входа
-//     refs.htmlRegistrationForm.classList.remove('activ-form');
-//     refs.htmlRegistrationForm.classList.add('disactiv-form');
-//     // меняю цвета верхних кнопочек с зеленой на серую
-//     refs.htmlDivLogin.classList.add('activ-color');
-//     refs.htmlDivLogin.classList.remove('disactiv-color');
-//     refs.htmlDivRegistration.classList.remove('activ-color');
-//     refs.htmlDivRegistration.classList.add('disactiv-color');
-//   }
-// });
 
-// // слушатели на отправку форм
+if(localStorage.getItem("userToken")){
+  services.isAuthorized = true;
+};
 
-// refs.htmlSignInForm.addEventListener('submit', FormAnaliz);
+console.log(services.isAuthorized);
 
-// //функция слушателя отправки формы
-// function FormAnaliz(event) {
-//   event.preventDefault();
 
-//   //тут будет блок проверок на длинну строк, повторяемость пароля и т.д.
-
-//   //
-//   if (event.target == refs.htmlRegistrationForm) {
-//     const dataRegistration = {
-//       mode: 'registration',
-//       login: event.target.elements.login.value,
-//       mail: event.target.elements.mail.value,
-//       pass1: event.target.elements.pass1.value,
-//       pass2: event.target.elements.pass2.value,
-//     };
-//   } else {
-//     const dataRegistration = {
-//       mode: 'signIn',
-//       mail: event.target.elements.mail.value,
-//       pass1: event.target.elements.pass1.value,
-//     };
-
-//     console.log(dataRegistration);
-//   }
-
-//   instance.close();
-// }
+if(services.isAuthorized){
+  document.querySelector('.authorization').style.display = 'none';
+  document.querySelector('.userCabinet').style.display = 'flex';
+}else{
+  document.querySelector('.authorization').style.display = 'flex';
+  document.querySelector('.userCabinet').style.display = 'none';
+}

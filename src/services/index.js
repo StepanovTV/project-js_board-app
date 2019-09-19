@@ -7,6 +7,8 @@ import infiniteScroll from 'infinite-scroll';
 PNotify.defaults.styling = 'material';
 PNotify.defaults.icons = 'material';
 
+
+
 export default {
   axios: axios,
   PNotify: PNotify,
@@ -14,18 +16,32 @@ export default {
   infiniteScroll: infiniteScroll,
   image: [],
   product: null,
+  userName: false,
+  userToken: false,
+  isAuthorized : false,
 
   refs: {
-    btnRegAutoriz : document.querySelector('.authorization'),
-  }, 
- 
-  isAuthorized(){
-    return false;
-    // { id: 'str',  name: 'str', mail: 'str', pass: 'md5'};
+    btnRegAutoriz: document.querySelector('.authorization'),
   },
 
+  // async register(email, password, name) {
+  //   const obj = {
+  //     email: email,
+  //     password: password,
+  //     name: name,
+  //   };
+  //   try {
+  //     let result = await this.axios.post(
+  //       'https://dash-ads.goit.co.ua/api/v1/auth/register',
+  //       obj,
+  //     );
+  //     return result.data;
+  //   } catch (error) {
+  //     throw new Error(error);
+  //   }
+  // },
 
-  //Методы для всплывающих оповещений...
+   //Методы для всплывающих оповещений...
   notice(title, text) {
     this.PNotify.notice({
       title: title,
