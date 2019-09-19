@@ -1,0 +1,42 @@
+* {box-sizing: border-box;}
+
+.adsList {
+  list-style: none;
+}
+
+.adsItem {
+  width: 200px;
+  text-align: center;
+  margin: 0 auto;
+  border-bottom: 2px solid #F5F5F5;
+  background: white;
+  transition: .3s ease-in;
+
+  border: none;
+  outline: 0;
+  padding: 10px;
+  color: #fff;
+  text-align: center;
+  cursor: pointer;
+}
+.adsItem:hover {border-bottom: 2px solid #fc5a5a;}
+.adsItem img {
+/* display: block; */
+/* width: 100%; */
+}
+.adsList {
+  background: #fafafa;
+  padding: 15px 0;
+}
+.adsList h2 {
+  font-size: 12px;
+  font-weight: 400;
+  color: #444444;
+  margin: 0 0 10px 0;
+}
+.adsPrice {
+  font-size: 16px;
+  color: #fc5a5a;
+  display: block;
+  margin-bottom: 12px;
+}
