@@ -20,6 +20,7 @@ export default {
     btnRegAutoriz: document.querySelector('.authorization'),
     categoryList: document.querySelector('.filter-wrap'),
     addsContainer: document.querySelector('#ads-container'),
+    addPageBtn: document.querySelector('.addPage')
   },
 
   //Методы для всплывающих оповещений...
@@ -55,7 +56,7 @@ export default {
   getCategory(category) {
     //returns chosen by user category
     this.category = category;
-    console.log('services', this.category);
+    // console.log('services', this.category);
   },
   clearCategiry(cleanArr) {},
 };
