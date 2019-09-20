@@ -51,12 +51,12 @@ services.refs.newAdBut.onclick = () => {
         console.log(data.ads);
         services.refs.adWrapper.insertAdjacentHTML(
           'afterbegin',
-          `<li class="ad-item" data-id="${data.ads.adsId}">
-    <span class="ad-price">${data.ads.price}</span>
+          `<li class="ad-item" data-adId="${data.ads.adsId}">
     <img class="ad-img" src="${data.ads.images[0]}" width="320" alt="${
             data.ads.title
           }">
     <h2 class="ad-heading">${data.ads.title}</h2>
+    <span class="ad-price">Вартість ${data.ads.price} грн<</span>
   </li>`,
         );
 

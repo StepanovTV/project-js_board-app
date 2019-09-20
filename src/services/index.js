@@ -36,6 +36,8 @@ export default {
     popupfom: document.querySelector(".popupfom"),
     adWrapper: document.querySelector(".ad-wrapper"),
     spinner: document.querySelector("#spinner"),
+    exitbtn: document.querySelector('.exitbtn'),
+    adsContainer: document.querySelector('#ads-container'),
   },
 
   //Методы для всплывающих оповещений...
@@ -179,13 +181,6 @@ async getAds(page) {
       throw new Error(error);
   }
 },
-
-async getAd(adId){
-  try {
-    // const result = await this.axios.get(`${this.url}/ads/${adId}`);
-      return result.data.goal;
-
-  } catch (error) {}},
 
 //get ad by id
 async getAd(adId) {
