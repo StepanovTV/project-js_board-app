@@ -31,6 +31,7 @@ export default {
     btnRegAutoriz: document.querySelector('.authorization'),
     outputMult: document.getElementById('outputMulti'),
     fileMult: document.querySelector('#fileMulti'),
+    exitbtn: document.querySelector('.exitbtn'),
     adsContainer: document.querySelector('#ads-container'),
 
   },
@@ -178,13 +179,6 @@ async getAds(page) {
       throw new Error(error);
   }
 },
-
-async getAd(adId){
-  try {
-    // const result = await this.axios.get(`${this.url}/ads/${adId}`);
-      return result.data.goal;
-
-  } catch (error) {}},
 
 //get ad by id
 async getAd(adId) {
