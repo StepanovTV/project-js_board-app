@@ -31,6 +31,8 @@ export default {
     btnRegAutoriz: document.querySelector('.authorization'),
     outputMult: document.getElementById('outputMulti'),
     fileMult: document.querySelector('#fileMulti'),
+    adsContainer: document.querySelector('#ads-container'),
+
   },
 
   //Методы для всплывающих оповещений...
@@ -72,6 +74,8 @@ export default {
   async getAll() {
     try {
       const result = await this.axios.get(`${this.url}/ads/all`);
+      console.log(result);
+
       return result.data.ads;
     } catch (error) {
       throw new Error(error);
