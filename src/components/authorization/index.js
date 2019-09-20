@@ -15,21 +15,15 @@ function FormAutorize(event) {
   services
     .userAutorization(formDataObj)
     .then(data => {
-      console.log(data);
       if (data.status == 'success') {
         services.userName = data.userData.name;
         services.userToken = data.token;
         services.userAds = data.ads;
         services.categories = data.categories;
-        console.log(
-          services.userName,
-          services.userToken,
-          services.userAds,
-          services.categories,
-        );
 
         localStorage.setItem('userToken', data.token);
         localStorage.setItem('userName', data.userData.name);
+        localStorage.setItem('categories', JSON.stringify(data.categories));
         services.success(
           'Ви успішно авторізовані',
           'Тепер ви можете почати подавати свої оголошення',
@@ -78,6 +72,7 @@ function FormAnaliz(event) {
       services.userToken = data.token;
       localStorage.setItem('userToken', data.token);
       localStorage.setItem('userName', data.userData.name);
+      localStorage.setItem('categories', JSON.stringify(data.categories));
       services.success(
         'Ви успішно зареєстровані',
         'Тепер ви можете почати подавати свої оголошення',
@@ -129,10 +124,10 @@ if (localStorage.getItem('userToken')) {
   services.isAuthorized = true;
   services.userToken = localStorage.getItem('userToken');
   services.userName = localStorage.getItem('userName');
+  services.categories = localStorage.getItem('categories');
   services.getUser().then(data => {
     if (data.status == 'success') {
       services.userAds = data.ads;
-      services.categories = data.categories;
     }
   });
 }
