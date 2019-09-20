@@ -32,6 +32,8 @@ export default {
     outputMult: document.getElementById('outputMulti'),
     fileMult: document.querySelector('#fileMulti'),
     htmlButProfile: document.querySelector('#Login'),
+    exitbtn: document.querySelector('.exitbtn'),
+    adsContainer: document.querySelector('#ads-container'),
 
   },
 
@@ -176,13 +178,6 @@ async getAds(page) {
       throw new Error(error);
   }
 },
-
-async getAd(adId){
-  try {
-    // const result = await this.axios.get(`${this.url}/ads/${adId}`);
-      return result.data.goal;
-
-  } catch (error) {}},
 
 //get ad by id
 async getAd(adId) {
