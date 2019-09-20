@@ -15,6 +15,7 @@ export default {
   image: [],
   product: null,
   category: '',
+  categoryId: false,
   userName: false,
   userToken: false,
   isAuthorized: false,
@@ -23,10 +24,11 @@ export default {
   userAds: false,
   categories: false,
 
+
   refs: {
     btnRegAutoriz: document.querySelector('.authorization'),
     categoryList: document.querySelector('.filter-wrap'),
-    addsContainer: document.querySelector('#ads-container'),
+    adsContainer: document.querySelector('#ads-container'),
     addPageBtn: document.querySelector('.addPage'),
     btnRegAutoriz: document.querySelector('.authorization'),
     outputMult: document.getElementById('outputMulti'),
@@ -66,6 +68,17 @@ export default {
   getCategory(category) {
     //returns chosen by user category
     this.category = category;
+  },
+
+  giveCategoryId() {
+    //with this fn you can take chosen by user category
+    return this.categoryId;
+  },
+  getCategoryId(categoryid) {
+    //returns chosen by user category
+    this.categoryId = categoryid;
+    console.log(categoryid);
+    
   },
 
   // get all ads by 10 per page

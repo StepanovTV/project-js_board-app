@@ -6,37 +6,6 @@ services.refs.addPageBtn.addEventListener('click', addNewPage);
 
 let privateCounter = 1;
 
-function addNewPage(e) {
-  e.preventDefault();
-  services.refs.addPageBtn.setAttribute('page', ++privateCounter);
-  let counter = e.target.attributes.page.value;
-  console.log(counter);
-  services.getAdds(counter).then(data => {
-    if (data.totalPages <= counter) {
-      e.target.setAttribute('disabled', 'disabled');
-    }
-  });
-}
-
-// function addNewPage(e) {
-//   e.preventDefault();
-//   services.getAll().then(data => {
-//     console.log(data);
-
-//     e.preventDefault();
-//     services.refs.addPageBtn.setAttribute('page', ++privateCounter);
-//     let counter = e.target.attributes.page.value;
-//     console.log(counter);
-
-//     if (data.totalPages <= counter) {
-//       data.page = +counter;
-//     }
-//     if(data.totalPages <= counter){
-//       e.target.setAttribute('disabled', 'disabled');
-//     }
-//   });
-// }
-
 function buttonDrow() {
   services.getAll().then(data => {
     let eachCat = data.categories.map(elem => {
@@ -58,6 +27,8 @@ function findCategory(event) {
   let chosenOne = event.target.getAttribute('id');
   let ClearButt = event.target.dataset.name;
 
+  
+
   if (chosenBut === event.currentTarget) {
     return;
   }
@@ -70,15 +41,15 @@ function findCategory(event) {
     });
     chosenBut.setAttribute('disabled', 'disabled');
   }
-  // console.log(services.refs.addsContainer);
+  // console.log(services.refs.adsContainer);
 
   if (ClearButt === 'clear') {
-    services.refs.addsContainer.innerHTML = ' ';
+    services.refs.adsContainer.innerHTML = ' ';
     services.getAll().then(data => {
       let renderToHtml = data.docs.map(elem => {
         return template(elem);
       });
-      services.refs.addsContainer.insertAdjacentHTML('beforeend', renderToHtml);
+      services.refs.adsContainer.insertAdjacentHTML('beforeend', renderToHtml);
     });
     chosenOne = '';
   }
@@ -86,15 +57,41 @@ function findCategory(event) {
   services
     .getAdsByCategory(chosenOne)
     .then(data => {
-      services.refs.addsContainer.innerHTML = ' ';
+      console.log(data);
+      
+      services.refs.adsContainer.innerHTML = ' ';
       let eachObj = data.forEach(elem => {
         // console.log(elem);
 
-        services.refs.addsContainer.insertAdjacentHTML(
+        services.refs.adsContainer.insertAdjacentHTML(
           'beforeend',
           template(elem),
         );
       });
     })
     .catch(alert => console.log(alert));
+  }
+  
+  
+  function addNewPage(e) {
+    e.preventDefault();
+    let chosenButt = event.target.getAttribute('id');
+    console.log(chosenButt);
+    console.log('sdsd', services.categoryId);
+
+  services.refs.addPageBtn.setAttribute('page', ++privateCounter);
+  let counter = e.target.attributes.page.value;
+  // console.log(counter);
+
+  services.getAdsByCategory(counter).then(data => {
+    console.log(data);
+    let renderToHtml = data.docs.map(elem => {
+      return template(elem);
+    });
+    services.refs.adsContainer.insertAdjacentHTML('beforeend', renderToHtml);
+
+    if (data.totalPages <= counter) {
+      e.target.setAttribute('disabled', 'disabled');
+    }
+  });
 }
