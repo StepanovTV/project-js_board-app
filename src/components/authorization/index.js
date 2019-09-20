@@ -139,6 +139,3 @@ if (services.isAuthorized) {
   document.querySelector('.authorization').style.display = 'flex';
   document.querySelector('.userCabinet').style.display = 'none';
 }
-
-
-console.log(services);
