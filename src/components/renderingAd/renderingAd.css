@@ -1,12 +1,12 @@
 .template {
   position: relative;
-  width: 500px;
-  height: 800px;
+  width: 100%;
+  height: 100%;
   background-color: white;
   color: black;
   font-size: 30px;
+  list-style: none;
 }
-
 
 .material-icons {
   position: absolute;
