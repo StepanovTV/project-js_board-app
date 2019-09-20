@@ -1,5 +1,5 @@
 import services from '../../services';
-import template from './template.hbs';
+import template from '../../template/templateDisplayAdsCards.hbs';
 
 services.refs.categoryList.addEventListener('click', findCategory);
 services.refs.addPageBtn.addEventListener('click', addNewPage);
@@ -27,8 +27,6 @@ function findCategory(event) {
   let chosenOne = event.target.getAttribute('id');
   let ClearButt = event.target.dataset.name;
 
-  
-
   if (chosenBut === event.currentTarget) {
     return;
   }
@@ -53,12 +51,14 @@ function findCategory(event) {
     });
     chosenOne = '';
   }
+  services.categoryId = chosenOne;
+
 
   services
     .getAdsByCategory(chosenOne)
     .then(data => {
       console.log(data);
-      
+
       services.refs.adsContainer.innerHTML = ' ';
       let eachObj = data.forEach(elem => {
         // console.log(elem);
@@ -70,28 +70,26 @@ function findCategory(event) {
       });
     })
     .catch(alert => console.log(alert));
-  }
-  
-  
-  function addNewPage(e) {
-    e.preventDefault();
-    let chosenButt = event.target.getAttribute('id');
-    console.log(chosenButt);
-    console.log('sdsd', services.categoryId);
+}
 
+function addNewPage(e) {
+  e.preventDefault();
+  console.log(services.categoryId, );
   services.refs.addPageBtn.setAttribute('page', ++privateCounter);
   let counter = e.target.attributes.page.value;
   // console.log(counter);
 
-  services.getAdsByCategory(counter).then(data => {
-    console.log(data);
-    let renderToHtml = data.docs.map(elem => {
-      return template(elem);
-    });
-    services.refs.adsContainer.insertAdjacentHTML('beforeend', renderToHtml);
+  console.log(services.getAdsByCategory(services.categoryId, counter));
 
-    if (data.totalPages <= counter) {
-      e.target.setAttribute('disabled', 'disabled');
-    }
-  });
+  // services.getAdsByCategory(services.categoryId, counter).then(data => {
+  //   console.log(data);
+  //   let renderToHtml = data.docs.map(elem => {
+  //     return template(elem);
+  //   });
+  //   services.refs.adsContainer.insertAdjacentHTML('beforeend', renderToHtml);
+
+  //   if (data.totalPages <= counter) {
+  //     e.target.setAttribute('disabled', 'disabled');
+  //   }
+  // });
 }
