@@ -4,7 +4,46 @@ import tplAutoFofm from '../../template/authorization.hbs';
 
 const instanseLb = services.basicLightbox.create(tplAutoFofm());
 
-// activ-form
+function FormAutorize(event) {
+  event.preventDefault();
+  if (services.isAuthorized) return;
+  const formData = new FormData(event.currentTarget);
+  const formDataObj = {};
+  formData.forEach((val, key) => {
+    formDataObj[key] = val;
+  });
+  services
+    .userAutorization(formDataObj)
+    .then(data => {
+      if (data.status == 'success') {
+        services.userName = data.userData.name;
+        services.userToken = data.token;
+        services.userAds = data.ads;
+        services.categories = data.categories;
+
+        localStorage.setItem('userToken', data.token);
+        localStorage.setItem('userName', data.userData.name);
+        localStorage.setItem('userEmail', formDataObj.email);
+        localStorage.setItem('pass', formDataObj.password);
+        localStorage.setItem('categories', JSON.stringify(data.categories));
+        services.success(
+          'Ви успішно авторізовані',
+          'Тепер ви можете почати подавати свої оголошення',
+        );
+        instanseLb.close();
+        document.querySelector('.authorization').style.display = 'none';
+        document.querySelector('.userCabinet').style.display = 'flex';
+        return;
+      }
+      services.error('Помилка!', 'Паролі та логін не свпівпадають');
+      return;
+    })
+    .catch(err => {
+      services.error('Помилка!', 'Паролі та логін не свпівпадають');
+      console.error(err);
+    });
+}
+
 function FormAnaliz(event) {
   event.preventDefault();
   const formData = new FormData(event.currentTarget);
@@ -31,26 +70,22 @@ function FormAnaliz(event) {
         services.error('Помилка!', 'Нажаль в нас технічна проблема!');
         return;
       }
+      
       services.userName = data.userData.name;
       services.userToken = data.token;
       localStorage.setItem('userToken', data.token);
       localStorage.setItem('userName', data.userData.name);
+      localStorage.setItem('userEmail', formDataObj.mail);
+      localStorage.setItem('pass', formDataObj.pass1);
+      localStorage.setItem('categories', JSON.stringify(data.categories));
+
       services.success(
         'Ви успішно зареєстровані',
-        'Тепер ви можете почати продавати свої оголошення',
+        'Тепер ви можете почати подавати свої оголошення',
       );
       instanseLb.close();
       document.querySelector('.authorization').style.display = 'none';
       document.querySelector('.userCabinet').style.display = 'flex';
-      //   {
-      //     "status": "success",
-      //     "userData": {
-      //         "userId": "5d836b3eca3ed838fd535223",
-      //         "name": "Taras",
-      //         "email": "lodddgin@gmail.com"
-      //     },
-      //     "token": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkODM2YjNlY2EzZWQ4MzhmZDUzNTIyMyIsImlhdCI6MTU2ODg5Mzc1OH0.VVbUkGqO9Zom3G8QsX-1JaihoINgm4mvGmJRfR9T7KA"
-      // }
     })
     .catch(err => {
       console.error(err);
@@ -59,29 +94,8 @@ function FormAnaliz(event) {
         'Нажаль в нас технічна проблема на сервері. Спробуйте пізніше!!!',
       );
       instanseLb.close();
-  
     });
-  //   {
-  //     "status": "success",
-  //     "userData": {
-  //         "userId": "5d834f8781406f3911bff598",
-  //         "name": "Taras",
-  //         "email": "login@gmail.com"
-  //     },
-  //     "token": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkODM0Zjg3ODE0MDZmMzkxMWJmZjU5OCIsImlhdCI6MTU2ODg4NjY2M30.iXv_Ou8VR8zG1bvd1LpWHZFuaj6xzCMyUYyua39qJP0"
-  // }
 }
-
-// const getUser = () => {
-//   services.axios.get("https://dash-ads.goit.co.ua/api/v1/ads",
-//       {headers: {
-//           Authorization:
-//             "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkODM1MWU1Y2EzZWQ4MzhmZDUzNTIxOCIsImlhdCI6MTU2ODg5MzkwMX0.iqW2YHtcpb4D2723V0W9aLanX_2FFU6sCfbQKKNUgXw"
-//         }
-//       }
-//     ).then(data => console.log(data))
-// }
-// getUser();
 
 function hendalClicReg(e) {
   e.preventDefault();
@@ -107,21 +121,38 @@ function hendalClicReg(e) {
   });
   const RegistrationForm = document.querySelector('.registration-form');
   RegistrationForm.addEventListener('submit', FormAnaliz);
+  const autorizationForm = document.querySelector('.signIn-form');
+  autorizationForm.addEventListener('submit', FormAutorize);
 }
 services.refs.btnRegAutoriz.addEventListener('click', hendalClicReg);
 
-
-
-if(localStorage.getItem("userToken")){
+if (localStorage.getItem('userToken')) {
   services.isAuthorized = true;
-};
+  services.userToken = localStorage.getItem('userToken');
+  services.userName = localStorage.getItem('userName');
+  services.categories = JSON.parse(localStorage.getItem('categories'))
+  services.getUser().then(data => {
+    if (data.status == 'success') {
+      services.userAds = data.ads;
+    }
+  });
+}
 
-
-
-if(services.isAuthorized){
+if (services.isAuthorized) {
   document.querySelector('.authorization').style.display = 'none';
   document.querySelector('.userCabinet').style.display = 'flex';
-}else{
+} else {
   document.querySelector('.authorization').style.display = 'flex';
   document.querySelector('.userCabinet').style.display = 'none';
 }
+
+function hendelsLogaut(e){
+  e.preventDefault();
+  services.logout(localStorage.getItem('userEmail'), localStorage.getItem('pass'), localStorage.getItem('userToken'))
+  .then(data => {
+    localStorage.clear();
+    document.querySelector('.authorization').style.display = 'flex';
+  document.querySelector('.userCabinet').style.display = 'none';
+  });
+}
+services.refs.exitbtn.addEventListener('click', hendelsLogaut)
