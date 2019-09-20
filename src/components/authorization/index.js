@@ -124,7 +124,7 @@ if (localStorage.getItem('userToken')) {
   services.isAuthorized = true;
   services.userToken = localStorage.getItem('userToken');
   services.userName = localStorage.getItem('userName');
-  services.categories = localStorage.getItem('categories');
+  services.categories = JSON.parse(localStorage.getItem('categories'))
   services.getUser().then(data => {
     if (data.status == 'success') {
       services.userAds = data.ads;

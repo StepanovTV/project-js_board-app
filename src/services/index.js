@@ -134,12 +134,13 @@ export default {
       throw new Error(error);
     }
   },
+
   //get ad by id
   async getAd(adId) {
     try {
       const result = await this.axios.get(`${this.url}/ads/${adId}`, {
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
       });
       return result.data.goal;
@@ -148,7 +149,7 @@ export default {
     }
   },
   //post new ad
-  async postAd(obj, token) {
+  async postAd(obj) {
     try {
       let result = await this.axios.post(`${this.url}/ads`, obj, {
         headers: {
@@ -161,4 +162,66 @@ export default {
       throw new Error(error);
     }
   },
-};
+
+  // get ads by page
+async getAds(page) {
+  try {
+      const result = await this.axios.get(
+          `${this.url}/ads/all?limit=${this.pageLimit}&page=${page}`
+      );
+      return result.data.ads;
+  } catch (error) {
+      throw new Error(error);
+  }
+},
+
+async getAd(adId){
+  try {
+    // const result = await this.axios.get(`${this.url}/ads/${adId}`);
+      return result.data.goal;
+
+  } catch (error) {}},
+
+//get ad by id
+async getAd(adId) {
+  try {
+      const result = await this.axios.get(`${this.url}/ads/${adId}`);
+      return result.data.goal;
+  } catch (error) {
+      throw new Error(error);
+  }
+},
+
+//delete ad
+async deleteAd(adId, token) {
+  try {
+      let result = await this.axios.delete(`${this.url}/ads/${adId}`, {
+          headers: {
+              "Content-Type": "application/json",
+              Authorization: token
+          }
+      });
+      return result;
+  } catch (error) {
+      throw new Error(error);
+  }
+},
+
+async logout(email, password, token) {
+  const obj = {
+    email: email,
+    password: password,
+  };
+  try {
+    let result = await this.axios.post(`${this.url}/auth/logout`, obj, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: token,
+      },
+    });
+    return result;
+  } catch (error) {
+    throw new Error(error);
+  }
+},
+}
