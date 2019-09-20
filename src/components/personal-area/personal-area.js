@@ -5,16 +5,17 @@ import templateCard from './userInfoProfile.hbs';
 import templateList from './listCardProfile.hbs';
 import massAds from './demoList';
 
-console.log('!!!',home.userName, home.userAutorization)
+console.log('my',home.isAuthorized)
 
 home.refs.htmlButProfile.addEventListener('click', e => {
-  const userProfil = home.isAuthorized;
+  // const userProfil = home.isAuthorized;
+  const userProfil = localStorage.getItem('userName')
   if (!userProfil) {
     home.info('АВТОРИЗАЦИЯ', 'Для входа в личный кабинет авторизируйтесь');
-    console.log('NeOk')
+   
     return;
   }
-  console.log('ok');
+  
   personalWindow.show();
   drawInfoProfile () ;
   
@@ -28,13 +29,12 @@ function drawInfoProfile () {
   // когда будут в базе реальные обьявки то залочить первую сроку и разлочить вторую
   // const newList = templateList(massAds);
   const newList = templateList(home.userAds);
-
-
+  
   const profileRefs = {
     htmlHederInfo: document.querySelector('.fio'),
     htmlListAds: document.querySelector('.list'),
   };
-
+  
   profileRefs.htmlHederInfo.innerHTML = '';
   profileRefs.htmlListAds.innerHTML = '';
 

@@ -10,5 +10,4 @@ import 'pnotify/dist/PNotifyBrightTheme.css';
 import 'basiclightbox/dist/basicLightbox.min.css';
 import './styles.css';
 
-
-
+console.log('index',services.isAuthorized)
