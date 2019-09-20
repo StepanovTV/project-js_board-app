@@ -1,63 +1,43 @@
 import services from '../../services/index';
-
-import fictiveTempInfo from './fictiveTemplateCard.json';
+import axios from 'axios'
+// import fictiveTempInfo from './fictiveTemplateCard.json';
 import templateDisplayAdsCards from '../../template/templateDisplayAdsCards.hbs';
-// import displayAdsCards from './displayAdsCards.css';
+import displayAdsCards from './displayAdsCards.css';
 
 
-// services.getAll().then(res => {console.log(res)});
-// console.log(services.getAll);
+services.getAll().then(res => {
+
+  // console.log(res);
+  const docs = res.docs;
+  // console.log(docs);
 
 
+});
 
+services.getAll().then(data => {
+  data.docs.map(elem => {
+    // console.log('elem',elem)
+    console.log('images',elem.images)
 
+    const markup = templateDisplayAdsCards(elem, {...elem.images = [elem.images[0]]});
+    // console.log(markup);
+    services.refs.adsContainer.insertAdjacentHTML('beforeend', markup);
+  })
 
-
-
-
-
-
-
-
-
-
-
-// ========= привязываем к ul фиктивный массив объектов =========
-const refs = {
-  listDisplayAds: document.querySelector('.js-displayAdsCards'),
-};
-// отрисовываем фиктивный массив объектов
-// const markup = templateDisplayAdsCards(fictiveTempInfo[0]);
-// refs.listDisplayAds.insertAdjacentHTML('beforeend', markup);
-
-
-fictiveBuildCardAds(fictiveTempInfo);
-
-function fictiveBuildCardAds(cards) {
-  const markup = cards.map(card => templateDisplayAdsCards(card)).join('');
-  console.log(markup);
-  // отрисовываем фиктивный массив объектов
-  refs.listDisplayAds.insertAdjacentHTML('beforeend', markup);
-}
+});
+console.log(services.getAll());
 
 
 
 
+// services
+//     .getAdsByCategory(2)
+//     .then(data => {
+//       services.refs.addsContainer.innerHTML = ' ';
+//       let eachObj = data.forEach(elem => {
+//         console.log(elem);
 
-
-
-
-// services.getAds()
-// .then(res => console.log(res));
-// .catch(el => console.log());
-
-/*
-displayAdsMainPage(card);
-
-function displayAdsMainPage(cars) {
-  const arr = arr.map(element, index) => {
-    if(index === 0) return " ";
-    return `img src ${element}`
-  }
-}
-*/
+//         services.refs.addsContainer.insertAdjacentHTML('beforeend', templateDisplayAdsCards(elem));
+//       });
+//     })
+//     .catch(alert => console.log(alert));

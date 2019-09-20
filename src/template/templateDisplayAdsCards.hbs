@@ -1,24 +1,19 @@
 <div class="displayCardAdsWrap">
 <div class="containerDisplayAdsCards">
 <li class="adsItem">
-  <div class="displayAdsCardsTopImg">
-  <img src="{{images}}" height="60" alt="">
+  <div class="containerDisplayAdsCardsTop">
+    {{#each images}}
+  <img src="{{this}}" height="60" alt="">
+  {{/each}}
   </div>
   {{!-- <div class="adsDescription">{{description}}</div> --}}
   {{!-- <p class="adsDate">{{expDate}}</p> --}}
   {{!-- <p class="adsCategory">{{category}}</p> --}}
-  <div class="displayAdsCardsBottomText">
+  <div class="containerDisplayAdsCardsBottom">
   <h2 class="adsTitle">{{title}}</h2>
-  <p class="adsPrice">{{price}}</p>
+  <p class="adsPrice">Ціна {{price}} грн</p>
   </div>
   {{!-- <p class="adsPhone">{{phone}}</p> --}}
 </li>
 </div>
 </div>
-
-
-
-
-
-
-
