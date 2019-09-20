@@ -13,10 +13,9 @@ services.refs.newAdBut.onclick = () => {
     return;
   }
 
-  console.log(JSON.parse(services.categories));
-  const categories = JSON.parse(services.categories)
+  console.log(services.categories);
 
-  const instance = services.basicLightbox.create(adForm(categories));
+  const instance = services.basicLightbox.create(adForm(services.categories));
   instance.show();
 
   //Рефи всередині модалки
@@ -46,14 +45,17 @@ services.refs.newAdBut.onclick = () => {
     };
     console.log(product);
 
-    services.postAd(product)
-      .then(({data}) => {
+    services
+      .postAd(product)
+      .then(({ data }) => {
         console.log(data.ads);
         services.refs.adWrapper.insertAdjacentHTML(
           'afterbegin',
           `<li class="ad-item" data-id="${data.ads.adsId}">
     <span class="ad-price">${data.ads.price}</span>
-    <img class="ad-img" src="${data.ads.images[0]}" width="320" alt="${data.ads.title}">
+    <img class="ad-img" src="${data.ads.images[0]}" width="320" alt="${
+            data.ads.title
+          }">
     <h2 class="ad-heading">${data.ads.title}</h2>
   </li>`,
         );

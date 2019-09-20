@@ -86,18 +86,18 @@ display: none;
   overflow: hidden;
   position: relative;
 }
-
-label {
+ 
+.login-widows label {
   position: absolute;
   top: 28px;
   color: darkgrey;
-  font: 400 16px Roboto;
+  font-family: 'PT Sans', sans-serif;
   cursor: text;
   transition: 0.25s ease;
   padding-bottom: 20px;
 }
 
-input {
+.login-widows input {
   display: block;
   width: 100%;
   padding-top: 26px;
@@ -108,23 +108,25 @@ input {
   transition: 0.3s ease;
 }
 
-input:valid~label {
+.login-widows input:valid~label {
   top: 0;
-  font: 700 20px Roboto;
+  font-size: 20px;
+  font-family: 'PT Sans', sans-serif;
   color: rgba(0, 0, 0, 0.5);
 }
 
-input:focus {
+.login-widows input:focus {
   outline: none;
 }
 
-input:focus~label {
+.login-widows input:focus~label {
   top: 0;
-  font: 700 18px Roboto;
+  font-size: 20px;
+  font-family: 'PT Sans', sans-serif;
   color: #000000;
 }
 
-input:focus~.bar:before {
+.login-widows input:focus~.bar:before {
   transform: translateX(0);
 }
 
