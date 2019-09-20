@@ -20,7 +20,9 @@ export default {
   isAuthorized: false,
   url: `https://dash-ads.goit.co.ua/api/v1`,
   pageLimit: 10,
-  
+  userAds: false,
+  categories: false,
+
   refs: {
     btnRegAutoriz: document.querySelector('.authorization'),
     categoryList: document.querySelector('.filter-wrap'),
@@ -112,4 +114,116 @@ export default {
       throw new Error(error);
     }
   },
-};
+
+  async getUser() {
+    const heders = {
+      headers: {
+        Authorization: this.userToken,
+      },
+    };
+    try {
+      let result = await this.axios.get(`${this.url}/ads`, heders);
+      return result.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+  async userAutorization(obj) {
+    try {
+      let result = await this.axios.post(`${this.url}/auth/login`, obj);
+      return result.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+
+  //get ad by id
+  async getAd(adId) {
+    try {
+      const result = await this.axios.get(`${this.url}/ads/${adId}`, {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      });
+      return result.data.goal;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+  //post new ad
+  async postAd(obj) {
+    try {
+      let result = await this.axios.post(`${this.url}/ads`, obj, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: this.userToken,
+        },
+      });
+      return result;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+
+  // get ads by page
+async getAds(page) {
+  try {
+      const result = await this.axios.get(
+          `${this.url}/ads/all?limit=${this.pageLimit}&page=${page}`
+      );
+      return result.data.ads;
+  } catch (error) {
+      throw new Error(error);
+  }
+},
+
+async getAd(adId){
+  try {
+    // const result = await this.axios.get(`${this.url}/ads/${adId}`);
+      return result.data.goal;
+
+  } catch (error) {}},
+
+//get ad by id
+async getAd(adId) {
+  try {
+      const result = await this.axios.get(`${this.url}/ads/${adId}`);
+      return result.data.goal;
+  } catch (error) {
+      throw new Error(error);
+  }
+},
+
+//delete ad
+async deleteAd(adId, token) {
+  try {
+      let result = await this.axios.delete(`${this.url}/ads/${adId}`, {
+          headers: {
+              "Content-Type": "application/json",
+              Authorization: token
+          }
+      });
+      return result;
+  } catch (error) {
+      throw new Error(error);
+  }
+},
+
+async logout(email, password, token) {
+  const obj = {
+    email: email,
+    password: password,
+  };
+  try {
+    let result = await this.axios.post(`${this.url}/auth/logout`, obj, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: token,
+      },
+    });
+    return result;
+  } catch (error) {
+    throw new Error(error);
+  }
+},
+}

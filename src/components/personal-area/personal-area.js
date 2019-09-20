@@ -5,13 +5,16 @@ import templateCard from './userInfoProfile.hbs';
 import templateList from './listCardProfile.hbs';
 import massAds from './demoList';
 
+console.log('!!!',home.userName, home.userAutorization)
+
 home.refs.htmlButProfile.addEventListener('click', e => {
   const userProfil = home.isAuthorized;
-  if (userProfil == false) {
+  if (!userProfil) {
     home.info('АВТОРИЗАЦИЯ', 'Для входа в личный кабинет авторизируйтесь');
+    console.log('NeOk')
     return;
   }
-  
+  console.log('ok');
   personalWindow.show();
   drawInfoProfile () ;
   

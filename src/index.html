@@ -12,28 +12,34 @@
       <div class="container">
         <!-- Навігація -->
         <nav class="nav">
-          <div class="logo">Board</div>
-          <div class="user">
-            <button class="authorization">авторизація / реєстрація</button>
-            <!-- Кнопка для логіну рєстрації та логауту при логіні називається іменем користувача -->
-            <div class="userCabinet">
-              <button id="Login">Мій профіль</button>
-              <button id="exit-user">вихід</button>
-            </div>
+          <div class="logo">
+            <a class="cont-logo" href="#">
+              <img class="site-logo" src="./images/logo.png" alt="HotAds" width="130" height="30">
+            </a>
           </div>
+          <div class="user">
+              <button class="authorization">авторизація / реєстрація</button>
+              <!-- Кнопка для логіну рєстрації та логауту при логіні називається іменем користувача -->
+              <div class="userCabinet">
+                <button class="profilebtn" id="Login">Мій профіль</button>
+                <button class="exitbtn" id="exit-user">вихід</button>
+              </div>
+            </div>
           <!-- Кнопка для логіну рєстрації та логауту при логіні називається іменем користувача -->
         </nav>
         <!-- Навігація -->
         <!-- Додати оголошення -->
-        <div class="button-wrap">
-          <button id="new-ad">Додати оголошення</button>
+        <div class="adcontrol">
+          <div class="button-wrap">
+            <button class="adcontrol__additem js-new-ad" id="new-ad">Додати оголошення</button>
+          </div>
+          <!-- Додати оголошення -->
+          <!-- Пошук -->
+          <form class="adcontrol__searchform" action="#" id="search-form">
+            <input class="adcontrol__search" type="search" />
+            <button class="adcontrol__searchbtn" type="submit">Пошук</button>
+          </form>
         </div>
-        <!-- Додати оголошення -->
-        <!-- Пошук -->
-        <form action="#" class="search" id="search-form">
-          <input type="search" />
-          <button type="submit">Пошук</button>
-        </form>
         <!-- Пошук -->
       </div>
     </header>
@@ -42,16 +48,9 @@
         <!-- Фільтр кнопки -->
         <div class="filter-wrap">
           <!-- Фільтри -->
-          <button id="home_filter" data-name="home">Нерухомість</button>
-          <button id="transport_filter" data-name="transport">Транспорт</button>
-          <button id="work_filter" data-name="work">Робота</button>
-          <button id="electronics_filter" data-name="electronics">Електроніка</button>
-          <button id="business_filter" data-name="business">Бізнес та послуги</button>
-          <button id="rest_filter" data-name="rest">Хобі, відпочинок та спорт</button>
-          <button id="free_filter" data-name="free">Віддам даром</button>
-          <button id="exchange_filter" data-name="exchange">Обмін</button>
+
           <!-- Очистка фільтра -->
-          <button id="clear-filter" data-name="clear">Очистити</button>
+          <button class="filter-item filter-item__clear" id="clear-filter"></button>
           <!-- Очистка фільтра -->
           <!-- Фільтри -->
         </div>
@@ -99,24 +98,7 @@
         <!-- Місце виводу оголошень -->
         <ul class="ad-wrapper" id="ads-container">
           <!-- оголошення -->
-          <li class="ad-item">
-            <span class="ad-tag">Категорія</span>
-            <span class="ad-author">Автор</span>
-
-            <h2 class="ad-heading">Заголовок</h2>
-          </li>
-          <li class="ad-item">
-            <span class="ad-tag">Категорія</span>
-            <span class="ad-author">Автор</span>
-
-            <h2 class="ad-heading">Заголовок</h2>
-          </li>
-          <li class="ad-item">
-            <span class="ad-tag">Категорія</span>
-            <span class="ad-author">Автор</span>
-
-            <h2 class="ad-heading">Заголовок</h2>
-          </li>
+ 
           <!-- оголошення -->
         </ul>
         <button class="addPage" page="1" >Ще</button>
@@ -126,7 +108,7 @@
     <footer class="footer">
       <div class="container">
         <p class="copywrite">
-          Board - 2019.
+            &copy; Copyright 2019, HotAds GoIT inc.
         </p>
       </div>
     </footer>

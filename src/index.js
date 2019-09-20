@@ -1,7 +1,8 @@
 import services from './services';
 import './components/authorization';
-import './components/filterByCategory';
+// import './components/filterByCategory';
 import './components/personal-area/personal-area'
+// import './components/filterByCategory';
 
 // CSS
 import 'material-design-icons/iconfont/material-icons.css';
