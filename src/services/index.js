@@ -24,6 +24,7 @@ export default {
     popupfom: document.querySelector(".popupfom"),
     adWrapper: document.querySelector(".ad-wrapper"),
     spinner: document.querySelector("#spinner"),
+    isAuthorized : false,
   },
 
   //Методы для всплывающих оповещений...

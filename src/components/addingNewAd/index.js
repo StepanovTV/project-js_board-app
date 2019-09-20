@@ -5,6 +5,11 @@ import handleFileSelect from '../loadImage/loadImage';
 services.refs.newAdBut.onclick = () => {
   //Вітянуть ид объявления
 
+  if(!services.refs.isAuthorized) {
+    services.notice('Вибачте ;(', 'Для створення оголошення зареєструйтесь або авторизуйтесь.');
+    return;
+  }
+
   const instance = services.basicLightbox.create(adForm());
   instance.show();
   //Рефи всередині модалки
