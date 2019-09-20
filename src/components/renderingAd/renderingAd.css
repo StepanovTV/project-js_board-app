@@ -1,9 +1,16 @@
 .template {
+  position: relative;
   width: 500px;
   height: 800px;
   background-color: white;
   color: black;
+  font-size: 30px;
 }
 
 
-
+.material-icons {
+  position: absolute;
+  top: -20px;
+  right: 0;
+  color: white;
+}

@@ -52,17 +52,17 @@ function findCategory(event) {
 
 }
 
-services
-  .getAdsByCategory(idCat, page)
-  .then(data => {
-    let eachObj = data.map(elem => {
-      return services.hbs(elem);
-    });
-    services.refs.addsContainer.insertAdjacentHTML('beforeend', eachObj);
-  })
-  .catch(alert =>
-    alert('Виникла помилка, будь ласка спробуйте перезавантажити сторінку ;)'),
-  );
+// services
+//   .getAdsByCategory(idCat, page)
+//   .then(data => {
+//     let eachObj = data.map(elem => {
+//       return services.hbs(elem);
+//     });
+//     services.refs.addsContainer.insertAdjacentHTML('beforeend', eachObj);
+//   })
+//   .catch(alert =>
+//     alert('Виникла помилка, будь ласка спробуйте перезавантажити сторінку ;)'),
+//   );
 
 //   services.refs.categoryList.addEventListener('click', getAdsByCategory)
 //       getAdsByCategory(idCat, page).then(event=>{
