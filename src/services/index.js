@@ -31,6 +31,7 @@ export default {
     btnRegAutoriz: document.querySelector('.authorization'),
     outputMult: document.getElementById('outputMulti'),
     fileMult: document.querySelector('#fileMulti'),
+    exitbtn: document.querySelector('.exitbtn'),
     adsContainer: document.querySelector('#ads-container'),
 
   },

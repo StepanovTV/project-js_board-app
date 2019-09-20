@@ -23,6 +23,8 @@ function FormAutorize(event) {
 
         localStorage.setItem('userToken', data.token);
         localStorage.setItem('userName', data.userData.name);
+        localStorage.setItem('userEmail', formDataObj.email);
+        localStorage.setItem('pass', formDataObj.password);
         localStorage.setItem('categories', JSON.stringify(data.categories));
         services.success(
           'Ви успішно авторізовані',
@@ -68,11 +70,15 @@ function FormAnaliz(event) {
         services.error('Помилка!', 'Нажаль в нас технічна проблема!');
         return;
       }
+      
       services.userName = data.userData.name;
       services.userToken = data.token;
       localStorage.setItem('userToken', data.token);
       localStorage.setItem('userName', data.userData.name);
+      localStorage.setItem('userEmail', formDataObj.mail);
+      localStorage.setItem('pass', formDataObj.pass1);
       localStorage.setItem('categories', JSON.stringify(data.categories));
+
       services.success(
         'Ви успішно зареєстровані',
         'Тепер ви можете почати подавати свої оголошення',
@@ -139,3 +145,14 @@ if (services.isAuthorized) {
   document.querySelector('.authorization').style.display = 'flex';
   document.querySelector('.userCabinet').style.display = 'none';
 }
+
+function hendelsLogaut(e){
+  e.preventDefault();
+  services.logout(localStorage.getItem('userEmail'), localStorage.getItem('pass'), localStorage.getItem('userToken'))
+  .then(data => {
+    localStorage.clear();
+    document.querySelector('.authorization').style.display = 'flex';
+  document.querySelector('.userCabinet').style.display = 'none';
+  });
+}
+services.refs.exitbtn.addEventListener('click', hendelsLogaut)
