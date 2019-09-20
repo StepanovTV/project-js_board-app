@@ -112,9 +112,7 @@ button::-moz-focus-inner {
 [type=button]:-moz-focusring,
 [type=reset]:-moz-focusring,
 [type=submit]:-moz-focusring,
-button:-moz-focusring {
-  outline: 1px dotted ButtonText
-}
+
 
 fieldset {
   padding: .35em .75em .625em
@@ -252,7 +250,11 @@ html {
   width: 90%;
   margin: 0 auto;
 }
-
+.basicLightbox__placeholder {
+  max-height: 90%;
+  overflow-y: auto;
+  overflow-x: hidden;
+   }
 
 @media screen and (min-width:768px) {
   .container {
@@ -265,3 +267,237 @@ html {
     width: 1200px;
   }
 }
+
+
+nav {
+  margin-bottom: 20px;
+}
+header {
+ 
+  background: linear-gradient(180deg, #2b5577 58%, #497eaa 58%);
+}
+.logo {
+  text-align: center;
+}
+
+@media screen and (min-width: 320px) {
+  .container {
+  min-width: 320px;
+  }
+
+  .user {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .userCabinet {
+    display: flex;
+  }
+  
+  .btnsection {
+    display: flex;
+  }
+  
+  .authorization {
+    height: 40px;
+    padding: 10px;
+    border: 2px solid #ffffff;
+    border-radius: 25px;
+    color: #ffffff;
+    background-color: #2b5577;
+    margin-right: 20px;
+  }
+  
+  .profilebtn {
+    height: 40px;
+    color: #fff;
+    position: relative;
+    /* background-image: url("./images/profile.png"); */
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    background-color: transparent;
+    border: none;
+    padding-right: 50px;
+    margin-right: 15px;
+  }
+
+  .profilebtn::after {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: contain;
+    bottom: 0;
+    right: 0;
+    background-image: url("./images/profile.png");
+}
+  
+  .exitbtn {
+    width: 40px;
+    height: 40px;
+    background-image: url("./images/exit.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-color: transparent;
+    border: none;
+    color: transparent;
+    /* You should change it on Visualy hidden */
+  }
+  
+  .adcontrol {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 10px;
+  }
+  
+  .adcontrol__additem {
+    width: 40px;
+    height: 40px;
+    color: transparent;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-image: url("./images/add.png");
+    border: 2px solid #ffffff;
+    border-radius: 25px;
+  }
+  
+  .adcontrol__searchform {
+    background-color: #fff;
+    border: none;
+    border-radius: 25px;
+    padding: 0 15px;
+  }
+  
+  .adcontrol__search {
+    height: 40px;
+    border: none;
+    background: transparent;
+  }
+  
+  .adcontrol__searchbtn {
+    height: 40px;
+    border: none;
+    background: transparent;
+    color: #497eaa;
+  }
+  
+  .filter-wrap {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    border-bottom: 2px solid #497eaa;
+  }
+  
+  .filter-item {
+    border: none;
+    line-height: 25px;
+    background-color: transparent;
+  }
+  
+  .filter-item:focus,
+  .filter-item:hover {
+    outline: none;
+    background-color: #c2c2c2;
+  }
+  
+  .filter-item__clear {
+    width: 25px;
+    height: 25px;
+    margin: 2px;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-image: url("./images/clear.png")
+  }
+  
+  .ad-wrapper {
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+  
+  .ad-item {
+    border: 2px solid #9cc3e3;
+    border-radius: 15px;
+    display: flex;
+    position: relative;
+    padding: 20px 20px 5px 20px;
+    margin-bottom: 15px;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .ad-tag {
+    position: absolute;
+    top: -10px;
+    left: 40px;
+    border: 2px solid #9cc3e3;
+    border-radius: 5px;
+    height: 25px;
+    padding: 0 10px;
+    line-height: 21px;
+    background-color: #fff;
+  }
+  
+  .ad-img {
+    background-color: #2b5577;
+  }
+  
+  .ad-heading {
+    margin: 0;
+  }
+
+  footer {
+    background: linear-gradient(0deg, #2b5577 90%, rgba(73, 126, 170, 0.1));
+    line-height: 40px;
+    color: #fff;
+  }
+}
+
+@media screen and (min-width:768px) {
+  .container {
+    width: 720px;
+  }
+
+  .ad-item {
+    flex-direction: row;
+    align-items: flex-start;
+    padding-bottom: 20px;
+  }
+  
+  .ad-img {
+    margin-right: 20px;
+  }
+
+  .ad-rightpart {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+}
+
+@media screen and (min-width:1200px) {
+  .container {
+    width: 1100px;
+  }
+
+  .ad-wrapper {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .ad-item {
+    width: 540px;
+  }
+}
+
