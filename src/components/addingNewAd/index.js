@@ -5,18 +5,25 @@ import handleFileSelect from '../loadImage/loadImage';
 services.refs.newAdBut.onclick = () => {
   //Вітянуть ид объявления
 
-  if(!services.refs.isAuthorized) {
-    services.notice('Вибачте ;(', 'Для створення оголошення зареєструйтесь або авторизуйтесь.');
+  if (!services.isAuthorized) {
+    services.notice(
+      'Вибачте ;(',
+      'Для створення оголошення зареєструйтесь або авторизуйтесь.',
+    );
     return;
   }
 
-  const instance = services.basicLightbox.create(adForm());
+  console.log(JSON.parse(services.categories));
+  const categories = JSON.parse(services.categories)
+
+  const instance = services.basicLightbox.create(adForm(categories));
   instance.show();
+
   //Рефи всередині модалки
   const localRefs = {
     popup: document.querySelector('.js-ad-form'),
     fileMult: document.querySelector('#fileMulti'),
-  }
+  };
   localRefs.fileMult.addEventListener('change', handleFileSelect);
   localRefs.popup.addEventListener('submit', e => {
     e.preventDefault();
@@ -39,17 +46,20 @@ services.refs.newAdBut.onclick = () => {
     };
     console.log(product);
 
-    services.refs.adWrapper.insertAdjacentHTML(
-      'afterbegin',
-      `<li class="ad-item">
-    <span class="ad-price">${product.price}</span>
-    <img class="ad-img" src="${product.images[0]}" width="320" alt="${
-          product.title
-        }">
-    <h2 class="ad-heading">${product.title}</h2>
-  </li>`
-    );
+    services.postAd(product)
+      .then(({data}) => {
+        console.log(data.ads);
+        services.refs.adWrapper.insertAdjacentHTML(
+          'afterbegin',
+          `<li class="ad-item" data-id="${data.ads.adsId}">
+    <span class="ad-price">${data.ads.price}</span>
+    <img class="ad-img" src="${data.ads.images[0]}" width="320" alt="${data.ads.title}">
+    <h2 class="ad-heading">${data.ads.title}</h2>
+  </li>`,
+        );
 
-    instance.close(services.success('Оголошення', 'Додано'));
+        instance.close(services.success('Оголошення', 'Додано'));
+      })
+      .catch(console.error);
   });
 };

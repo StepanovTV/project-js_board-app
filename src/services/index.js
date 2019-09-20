@@ -14,8 +14,20 @@ export default {
   infiniteScroll: infiniteScroll,
   image: [],
   product: null,
+  category: '',
+  userName: false,
+  userToken: false,
+  isAuthorized: false,
+  url: `https://dash-ads.goit.co.ua/api/v1`,
+  pageLimit: 10,
+  userAds: false,
+  categories: false,
 
   refs: {
+    btnRegAutoriz: document.querySelector('.authorization'),
+    categoryList: document.querySelector('.filter-wrap'),
+    addsContainer: document.querySelector('#ads-container'),
+    addPageBtn: document.querySelector('.addPage'),
     btnRegAutoriz: document.querySelector('.authorization'),
     outputMult: document.getElementById('outputMulti'),
     fileMult: document.querySelector('#fileMulti'),
@@ -24,7 +36,6 @@ export default {
     popupfom: document.querySelector(".popupfom"),
     adWrapper: document.querySelector(".ad-wrapper"),
     spinner: document.querySelector("#spinner"),
-    isAuthorized : false,
   },
 
   //Методы для всплывающих оповещений...
@@ -51,5 +62,109 @@ export default {
       title: title,
       text: text,
     });
+  },
+
+  giveCategory() {
+    //with this fn you can take chosen by user category
+    return this.category;
+  },
+  getCategory(category) {
+    //returns chosen by user category
+    this.category = category;
+  },
+
+  // get all ads by 10 per page
+  async getAll() {
+    try {
+      const result = await this.axios.get(`${this.url}/ads/all`);
+      return result.data.ads;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+
+  // search by keyword
+  async searchAds(keyword, page) {
+    try {
+      const result = await this.axios.get(
+        `${this.url}/ads/all?search=${keyword}&limit=${this.pageLimit}&page=${page}`,
+      );
+      return result.data.ads.docs;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+
+  //get ads by category id
+  async getAdsByCategory(categoryId) {
+    const result = await axios.get(
+      `${this.url}/ads/all?category=${categoryId}`,
+    );
+
+    return result.data.ads.docs;
+  },
+
+  async register(email, password, name) {
+    const obj = {
+      email: email,
+      password: password,
+      name: name,
+    };
+    try {
+      let result = await this.axios.post(`${this.url}/auth/register`, obj);
+      return result.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+
+  async getUser() {
+    const heders = {
+      headers: {
+        Authorization: this.userToken,
+      },
+    };
+    try {
+      let result = await this.axios.get(`${this.url}/ads`, heders);
+      return result.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+  async userAutorization(obj) {
+    try {
+      let result = await this.axios.post(`${this.url}/auth/login`, obj);
+      return result.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+  //get ad by id
+  async getAd(adId) {
+    try {
+      const result = await this.axios.get(`${this.url}/ads/${adId}`, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      return result.data.goal;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+  //post new ad
+  async postAd(obj) {
+
+    try {
+      let result = await this.axios.post(`${this.url}/ads`, obj, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: this.userToken,
+        },
+      });
+      return result;
+    } catch (error) {
+      throw new Error(error);
+    }
   },
 };
