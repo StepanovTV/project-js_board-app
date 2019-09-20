@@ -20,6 +20,8 @@ export default {
   isAuthorized: false,
   url: `https://dash-ads.goit.co.ua/api/v1`,
   pageLimit: 10,
+  userAds: false,
+  categories: false,
   
   refs: {
     btnRegAutoriz: document.querySelector('.authorization'),
@@ -111,4 +113,27 @@ export default {
       throw new Error(error);
     }
   },
+
+  async getUser() {
+    const heders = {
+      headers: {
+        Authorization: this.userToken
+      }
+    };
+    try {
+      let result = await this.axios.get(`${this.url}/ads`, heders);
+      return result.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+  async userAutorization(obj) {
+    try {
+      let result = await this.axios.post(`${this.url}/auth/login`, obj);
+      return result.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+  
 };
