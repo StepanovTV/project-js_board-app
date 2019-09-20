@@ -69,6 +69,7 @@ export default {
 
   // get all ads by 10 per page
   async getAll() {
+   
     try {
       const result = await this.axios.get(`${this.url}/ads/all`);
       return result.data.ads;
@@ -76,6 +77,7 @@ export default {
       throw new Error(error);
     }
   },
+  
 
   // search by keyword
   async searchAds(keyword, page) {
