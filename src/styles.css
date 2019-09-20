@@ -252,7 +252,11 @@ html {
   width: 90%;
   margin: 0 auto;
 }
-
+.basicLightbox__placeholder {
+  max-height: 90%;
+  overflow-y: auto;
+  overflow-x: hidden;
+   }
 
 @media screen and (min-width:768px) {
   .container {

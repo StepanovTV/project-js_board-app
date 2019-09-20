@@ -20,7 +20,9 @@ export default {
   isAuthorized: false,
   url: `https://dash-ads.goit.co.ua/api/v1`,
   pageLimit: 10,
-  
+  userAds: false,
+  categories: false,
+
   refs: {
     btnRegAutoriz: document.querySelector('.authorization'),
     categoryList: document.querySelector('.filter-wrap'),
@@ -29,7 +31,6 @@ export default {
     btnRegAutoriz: document.querySelector('.authorization'),
     outputMult: document.getElementById('outputMulti'),
     fileMult: document.querySelector('#fileMulti'),
-
   },
 
   //Методы для всплывающих оповещений...
@@ -107,6 +108,55 @@ export default {
     try {
       let result = await this.axios.post(`${this.url}/auth/register`, obj);
       return result.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+
+  async getUser() {
+    const heders = {
+      headers: {
+        Authorization: this.userToken,
+      },
+    };
+    try {
+      let result = await this.axios.get(`${this.url}/ads`, heders);
+      return result.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+  async userAutorization(obj) {
+    try {
+      let result = await this.axios.post(`${this.url}/auth/login`, obj);
+      return result.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+  //get ad by id
+  async getAd(adId) {
+    try {
+      const result = await this.axios.get(`${this.url}/ads/${adId}`, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      return result.data.goal;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+  //post new ad
+  async postAd(obj, token) {
+    try {
+      let result = await this.axios.post(`${this.url}/ads`, obj, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: this.userToken,
+        },
+      });
+      return result;
     } catch (error) {
       throw new Error(error);
     }
