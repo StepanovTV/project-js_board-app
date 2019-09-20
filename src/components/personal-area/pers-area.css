@@ -1,0 +1,59 @@
+.modalProfile {
+  min-width: 350px;
+  max-width: 840px;
+  text-align: center;
+  border: 1px solid black;
+  border-radius: 15px;
+  /* background-color: rgb(255, 255, 255); */
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.list {
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cardProfile {
+  list-style: none;
+  width: 250px;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 10px;
+  position: relative;
+  background-color: white;
+  box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+}
+
+.dellIdAd,
+.editId {
+  border-radius: 50px;
+  border-style: none;
+  color: rgb(255, 255, 255);
+  background-color: brown;
+}
+
+.dellIdAd:hover,
+.editId:hover {
+  background-color: rgb(89, 208, 89);
+}
+
+.dellIdAd {
+  position: absolute;
+  right: -10px;
+  top: -10px;
+}
+
+.titleName {
+  background-color: rgb(255, 255, 255);
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.basicLightbox__placeholder {
+  max-height: 90%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
