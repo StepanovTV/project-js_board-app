@@ -1,11 +1,12 @@
 import services from '../../services/index';
 
-// import fictiveTempInfo from './fictiveTemplateCard.json';
+import fictiveTempInfo from './fictiveTemplateCard.json';
 import templateDisplayAdsCards from '../../template/templateDisplayAdsCards.hbs';
-import displayAdsCards from './displayAdsCards.css';
+// import displayAdsCards from './displayAdsCards.css';
 
 
 // services.getAll().then(res => {console.log(res)});
+// console.log(services.getAll);
 
 
 
@@ -21,23 +22,23 @@ import displayAdsCards from './displayAdsCards.css';
 
 
 
-// // привязываем к ul фиктивный массив объектов
-// const refs = {
-//   listDisplayAds: document.querySelector('.js-displayAdsCards'),
-// };
-// // // отрисовываем фиктивный массив объектов
-// // const markup = templateDisplayAdsCards(fictiveTempInfo[0]);
-// // refs.listDisplayAds.insertAdjacentHTML('beforeend', markup);
+// ========= привязываем к ul фиктивный массив объектов =========
+const refs = {
+  listDisplayAds: document.querySelector('.js-displayAdsCards'),
+};
+// отрисовываем фиктивный массив объектов
+// const markup = templateDisplayAdsCards(fictiveTempInfo[0]);
+// refs.listDisplayAds.insertAdjacentHTML('beforeend', markup);
 
 
-// fictiveBuildCardAds(fictiveTempInfo);
+fictiveBuildCardAds(fictiveTempInfo);
 
-// function fictiveBuildCardAds(cards) {
-//   const markup = cards.map(card => templateDisplayAdsCards(card)).join('');
-//   console.log(markup);
-//   // отрисовываем фиктивный массив объектов
-//   refs.listDisplayAds.insertAdjacentHTML('beforeend', markup);
-// }
+function fictiveBuildCardAds(cards) {
+  const markup = cards.map(card => templateDisplayAdsCards(card)).join('');
+  console.log(markup);
+  // отрисовываем фиктивный массив объектов
+  refs.listDisplayAds.insertAdjacentHTML('beforeend', markup);
+}
 
 
 

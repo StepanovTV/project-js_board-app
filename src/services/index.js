@@ -22,7 +22,7 @@ export default {
   isAuthorized : false,
   url: `https://dash-ads.goit.co.ua/api/v1`,
   pageLimit: 10,
-  
+
   refs: {
     btnRegAutoriz: document.querySelector('.authorization'),
     categoryList: document.querySelector('.filter-wrap'),
@@ -61,11 +61,13 @@ export default {
   },
 
 
-  
+
   // get all ads by 10 per page
   async getAll() {
     try {
       const result = await this.axios.get(`${this.url}/ads/all`);
+      console.log(result);
+
       return result.data.ads;
     } catch (error) {
       throw new Error(error);
@@ -92,7 +94,7 @@ export default {
 
     return result.data.ads.docs;
   },
-  
+
   async register(email, password, name) {
     const obj = {
       email: email,
