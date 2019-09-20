@@ -7,8 +7,6 @@ import infiniteScroll from 'infinite-scroll';
 PNotify.defaults.styling = 'material';
 PNotify.defaults.icons = 'material';
 
-
-
 export default {
   axios: axios,
   PNotify: PNotify,
@@ -19,7 +17,7 @@ export default {
   category: '',
   userName: false,
   userToken: false,
-  isAuthorized : false,
+  isAuthorized: false,
   url: `https://dash-ads.goit.co.ua/api/v1`,
   pageLimit: 10,
 
@@ -60,6 +58,14 @@ export default {
     });
   },
 
+  giveCategory() {
+    //with this fn you can take chosen by user category
+    return this.category;
+  },
+  getCategory(category) {
+    //returns chosen by user category
+    this.category = category;
+  },
 
 
   // get all ads by 10 per page
@@ -100,14 +106,10 @@ export default {
       name: name,
     };
     try {
-      let result = await this.axios.post(
-        `${this.url}/auth/register`,
-        obj,
-      );
+      let result = await this.axios.post(`${this.url}/auth/register`, obj);
       return result.data;
     } catch (error) {
       throw new Error(error);
     }
   },
-
 };
