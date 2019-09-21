@@ -65,6 +65,7 @@ export default {
   // get all ads by 10 per page
   async getAll() {
     try {
+      services.refs.spinner.classList.remove('is-hidden');
       const result = await this.axios.get(`${this.url}/ads/all`);
       return result.data.ads;
     } catch (error) {
@@ -75,6 +76,7 @@ export default {
   // search by keyword
   async searchAds(keyword, page) {
     try {
+      services.refs.spinner.classList.remove('is-hidden');
       const result = await this.axios.get(
         `${this.url}/ads/all?search=${keyword}&limit=${this.pageLimit}&page=${page}`,
       );
@@ -86,6 +88,7 @@ export default {
 
   //get ads by category id
   async getAdsByCategory(categoryId) {
+    services.refs.spinner.classList.remove('is-hidden');
     const result = await axios.get(
       `${this.url}/ads/all?category=${categoryId}`,
     );
