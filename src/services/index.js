@@ -235,4 +235,16 @@ async logout(email, password, token) {
     throw new Error(error);
   }
 },
+//get ads by category id
+async getAdsByCategory(categoryId, page) {
+  try {
+    services.refs.spinner.classList.remove(`is-hidden`);
+    const result = await axios.get(
+      `${this.url}/ads/all?category=${categoryId}&page=${page}`,
+    );
+    return result.data.ads;
+  } catch (error) {
+    throw new Error(error);
+  }
+},
 }
