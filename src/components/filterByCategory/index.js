@@ -81,15 +81,15 @@ function addNewPage(e) {
 
   console.log(services.getAdsByCategory(services.categoryId, counter));
 
-  // services.getAdsByCategory(services.categoryId, counter).then(data => {
-  //   console.log(data);
-  //   let renderToHtml = data.docs.map(elem => {
-  //     return template(elem);
-  //   });
-  //   services.refs.adsContainer.insertAdjacentHTML('beforeend', renderToHtml);
+  services.getAdsByCategory(counter).then(data => {
+    console.log(data);
+    let renderToHtml = data.map(elem => {
+      return template(elem);
+    });
+    services.refs.adsContainer.insertAdjacentHTML('beforeend', renderToHtml);
 
-  //   if (data.totalPages <= counter) {
-  //     e.target.setAttribute('disabled', 'disabled');
-  //   }
-  // });
+    if (data.totalPages <= counter) {
+      e.target.setAttribute('disabled', 'disabled');
+    }
+  });
 }
