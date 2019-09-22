@@ -31,9 +31,13 @@ export default {
     btnRegAutoriz: document.querySelector('.authorization'),
     outputMult: document.getElementById('outputMulti'),
     fileMult: document.querySelector('#fileMulti'),
+    newAdBut: document.querySelector(".js-new-ad"),
+    adForm: document.querySelector(".js-ad-form"),
+    popupfom: document.querySelector(".popupfom"),
+    adWrapper: document.querySelector(".ad-wrapper"),
+    spinner: document.querySelector("#spinner"),
     exitbtn: document.querySelector('.exitbtn'),
     adsContainer: document.querySelector('#ads-container'),
-
   },
 
   //Методы для всплывающих оповещений...
