@@ -1,6 +1,6 @@
 import services from './services';
 import './components/authorization';
-// import './components/filterByCategory';
+import './components/filterByCategory';
 
 import './components/addingNewAd';
 
