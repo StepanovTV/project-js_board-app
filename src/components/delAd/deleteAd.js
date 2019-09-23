@@ -64,7 +64,7 @@ const deleteListItem = element => {
           break;
 
         case actions.EDIT:
-          console.log('edit');
+
           break;
 
       };

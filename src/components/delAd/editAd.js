@@ -54,11 +54,15 @@ butCancel.addEventListener('click', handleFileSelect);
       };
       console.log(product);
       
+
+
+
+
+
+
       instance.close(success('Оголошення', 'Редаговоно'));
     });
-    console.log('event.target.checked',event.target.checked);
 
-// }
 
 butEdit.addEventListener('click', openModalonEdit);
 

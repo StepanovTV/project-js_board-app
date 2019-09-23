@@ -22,7 +22,7 @@ buttonDrow();
 
 function findCategory(event) {
   event.preventDefault();
-  //   console.log(event.target);
+
   let chosenBut = event.target;
   let chosenOne = event.target.getAttribute('id');
   let ClearButt = event.target.dataset.name;
@@ -39,7 +39,7 @@ function findCategory(event) {
     });
     chosenBut.setAttribute('disabled', 'disabled');
   }
-  // console.log(services.refs.adsContainer);
+
 
   if (ClearButt === 'clear') {
     services.refs.adsContainer.innerHTML = ' ';
@@ -57,11 +57,10 @@ function findCategory(event) {
   services
     .getAdsByCategory(chosenOne)
     .then(data => {
-      console.log(data);
 
       services.refs.adsContainer.innerHTML = ' ';
       let eachObj = data.forEach(elem => {
-        // console.log(elem);
+
 
         services.refs.adsContainer.insertAdjacentHTML(
           'beforeend',
@@ -74,15 +73,14 @@ function findCategory(event) {
 
 function addNewPage(e) {
   e.preventDefault();
-  console.log(services.categoryId, );
   services.refs.addPageBtn.setAttribute('page', ++privateCounter);
   let counter = e.target.attributes.page.value;
-  // console.log(counter);
 
-  console.log(services.getAdsByCategory(services.categoryId, counter));
+
+ 
 
   services.getAdsByCategory(counter).then(data => {
-    console.log(data);
+
     let renderToHtml = data.map(elem => {
       return template(elem);
     });
