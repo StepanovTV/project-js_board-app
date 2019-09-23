@@ -48,9 +48,8 @@
         <!-- Фільтр кнопки -->
         <div class="filter-wrap">
           <!-- Фільтри -->
-
           <!-- Очистка фільтра -->
-          <button class="filter-item filter-item__clear" id="clear-filter"></button>
+          <button class="filter-item filter-item__clear" id="clear-filter" data-name="clear"> <span class="visually-hidden">Скинути категорії</span></button>
           <!-- Очистка фільтра -->
           <!-- Фільтри -->
         </div>
@@ -67,7 +66,6 @@
         </ul>
         <button class="addPage" page="1" >Ще</button>
         <!-- Місце виводу оголошень -->
-
       </div>
     </div>
     </main>
@@ -78,5 +76,14 @@
         </p>
       </div>
     </footer>
+    <div class="spinner-overlay is-hidden" id="spinner">
+      <div class="spinner">
+        <div class="rect1"></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div class="rect4"></div>
+        <div class="rect5"></div>
+      </div>
+    </div>
   </body>
 </html>

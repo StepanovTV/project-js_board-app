@@ -52,7 +52,7 @@ butCancel.addEventListener('click', handleFileSelect);
         description: e.target.elements.description.value,
         images: imagesControl,
       };
-      console.log(product);
+
 
 
 
@@ -60,9 +60,7 @@ butCancel.addEventListener('click', handleFileSelect);
 
       instance.close(success('Оголошення', 'Редаговоно'));
     });
-    console.log('event.target.checked',event.target.checked);
 
-// }
 
 butEdit.addEventListener('click', openModalonEdit);
 
