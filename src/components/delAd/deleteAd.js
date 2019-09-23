@@ -1,10 +1,11 @@
 import services from '../../services/index.js'
 
-const refs = {
-  // buttonDel: document.querySelector('.buttonDel'),
-  list: document.querySelector('.list'),
-  // buttonEdit: document.querySelector('.edit'),
-};
+
+// const refsdell = {
+//   // buttonDel: document.querySelector('.buttonDel'),
+//   list: document.querySelector('.list'),
+//   // buttonEdit: document.querySelector('.edit'),
+// };
 
 const actions = {
   EDIT: 'edit',
@@ -47,7 +48,6 @@ const deleteListItem = element => {
       });
     };
 
-
     const handleListClick = ({
       target
     }) => {
@@ -63,7 +63,6 @@ const deleteListItem = element => {
 
           break;
 
-
         case actions.EDIT:
 
           break;
@@ -74,5 +73,5 @@ const deleteListItem = element => {
 
 
     // refs.buttonDel.addEventListener('click', deleteAdFn);
-    refs.list.addEventListener('click', handleListClick);
+    profileRefs.htmlListAds.addEventListener('click', handleListClick);
     // refs.buttonEdit.addEventListener('click', editAdFn);

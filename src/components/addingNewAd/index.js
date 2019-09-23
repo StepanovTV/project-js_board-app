@@ -13,8 +13,6 @@ services.refs.newAdBut.onclick = () => {
     return;
   }
 
-
-
   const instance = services.basicLightbox.create(adForm(services.categories));
   instance.show();
 
@@ -57,6 +55,13 @@ services.refs.newAdBut.onclick = () => {
     <span class="ad-price">Вартість ${data.ads.price} грн<</span>
   </li>`,
         );
+
+        services.categories = JSON.parse(localStorage.getItem('categories'));
+        services.getUser().then(data => {
+          if (data.status == 'success') {
+            services.userAds = data.ads;
+          }
+        });
 
         instance.close(services.success('Оголошення', 'Додано'));
       })

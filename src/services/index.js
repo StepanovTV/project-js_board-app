@@ -4,6 +4,8 @@ import 'pnotify/dist/es/PNotifyButtons';
 import 'pnotify/dist/es/PNotifyStyleMaterial';
 import * as basicLightbox from 'basiclightbox';
 import infiniteScroll from 'infinite-scroll';
+import templateDisplayAdsCards from '../template/templateDisplayAdsCards.hbs';
+
 PNotify.defaults.styling = 'material';
 PNotify.defaults.icons = 'material';
 
@@ -23,6 +25,10 @@ export default {
   pageLimit: 10,
   userAds: false,
   categories: false,
+  page: 1,
+  trigerShe: 'all',
+  hasNextPage: null,
+  searchValue: '',
 
 
   refs: {
@@ -33,6 +39,7 @@ export default {
     btnRegAutoriz: document.querySelector('.authorization'),
     outputMult: document.getElementById('outputMulti'),
     fileMult: document.querySelector('#fileMulti'),
+    htmlButProfile: document.querySelector('#Login'),
     newAdBut: document.querySelector(".js-new-ad"),
     adForm: document.querySelector(".js-ad-form"),
     popupfom: document.querySelector(".popupfom"),
@@ -85,20 +92,9 @@ export default {
     //returns chosen by user category
     this.categoryId = categoryid;
 
-    
+
   },
 
-  // get all ads by 10 per page
-  async getAll() {
-   
-    try {
-      const result = await this.axios.get(`${this.url}/ads/all`);
-      return result.data.ads;
-    } catch (error) {
-      throw new Error(error);
-    }
-  },
-  
 
   // search by keyword
   async searchAds(keyword, page) {
@@ -186,15 +182,24 @@ export default {
   },
 
   // get ads by page
-async getAds(page) {
+async getAds() {
   try {
       const result = await this.axios.get(
-          `${this.url}/ads/all?limit=${this.pageLimit}&page=${page}`
+          `${this.url}/ads/all?limit=${this.pageLimit}&page=${this.page}`
       );
       return result.data.ads;
   } catch (error) {
       throw new Error(error);
   }
+},
+
+// ++ Added new TWO METHODS
+nextPage() {
+  this.page +=1;
+},
+
+resetPage() {
+  this.page = 1;
 },
 
 //get ad by id
@@ -251,4 +256,18 @@ async getAdsByCategory(categoryId, page) {
     throw new Error(error);
   }
 },
+
+drawHTMLAllAdsByPage (data) {
+  const collectPage = data.docs.map(elem => {
+    return templateDisplayAdsCards(elem, {...elem.images = elem.images[0]});
+  }).join('');
+  this.nextPage();
+  this.refs.adsContainer.insertAdjacentHTML('afterbegin', collectPage);
+  this.hasNextPage = data.hasNextPage;
+
+  if (!this.hasNextPage) {
+    this.refs.addPageBtn.style.display = 'none';
+  }
+},
+
 }

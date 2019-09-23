@@ -79,7 +79,7 @@ function FormAnaliz(event) {
       localStorage.setItem('userEmail', formDataObj.mail);
       localStorage.setItem('pass', formDataObj.pass1);
       localStorage.setItem('categories', JSON.stringify(data.categories));
-      
+
       services.success(
         'Ви успішно зареєстровані',
         'Тепер ви можете почати подавати свої оголошення',
@@ -152,6 +152,9 @@ function hendelsLogaut(e){
   services.logout(localStorage.getItem('userEmail'), localStorage.getItem('pass'), localStorage.getItem('userToken'))
   .then(data => {
     localStorage.clear();
+    services.isAuthorized = false;
+    services.userName = false;
+    services.userToken = false;
     document.querySelector('.authorization').style.display = 'flex';
   document.querySelector('.userCabinet').style.display = 'none';
   });

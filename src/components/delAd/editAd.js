@@ -1,6 +1,8 @@
 import editAd from '../../template/editAd.hbs';
 import services from '../../services';
 import handleFileSelect from '../loadImage';
+​import * as basicLightbox from 'basiclightbox';
+import "./styles.css";
 
 services.refs.newAdBut.onclick = () => {
   //Вітянуть ид объявления
@@ -15,16 +17,17 @@ services.refs.newAdBut.onclick = () => {
 
 
 
+
   const instance = services.basicLightbox.create(adForm(editAd));
   instance.show();
 
   //Рефи всередині модалки
   const localRefs = {
-    popup: document.querySelector('.js-ad-form'),
+     butEdit = document.querySelector('button[data-action="edit"]'),
     fileMult: document.querySelector('#fileMulti'),
   };
   localRefs.fileMult.addEventListener('change', handleFileSelect);
-  localRefs.popup.addEventListener('submit', e => {
+  localRefs.butEdit.addEventListener('submit', e => {
     e.preventDefault();
 
     //Перевірка на доданість фото
@@ -64,6 +67,7 @@ services.refs.newAdBut.onclick = () => {
   });
 };
 
+
 // import services from '../../services/index.js';
 // import "./styles.css";
 // import template from '../../template/editAd.hbs';
@@ -78,9 +82,6 @@ services.refs.newAdBut.onclick = () => {
 //   services.changeAd(idAd, objAd)
 // .then(data=>{
 
-//   const instance = basicLightbox.create(template(data));
-//   instance.show();
-// });
 
 
 
