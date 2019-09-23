@@ -13,7 +13,7 @@ services.refs.newAdBut.onclick = () => {
     return;
   }
 
-  console.log(services.categories);
+
 
   const instance = services.basicLightbox.create(adForm(services.categories));
   instance.show();
@@ -43,12 +43,10 @@ services.refs.newAdBut.onclick = () => {
       description: e.target.elements.description.value,
       images: imagesControl,
     };
-    console.log(product);
 
     services
       .postAd(product)
       .then(({ data }) => {
-        console.log(data.ads);
         services.refs.adWrapper.insertAdjacentHTML(
           'afterbegin',
           `<li class="ad-item" data-adId="${data.ads.adsId}">

@@ -84,7 +84,7 @@ export default {
   getCategoryId(categoryid) {
     //returns chosen by user category
     this.categoryId = categoryid;
-    console.log(categoryid);
+
     
   },
 
