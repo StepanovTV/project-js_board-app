@@ -22,6 +22,10 @@ function findCategory(e) {
   if (e.target.dataset.name === 'clear') {
     services.trigerShe='all'
     services.refs.adsContainer.innerHTML = '';
+    const activBtn = e.currentTarget.querySelector('.isActiveCategory');
+     if(activBtn){
+      activBtn.remove('isActiveCategory');
+     }
     services.resetPage();
     services.getAds().then(data => {
       services.drawHTMLAllAdsByPage(data);

@@ -432,9 +432,30 @@ header {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    background-image: url("./images/clear.png")
+    background-image: url("./images/clear.png");
+    margin-left: 40px;
+    margin-top: 12px
   }
   
+  .btnCategory{
+    background-color: transparent;
+    border: 2px solid #9cc3e3; 
+    border-radius: 5px;
+    padding: 8px;
+    margin: 8px;
+  }
+  .btnCategory:hover,
+  .btnCategory:active{
+    background-color: #9cc3e3;
+    border: 2px solid #8bb4d6;
+  }
+
+
+  .isActiveCategory{
+    background-color: #9cc3e3;
+    border: 2px solid #8bb4d6;
+  }
+
   .ad-wrapper {
     padding: 0;
     list-style: none;
