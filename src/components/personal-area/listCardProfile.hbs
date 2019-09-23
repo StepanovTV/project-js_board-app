@@ -1,19 +1,19 @@
 {{#each this}}
-<li class="cardProfile" id="card1">
+<li class="cardProfile" id="{{_id}}">
     <img src="{{images}}" alt="первое фото товара" class="startImgAd"
         width="150" />
     <div class="miniInfoAd">
-        <button class="editId" id="{{_id}}">Edit</button>
+        <button class="editId" id="{{_id}}" data-action="edit">Edit</button>
         <p class="miniInfotitle">
             {{title}}
         </p>
         <p class="miniInfoPrice">
-            {{__v}}
+            
         </p>
         <p class="miniInfodescription">m
             {{description}}
         </p>
     </div>
-    <button class="dellIdAd" id="{{_id}}">X</button>
+    <button class="dellIdAd" id="{{_id}}" data-action="delete">X</button>
 </li>
 {{/each}}

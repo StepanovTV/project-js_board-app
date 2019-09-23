@@ -7,7 +7,7 @@ import template from '../../template/editAd.hbs';
 ​import * as basicLightbox from 'basiclightbox';
 
 
-const butEdit =  document.querySelector('button[data-action="edit"]'),
+const butEdit = document.querySelector('button[data-action="edit"]'),
 
 const openModalonEdit = (event) => {
   services.changeAd(idAd, objAd)
@@ -53,11 +53,7 @@ butCancel.addEventListener('click', handleFileSelect);
         images: imagesControl,
       };
       console.log(product);
-
-
-
-
-
+      
       instance.close(success('Оголошення', 'Редаговоно'));
     });
     console.log('event.target.checked',event.target.checked);
