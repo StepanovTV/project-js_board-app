@@ -23,6 +23,8 @@ export default {
   pageLimit: 10,
   userAds: false,
   categories: false,
+  page: 1,
+  trigerShe: 'all',
 
 
   refs: {
@@ -85,20 +87,9 @@ export default {
     //returns chosen by user category
     this.categoryId = categoryid;
     console.log(categoryid);
-    
+
   },
 
-  // get all ads by 10 per page
-  async getAll() {
-   
-    try {
-      const result = await this.axios.get(`${this.url}/ads/all`);
-      return result.data.ads;
-    } catch (error) {
-      throw new Error(error);
-    }
-  },
-  
 
   // search by keyword
   async searchAds(keyword, page) {
@@ -186,15 +177,23 @@ export default {
   },
 
   // get ads by page
-async getAds(page) {
+async getAds() {
   try {
       const result = await this.axios.get(
-          `${this.url}/ads/all?limit=${this.pageLimit}&page=${page}`
+          `${this.url}/ads/all?limit=${this.pageLimit}&page=${this.page}`
       );
       return result.data.ads;
   } catch (error) {
       throw new Error(error);
   }
+},
+
+nextPage() {
+  this.page +=1;
+},
+
+resetPage() {
+  this.page = 1;
 },
 
 //get ad by id

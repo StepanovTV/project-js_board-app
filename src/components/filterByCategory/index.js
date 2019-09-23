@@ -7,7 +7,7 @@ services.refs.addPageBtn.addEventListener('click', addNewPage);
 let privateCounter = 1;
 
 function buttonDrow() {
-  services.getAll().then(data => {
+  services.getAds().then(data => {
     let eachCat = data.categories.map(elem => {
       return `<button id='${elem._id}'>${elem.category}</button>`;
     });
@@ -43,7 +43,7 @@ function findCategory(event) {
 
   if (ClearButt === 'clear') {
     services.refs.adsContainer.innerHTML = ' ';
-    services.getAll().then(data => {
+    services.getAds().then(data => {
       let renderToHtml = data.docs.map(elem => {
         return template(elem);
       });

@@ -4,10 +4,10 @@ import templateDisplayAdsCards from '../../template/templateDisplayAdsCards.hbs'
 import displayAdsCards from './displayAdsCards.css';
 
 
-services.getAll().then(data => {
+services.getAds().then(data => {
 
   console.log(data);
-  
+
 
   data.docs.map(elem => {
 
@@ -16,4 +16,6 @@ services.getAll().then(data => {
   })
 
 });
+
+
 
