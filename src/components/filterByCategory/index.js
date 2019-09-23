@@ -2,7 +2,7 @@ import services from '../../services';
 import template from '../../template/templateDisplayAdsCards.hbs';
 
 services.refs.categoryList.addEventListener('click', findCategory);
-services.refs.addPageBtn.addEventListener('click', addNewPage);
+// services.refs.addPageBtn.addEventListener('click', addNewPage);
 
 let privateCounter = 1;
 
@@ -71,23 +71,23 @@ function findCategory(event) {
     .catch(alert => console.log(alert));
 }
 
-function addNewPage(e) {
-  e.preventDefault();
-  services.refs.addPageBtn.setAttribute('page', ++privateCounter);
-  let counter = e.target.attributes.page.value;
+// function addNewPage(e) {
+//   e.preventDefault();
+//   services.refs.addPageBtn.setAttribute('page', ++privateCounter);
+//   let counter = e.target.attributes.page.value;
 
 
- 
 
-  services.getAdsByCategory(counter).then(data => {
 
-    let renderToHtml = data.map(elem => {
-      return template(elem);
-    });
-    services.refs.adsContainer.insertAdjacentHTML('beforeend', renderToHtml);
+//   services.getAdsByCategory(counter).then(data => {
 
-    if (data.totalPages <= counter) {
-      e.target.setAttribute('disabled', 'disabled');
-    }
-  });
-}
+//     let renderToHtml = data.map(elem => {
+//       return template(elem);
+//     });
+//     services.refs.adsContainer.insertAdjacentHTML('beforeend', renderToHtml);
+
+//     if (data.totalPages <= counter) {
+//       e.target.setAttribute('disabled', 'disabled');
+//     }
+//   });
+// }

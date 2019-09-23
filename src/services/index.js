@@ -4,6 +4,8 @@ import 'pnotify/dist/es/PNotifyButtons';
 import 'pnotify/dist/es/PNotifyStyleMaterial';
 import * as basicLightbox from 'basiclightbox';
 import infiniteScroll from 'infinite-scroll';
+import templateDisplayAdsCards from '../template/templateDisplayAdsCards.hbs';
+
 PNotify.defaults.styling = 'material';
 PNotify.defaults.icons = 'material';
 
@@ -25,6 +27,8 @@ export default {
   categories: false,
   page: 1,
   trigerShe: 'all',
+  hasNextPage: null,
+  searchValue: '',
 
 
   refs: {
@@ -91,7 +95,7 @@ export default {
 
   },
 
-  
+
   // search by keyword
   async searchAds(keyword, page) {
     try {
@@ -189,6 +193,7 @@ async getAds() {
   }
 },
 
+// ++ Added new TWO METHODS
 nextPage() {
   this.page +=1;
 },
@@ -251,4 +256,18 @@ async getAdsByCategory(categoryId, page) {
     throw new Error(error);
   }
 },
+
+drawHTMLAllAdsByPage (data) {
+  const collectPage = data.docs.map(elem => {
+    return templateDisplayAdsCards(elem, {...elem.images = elem.images[0]});
+  }).join('');
+  this.nextPage();
+  this.refs.adsContainer.insertAdjacentHTML('afterbegin', collectPage);
+  this.hasNextPage = data.hasNextPage;
+
+  if (!this.hasNextPage) {
+    this.refs.addPageBtn.style.display = 'none';
+  }
+},
+
 }
