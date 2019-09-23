@@ -13,7 +13,7 @@ const actions = {
 home.refs.htmlButProfile.addEventListener('click', e => {
   // const userProfil = home.isAuthorized;
   const userProfil = localStorage.getItem('userName');
-
+  
   if (!userProfil) {
     home.info('АВТОРИЗАЦИЯ', 'Для входа в личный кабинет авторизируйтесь');
     return;
@@ -48,15 +48,20 @@ function drawInfoProfile() {
 
 function handleListClick({ target }) {
   const usToken = localStorage.getItem('userToken');
-  
 
   if (target.classList == 'dellIdAd') {
-    const selectCard = document.querySelector(`li[id="${target.id}"]`)
-    
-        home
-      .deleteAd(target.id, usToken).then(() => {
+    const selectCard = document.querySelector(`li[id="${target.id}"]`);
+
+    home
+      .deleteAd(target.id, usToken)
+      .then(() => {
         selectCard.remove();
-        
+        home.categories = JSON.parse(localStorage.getItem('categories'));
+        home.getUser().then(data => {
+          if (data.status === 'success') {
+            home.userAds = data.ads;
+          }
+        });
       })
       .then(
         home.PNotify.success({
