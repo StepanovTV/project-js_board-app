@@ -6,7 +6,7 @@ import displayAdsCards from './displayAdsCards.css';
 
 services.getAll().then(data => {
 
-  console.log(data);
+
 
 
   data.docs.map(elem => {
