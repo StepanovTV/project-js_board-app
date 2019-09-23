@@ -47,24 +47,24 @@ services.refs.newAdBut.onclick = () => {
       images: imagesControl,
     };
 
-    services
-      .postAd(product)
-      .then(({ data }) => {
-        services.refs.adWrapper.insertAdjacentHTML(
-          'afterbegin',
-          `<li class="ad-item" data-adId="${data.ads.adsId}">
-    <img class="ad-img" src="${data.ads.images[0]}" width="320" alt="${
-            data.ads.title
-          }">
-    <h2 class="ad-heading">${data.ads.title}</h2>
-    <span class="ad-price">Вартість ${data.ads.price} грн<</span>
-  </li>`,
-        );
+  //   services
+  //     .postAd(product)
+  //     .then(({ data }) => {
+  //       services.refs.adWrapper.insertAdjacentHTML(
+  //         'afterbegin',
+  //         `<li class="ad-item" data-adId="${data.ads.adsId}">
+  //   <img class="ad-img" src="${data.ads.images[0]}" width="320" alt="${
+  //           data.ads.title
+  //         }">
+  //   <h2 class="ad-heading">${data.ads.title}</h2>
+  //   <span class="ad-price">Вартість ${data.ads.price} грн<</span>
+  // </li>`,
+  //       );
 
         instance.close(services.success('Оголошення', 'Редаговано'));
       })
       .catch(console.error);
-  });
+  
 };
 
 
