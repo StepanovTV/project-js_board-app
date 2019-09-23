@@ -1,10 +1,10 @@
-import services from '../../services/index';
-
+import services from '../index';
+​
 // Функція записує в масив images[] загружені фотографії користувача
 export default function handleFileSelect(evt) {
   const refsImg = {
     outputMult: document.getElementById('outputMulti'),
-   
+
   }
   let file = evt.target.files; // FileList object
 
@@ -18,7 +18,6 @@ export default function handleFileSelect(evt) {
     let reader = new FileReader();
     //
     reader.onload = (function(theFile) {
-
       return function(e) {
        
         refsImg.outputMult.insertAdjacentHTML("beforeend", [
@@ -28,18 +27,15 @@ export default function handleFileSelect(evt) {
           e.target.result,
           '" />',
         ].join(''))
-
-        // запис фотографії в масив фотографій
         
+
         services.image.push(e.target.result);
       };
     })(f);
-    // читає дані файлу-(f), а результатом є Data URL
+
     reader.readAsDataURL(f);
   }
 
   services.image = [];
 }
-
-
 

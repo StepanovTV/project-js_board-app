@@ -6,11 +6,12 @@
   color: black;
   font-size: 30px;
   list-style: none;
+  padding: 10px 20px;
 }
-
+/* 
 .material-icons {
   position: absolute;
   top: -20px;
   right: 0;
   color: white;
-}
+} */

@@ -15,6 +15,7 @@ export default {
   image: [],
   product: null,
   category: '',
+  categoryId: false,
   userName: false,
   userToken: false,
   isAuthorized: false,
@@ -28,13 +29,17 @@ export default {
     btnRegAutoriz : document.querySelector('.authorization'),
     renderingAd: document.querySelector('.ad-wrapper'),
     categoryList: document.querySelector('.filter-wrap'),
-    addsContainer: document.querySelector('#ads-container'),
+    adsContainer: document.querySelector('#ads-container'),
     addPageBtn: document.querySelector('.addPage'),
     outputMult: document.getElementById('outputMulti'),
     fileMult: document.querySelector('#fileMulti'),
+    newAdBut: document.querySelector(".js-new-ad"),
+    adForm: document.querySelector(".js-ad-form"),
+    popupfom: document.querySelector(".popupfom"),
+    adWrapper: document.querySelector(".ad-wrapper"),
+    spinner: document.querySelector("#spinner"),
     exitbtn: document.querySelector('.exitbtn'),
     adsContainer: document.querySelector('#ads-container'),
-
   },
 
   //Методы для всплывающих оповещений...
@@ -73,8 +78,22 @@ export default {
   },
 
 
+
+  giveCategoryId() {
+    //with this fn you can take chosen by user category
+    return this.categoryId;
+  },
+  getCategoryId(categoryid) {
+    //returns chosen by user category
+    this.categoryId = categoryid;
+
+
+  },
+
+
   // get all ads by 10 per page
   async getAll() {
+
     try {
       const result = await this.axios.get(`${this.url}/ads/all`);
       return result.data.ads;
@@ -82,6 +101,7 @@ export default {
       throw new Error(error);
     }
   },
+
 
   // search by keyword
   async searchAds(keyword, page) {
@@ -218,6 +238,18 @@ async logout(email, password, token) {
       },
     });
     return result;
+  } catch (error) {
+    throw new Error(error);
+  }
+},
+//get ads by category id
+async getAdsByCategory(categoryId, page) {
+  try {
+    services.refs.spinner.classList.remove(`is-hidden`);
+    const result = await axios.get(
+      `${this.url}/ads/all?category=${categoryId}&page=${page}`,
+    );
+    return result.data.ads;
   } catch (error) {
     throw new Error(error);
   }

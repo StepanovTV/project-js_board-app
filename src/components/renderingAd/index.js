@@ -9,10 +9,13 @@ console.log(services.refs.renderingAd)
 
 
 
-services.refs.renderingAd.onclick = () => {
+services.refs.renderingAd.onclick = (e) => {
 const idAd = event.target.getAttribute("data-adId");
 services.getAd(idAd).then(data=>{
 const instance = services.basicLightbox.create(templateAd(data));
 instance.show();
     });
 };
+
+
+

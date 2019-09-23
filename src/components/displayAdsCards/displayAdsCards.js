@@ -5,10 +5,14 @@ import displayAdsCards from './displayAdsCards.css';
 
 
 services.getAll().then(data => {
+
+
+  
+
   data.docs.map(elem => {
 
     const markup = templateDisplayAdsCards(elem, {...elem.images = [elem.images[0]]});
-    services.refs.adsContainer.insertAdjacentHTML('beforeend', markup);
+    services.refs.adsContainer.insertAdjacentHTML('afterbegin', markup);
   })
 
 });
