@@ -1,17 +1,6 @@
 <form class="adForm js-ad-form">
   <h3>Редагувати оголошення</h3>
 
-  <label>Оберіть категорію</label>
-
-  <select required name="category">
- <option value="" disabled="" selected="">{{category}}</option>
-    <option value="1">{{this}}</option>
-    <option value="2">{{this}}</option>
-    <option value="3">{{this}}</option>
-    <option value="4">{{this}}</option>
-    <option value="5">{{this}}</option>
-  </select>
-
   <label>Заголовок</label>
   <input required type="text" name="title" value="{{title}}" />
   <label>Ціна</label>
@@ -19,15 +8,12 @@
   <label>Телефон</label>
   <input required type="tel" name="phone" value="{{phone}}" />
   <label>Опис</label>
-  <textarea name="description" value="{{description}}"></textarea>
+  <textarea name="description" value="">{{description}}</textarea>
   <label>Оберіть фото</label>
   <div class="wrap_img_add">
     <span id="outputMulti"></span>
   </div>
   <input type="file" id="fileMulti" name="images" multiple accept="image/x-png,image/gif,image/jpeg,image/jpg"
     value="{{images}}" />
-
-
-  <button data-action="submit">Готово</button>
-  <button data-action="cancel">Відмініти</button>
+  <button>Редагувати оголошення</button>
 </form>
