@@ -291,10 +291,11 @@ nav {
   margin-bottom: 20px;
 }
 header {
- 
-  background: linear-gradient(180deg, #2b5577 58%, #497eaa 58%);
+  padding-top: 20px;
+  background: linear-gradient(180deg, #2b5577 68%, #497eaa 68%);
 }
 .logo {
+  margin-bottom: 20px;
   text-align: center;
 }
 
