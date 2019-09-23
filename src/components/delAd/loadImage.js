@@ -1,5 +1,5 @@
-import services from '../../services/index';
-
+import services from '../index';
+​
 // Функція записує в масив images[] загружені фотографії користувача
 export default function handleFileSelect(evt) {
   const refsImg = {
@@ -41,9 +41,9 @@ export default function handleFileSelect(evt) {
         // refsImg.outputMult.insertBefore(span, null);
         // refsImg.outputMult.insertAdjacentHTML('afterbegin', span);
         // console.log(e.target.result);
-
+​
         // запис фотографії в масив фотографій
-        
+
         services.image.push(e.target.result);
       };
     })(f);
@@ -54,5 +54,3 @@ export default function handleFileSelect(evt) {
   services.image = [];
 }
 // services.refs.fileMult.addEventListener('change', handleFileSelect);
-
-

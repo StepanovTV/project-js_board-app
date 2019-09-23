@@ -5,6 +5,10 @@ import displayAdsCards from './displayAdsCards.css';
 
 
 services.getAll().then(data => {
+
+  console.log(data);
+
+
   data.docs.map(elem => {
 
     const markup = templateDisplayAdsCards(elem, {...elem.images = [elem.images[0]]});
@@ -12,4 +16,3 @@ services.getAll().then(data => {
   })
 
 });
-
