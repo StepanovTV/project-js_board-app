@@ -29,7 +29,7 @@ services.refs.newAdBut.onclick = () => {
     let imagesControl;
     imagesControl = services.image;
     if (services.image.length === 0) {
-      imagesControl = ['./img/no-photo-available.png'];
+      imagesControl = ['./images/no-photo-available.png'];
     }
 
     //Об'єкт форми оголошення
@@ -52,13 +52,13 @@ services.refs.newAdBut.onclick = () => {
             data.ads.title
           }">
     <h2 class="ad-heading">${data.ads.title}</h2>
-    <span class="ad-price">Вартість ${data.ads.price} грн<</span>
+    <span class="ad-price">Вартість ${data.ads.price} грн</span>
   </li>`,
         );
 
         services.categories = JSON.parse(localStorage.getItem('categories'));
         services.getUser().then(data => {
-          if (data.status == 'success') {
+          if (data.status === 'success') {
             services.userAds = data.ads;
           }
         });

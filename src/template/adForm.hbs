@@ -8,13 +8,13 @@
     {{/each}}
   </select>
   <label>Заголовок</label>
-  <input required type="text" name="title" value="" />
+  <input required minlength="3" maxlength="20"  type="text" name="title" value="" />
   <label>Ціна</label>
   <input required type="tel" name="price" value="" />
   <label>Телефон</label>
   <input required type="tel" name="phone" value="" />
   <label>Опис</label>
-  <textarea name="description" value=""></textarea>
+  <textarea required minlength="3" name="description" value=""></textarea>
   <label>Оберіть фото</label>
   <div class="wrap_img_add">
     <span id="outputMulti"></span>
