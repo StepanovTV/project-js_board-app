@@ -35,6 +35,7 @@ export default {
     btnRegAutoriz: document.querySelector('.authorization'),
     outputMult: document.getElementById('outputMulti'),
     fileMult: document.querySelector('#fileMulti'),
+    htmlButProfile: document.querySelector('#Login'),
     newAdBut: document.querySelector(".js-new-ad"),
     adForm: document.querySelector(".js-ad-form"),
     popupfom: document.querySelector(".popupfom"),
@@ -86,11 +87,11 @@ export default {
   getCategoryId(categoryid) {
     //returns chosen by user category
     this.categoryId = categoryid;
-    console.log(categoryid);
+
 
   },
 
-
+  
   // search by keyword
   async searchAds(keyword, page) {
     try {

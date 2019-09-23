@@ -16,6 +16,7 @@ function FormAutorize(event) {
     .userAutorization(formDataObj)
     .then(data => {
       if (data.status == 'success') {
+        services.isAuthorized = true;
         services.userName = data.userData.name;
         services.userToken = data.token;
         services.userAds = data.ads;
@@ -70,7 +71,7 @@ function FormAnaliz(event) {
         services.error('Помилка!', 'Нажаль в нас технічна проблема!');
         return;
       }
-      
+      services.isAuthorized = true;
       services.userName = data.userData.name;
       services.userToken = data.token;
       localStorage.setItem('userToken', data.token);
@@ -78,7 +79,7 @@ function FormAnaliz(event) {
       localStorage.setItem('userEmail', formDataObj.mail);
       localStorage.setItem('pass', formDataObj.pass1);
       localStorage.setItem('categories', JSON.stringify(data.categories));
-
+      
       services.success(
         'Ви успішно зареєстровані',
         'Тепер ви можете почати подавати свої оголошення',
