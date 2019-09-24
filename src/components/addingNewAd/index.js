@@ -1,6 +1,9 @@
-import adForm from '../../template/adForm.hbs';
 import services from '../../services';
 import handleFileSelect from '../loadImage/loadImage';
+import adForm from '../../template/adForm.hbs';
+import templateDisplayAdsCards from '../../template/templateDisplayAdsCards.hbs';
+
+import './addingAdd.css';
 
 services.refs.newAdBut.onclick = () => {
   //Вітянуть ид объявления
@@ -20,7 +23,12 @@ services.refs.newAdBut.onclick = () => {
   const localRefs = {
     popup: document.querySelector('.js-ad-form'),
     fileMult: document.querySelector('#fileMulti'),
+    phoneMask: document.querySelector('.phone-mask'),
   };
+
+  const im = new services.inputmask('+38-099-999-9999');
+  im.mask(localRefs.phoneMask);
+
   localRefs.fileMult.addEventListener('change', handleFileSelect);
   localRefs.popup.addEventListener('submit', e => {
     e.preventDefault();
@@ -29,7 +37,7 @@ services.refs.newAdBut.onclick = () => {
     let imagesControl;
     imagesControl = services.image;
     if (services.image.length === 0) {
-      imagesControl = ['./img/no-photo-available.png'];
+      imagesControl = ['./images/no-image.jpg'];
     }
 
     //Об'єкт форми оголошення
@@ -44,27 +52,21 @@ services.refs.newAdBut.onclick = () => {
 
     services
       .postAd(product)
-      .then(({ data }) => {
-        services.refs.adWrapper.insertAdjacentHTML(
-          'afterbegin',
-          `<li class="ad-item" data-adId="${data.ads.adsId}">
-    <img class="ad-img" src="${data.ads.images[0]}" width="320" alt="${
-            data.ads.title
-          }">
-    <h2 class="ad-heading">${data.ads.title}</h2>
-    <span class="ad-price">Вартість ${data.ads.price} грн<</span>
-  </li>`,
-        );
+      .then(data => {
 
-        services.categories = JSON.parse(localStorage.getItem('categories'));
+        services.spinnerOff();
+        const drawHTML = templateDisplayAdsCards(data.data.ads);
+        services.refs.adWrapper.insertAdjacentHTML('afterbegin', drawHTML);
+
         services.getUser().then(data => {
-          if (data.status == 'success') {
+          services.spinnerOff();
+          if (data.status === 'success') {
             services.userAds = data.ads;
           }
         });
 
         instance.close(services.success('Оголошення', 'Додано'));
       })
-      .catch(console.error);
+      .catch(services.spinnerOff());
   });
 };

@@ -15,6 +15,7 @@ function FormAutorize(event) {
   services
     .userAutorization(formDataObj)
     .then(data => {
+      services.spinnerOff();
       if (data.status == 'success') {
         services.isAuthorized = true;
         services.userName = data.userData.name;
@@ -39,6 +40,7 @@ function FormAutorize(event) {
       return;
     })
     .catch(err => {
+      services.spinnerOff();
       services.error('Помилка!', 'Паролі та логін не свпівпадають');
       console.error(err);
     });
@@ -58,6 +60,7 @@ function FormAnaliz(event) {
   services
     .register(formDataObj.mail, formDataObj.pass1, formDataObj.login)
     .then(data => {
+      services.spinnerOff();
       if (data.status == 'error') {
         if ('E11000' == data.error.slice(0, 6)) {
           services.error(
@@ -89,6 +92,7 @@ function FormAnaliz(event) {
       document.querySelector('.userCabinet').style.display = 'flex';
     })
     .catch(err => {
+      services.spinnerOff();
       console.error(err);
       services.error(
         'Помилка!',
@@ -133,7 +137,8 @@ if (localStorage.getItem('userToken')) {
   services.userName = localStorage.getItem('userName');
   services.categories = JSON.parse(localStorage.getItem('categories'))
   services.getUser().then(data => {
-    if (data.status == 'success') {
+    services.spinnerOff();
+    if (data.status === 'success') {
       services.userAds = data.ads;
     }
   });
@@ -151,6 +156,7 @@ function hendelsLogaut(e){
   e.preventDefault();
   services.logout(localStorage.getItem('userEmail'), localStorage.getItem('pass'), localStorage.getItem('userToken'))
   .then(data => {
+    services.spinnerOff();
     localStorage.clear();
     services.isAuthorized = false;
     services.userName = false;

@@ -1,15 +1,19 @@
 import axios from 'axios';
 import PNotify from 'pnotify/dist/es/PNotify';
+import Inputmask from "inputmask/dist/inputmask/inputmask.date.extensions";
 import 'pnotify/dist/es/PNotifyButtons';
 import 'pnotify/dist/es/PNotifyStyleMaterial';
 import * as basicLightbox from 'basiclightbox';
 import infiniteScroll from 'infinite-scroll';
 import templateDisplayAdsCards from '../template/templateDisplayAdsCards.hbs';
+import '../components/spinner/spinner.css';
 
 PNotify.defaults.styling = 'material';
 PNotify.defaults.icons = 'material';
 
+
 export default {
+  inputmask: Inputmask,
   axios: axios,
   PNotify: PNotify,
   basicLightbox: basicLightbox,
@@ -49,6 +53,13 @@ export default {
     searchForm: document.querySelector('#search-form'),
   },
 
+  spinnerOn() {
+    this.refs.spinner.classList.remove('is-hidden');
+  },
+  spinnerOff() {
+    this.refs.spinner.classList.add('is-hidden');
+  },
+
   //Методы для всплывающих оповещений...
   notice(title, text) {
     this.PNotify.notice({
@@ -73,6 +84,7 @@ export default {
       title: title,
       text: text,
     });
+    this.spinnerOff();
   },
 
   giveCategory() {
@@ -96,6 +108,7 @@ export default {
   // search by keyword
   async searchAds() {
     try {
+      this.spinnerOn();
       const result = await this.axios.get(
         `${this.url}/ads/all?search=${this.searchValue}&limit=${this.pageLimit}&page=${this.page}`,
       );
@@ -105,15 +118,6 @@ export default {
     }
   },
 
-  //get ads by category id
-  async getAdsByCategory(categoryId) {
-    const result = await axios.get(
-      `${this.url}/ads/all?category=${categoryId}`,
-    );
-
-    return result.data.ads.docs;
-  },
-
   async register(email, password, name) {
     const obj = {
       email: email,
@@ -121,6 +125,7 @@ export default {
       name: name,
     };
     try {
+      this.spinnerOn();
       let result = await this.axios.post(`${this.url}/auth/register`, obj);
       return result.data;
     } catch (error) {
@@ -135,6 +140,7 @@ export default {
       },
     };
     try {
+      this.spinnerOn();
       let result = await this.axios.get(`${this.url}/ads`, heders);
       return result.data;
     } catch (error) {
@@ -143,6 +149,7 @@ export default {
   },
   async userAutorization(obj) {
     try {
+      this.spinnerOn();
       let result = await this.axios.post(`${this.url}/auth/login`, obj);
       return result.data;
     } catch (error) {
@@ -153,6 +160,7 @@ export default {
   //get ad by id
   async getAd(adId) {
     try {
+      this.spinnerOn();
       const result = await this.axios.get(`${this.url}/ads/${adId}`, {
         headers: {
           'Content-Type': 'application/json',
@@ -166,6 +174,7 @@ export default {
   //post new ad
   async postAd(obj) {
     try {
+      this.spinnerOn();
       let result = await this.axios.post(`${this.url}/ads`, obj, {
         headers: {
           'Content-Type': 'application/json',
@@ -181,6 +190,7 @@ export default {
   // get ads by page
   async getAds() {
     try {
+      this.spinnerOn();
       const result = await this.axios.get(
         `${this.url}/ads/all?limit=${this.pageLimit}&page=${this.page}`,
       );
@@ -203,6 +213,7 @@ export default {
   //get ad by id
   async getAd(adId) {
     try {
+      this.spinnerOn();
       const result = await this.axios.get(`${this.url}/ads/${adId}`);
       return result.data.goal;
     } catch (error) {
@@ -213,6 +224,7 @@ export default {
   //delete ad
   async deleteAd(adId, token) {
     try {
+      // this.spinnerOn();
       let result = await this.axios.delete(`${this.url}/ads/${adId}`, {
         headers: {
           'Content-Type': 'application/json',
@@ -231,6 +243,7 @@ export default {
       password: password,
     };
     try {
+      this.spinnerOn();
       let result = await this.axios.post(`${this.url}/auth/logout`, obj, {
         headers: {
           'Content-Type': 'application/json',
@@ -245,6 +258,7 @@ export default {
   //get ads by category id
   async getAdsByCategory() {
     try {
+      this.spinnerOn();
       const result = await axios.get(
         `${this.url}/ads/all?category=${this.giveCategory()}&page=${this.page}`,
       );
@@ -272,6 +286,24 @@ export default {
       this.refs.addPageBtn.style.display = 'inline-block';
     }
   },
+
+    //change ad
+  // в obj прописуються ті поля, які змінюються
+  async changeAd(adId, obj) {
+    try {
+      let result = await this.axios.patch(`${this.url}/ads/${adId}`, obj, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: this.token,
+        },
+      });
+      return result;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+
+
 
   drawHTMLbyCategoryId(data) {
     this.hasNextPage = data.hasNextPage;

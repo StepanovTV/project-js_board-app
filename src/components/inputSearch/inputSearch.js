@@ -7,6 +7,7 @@ const handelSearchSubmit = e => {
   services.resetPage();
   services.searchAds().then(data => {
     if (data.docs.length === 0) {
+      services.refs.addPageBtn.style.display = 'none';
       const sorryMsg =
         '<h3> По Вашому запиту нічого не знайдено. Спробуйте ще раз </h3>';
       services.refs.adsContainer.innerHTML = '';
