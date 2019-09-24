@@ -46,7 +46,7 @@ export default {
     spinner: document.querySelector('#spinner'),
     exitbtn: document.querySelector('.exitbtn'),
     adsContainer: document.querySelector('#ads-container'),
-    
+    searchForm: document.querySelector('#search-form'),
   },
 
   //Методы для всплывающих оповещений...
@@ -94,12 +94,12 @@ export default {
   },
 
   // search by keyword
-  async searchAds(keyword, page) {
+  async searchAds() {
     try {
       const result = await this.axios.get(
-        `${this.url}/ads/all?search=${keyword}&limit=${this.pageLimit}&page=${page}`,
+        `${this.url}/ads/all?search=${this.searchValue}&limit=${this.pageLimit}&page=${this.page}`,
       );
-      return result.data.ads.docs;
+      return result.data.ads;
     } catch (error) {
       throw new Error(error);
     }
@@ -189,6 +189,7 @@ export default {
       throw new Error(error);
     }
   },
+ 
 
   // ++ Added new TWO METHODS
   nextPage() {
@@ -272,24 +273,45 @@ export default {
     }
   },
 
-  drawHTMLbyCategoryId(data){
-      this.hasNextPage = data.hasNextPage;
+  drawHTMLbyCategoryId(data) {
+    this.hasNextPage = data.hasNextPage;
 
-      if (!this.hasNextPage) {
-        this.refs.addPageBtn.style.display = 'none';
-      } else {
-        this.refs.addPageBtn.style.display = 'inline-block';
-      }
+    if (!this.hasNextPage) {
+      this.refs.addPageBtn.style.display = 'none';
+    } else {
+      this.refs.addPageBtn.style.display = 'inline-block';
+    }
 
-      const collectPage = data.docs
-        .map(elem => {
-          return templateDisplayAdsCards(elem, {
-            ...(elem.images = elem.images[0]),
-          });
-        })
-        .join('');
-        this.nextPage();
-        this.refs.adsContainer.insertAdjacentHTML('beforeend', collectPage);
-        this.hasNextPage = data.hasNextPage;
-  }
+    const collectPage = data.docs
+      .map(elem => {
+        return templateDisplayAdsCards(elem, {
+          ...(elem.images = elem.images[0]),
+        });
+      })
+      .join('');
+    this.nextPage();
+    this.refs.adsContainer.insertAdjacentHTML('beforeend', collectPage);
+    this.hasNextPage = data.hasNextPage;
+  },
+
+  drawHtmlByInputSearch(data) {
+
+    const collectPage = data.docs
+      .map(elem => {
+        return templateDisplayAdsCards(elem, {
+          ...(elem.images = elem.images[0]),
+        });
+      })
+      .join('');
+    this.nextPage();
+
+    this.refs.adsContainer.insertAdjacentHTML('beforeend', collectPage);
+    this.hasNextPage = data.hasNextPage;
+
+    if (!this.hasNextPage) {
+      this.refs.addPageBtn.style.display = 'none';
+    } else {
+      this.refs.addPageBtn.style.display = 'inline-block';
+    }
+  },
 };

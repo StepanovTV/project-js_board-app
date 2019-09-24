@@ -1,39 +1,26 @@
+
 import editAd from '../../template/editAd.hbs';
-import listCardProfile from '../../template/listCardProfile.hbs';
 import services from '../../services';
-import personalArea from '../personal-area/personal-area';
-import "./styles.css";
+import handleFileSelect from '../loadImage/loadImage';
+import drawInfoProfile from '../personal-area/personal-area'
 
-const parentListItem = element.closest('li');
-const idAd = parentListItem.dataset.idAd;
-
-personalArea.actions.DELETE(idAd)
+export default function editFn  (element)  {
 
 
-function handleEditClick () {
-  //Вітянуть ид объявления
-
-  if (!services.isAuthorized) {
-    services.notice(
-      'Ой ;(',
-      'Чого це ви не хочете редагувати?',
-    );
-    return;
-  }
+services.getAd(element.id).then ((obj) => {
+console.log(obj);
 
 
-}
-
-  const instance = services.basicLightbox.create(adForm(editAd));
+const instance = services.basicLightbox.create(editAd(obj));
   instance.show();
 
   //Рефи всередині модалки
   const localRefs = {
-     butEdit = document.querySelector('button[data-action="edit id"]'),
+    popup: document.querySelector('.js-ad-form'),
     fileMult: document.querySelector('#fileMulti'),
   };
   localRefs.fileMult.addEventListener('change', handleFileSelect);
-  localRefs.butEdit.addEventListener('submit', e => {
+  localRefs.popup.addEventListener('submit', e => {
     e.preventDefault();
 
     //Перевірка на доданість фото
@@ -43,93 +30,47 @@ function handleEditClick () {
       imagesControl = ['./img/no-photo-available.png'];
     }
 
-    //Об'єкт форми оголошення
+    // Об'єкт форми оголошення
     const product = {
       title: e.target.elements.title.value,
-      category: Number(e.target.elements.category.value),
+      category: 1,
       price: Number(e.target.elements.price.value),
       phone: e.target.elements.phone.value,
       description: e.target.elements.description.value,
       images: imagesControl,
     };
 
+    //change ad
+  // в obj прописуються ті поля, які змінюються
 
 
-        instance.close(services.success('Оголошення', 'Редаговано'));
-      })
+  const usToken = localStorage.getItem('userToken');
+    services
+      .changeAd(element.id, product, usToken )
+      .then(({ data }) => {
+
+
+        services.categories = JSON.parse(localStorage.getItem('categories'));
+        services.getUser().then(data => {
+          if (data.status == 'success') {
+            services.userAds = data.ads;
+            drawInfoProfile();
+          }
+        });
+
+
+        instance.close(services.success('Ваше оголошення', 'Редаговано'));
+      }
+      )
       .catch(console.error);
+  });
+
+
+
+});
+
 
 };
 
-const refsLol = {
-  editBut: document.querySelector.button('[data-action="edit"]'),
-}
-refsLol.editBut.addEventListener('click', handleEditClick);
 
 
-
-
-
-
-// // import services from '../../services/index.js';
-// // import "./styles.css";
-// // import template from '../../template/editAd.hbs';
-
-// // // import handleFileSelect from '../loadImage/loadImage';
-// // ​import * as basicLightbox from 'basiclightbox';
-
-
-// // const butEdit =  document.querySelector('button[data-action="edit"]'),
-
-// // const openModalonEdit = (event) => {
-// //   services.changeAd(idAd, objAd)
-// // .then(data=>{
-
-
-
-
-// //   const localRefs = {
-// //     popup: document.querySelector('.js-ad-form'),
-// //     fileMult: document.querySelector('#fileMulti'),
-// //   }
-// //   localRefs.fileMult.addEventListener('change', handleFileSelect);
-// //   localRefs.popup.addEventListener('submit',
-
-
-
-// //     const butSubmit = document.querySelector('button[data-action="submit"]');
-// // const butCancel =document.querySelector('button[data-action="cancel"]');
-// // butSubmit.addEventListener('submit', handleFileSelect);
-// // butCancel.addEventListener('click', handeCancel);
-
-
-// //   //Перевірка на доданість фото
-// //   let imagesControl;
-// //   imagesControl = image;
-// //   if (image.length === 0) {c-available.png'];
-// //   }
-
-
-// //       // Об'єкт форми оголошення
-// //       const product = {
-// //         title: e.target.elements.title.value,
-// //         category: Number(e.target.elements.category.value),
-// //         price: Number(e.target.elements.price.value),
-// //         phone: e.target.elements.phone.value,
-// //         description: e.target.elements.description.value,
-// //         images: imagesControl,
-// //       };
-
-
-
-
-
-
-// //       instance.close(success('Оголошення', 'Редаговоно'));
-// //     });
-
-
-// // butEdit.addEventListener('click', openModalonEdit);
-
-
-// // };
