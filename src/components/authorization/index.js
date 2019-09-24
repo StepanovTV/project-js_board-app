@@ -21,7 +21,6 @@ function FormAutorize(event) {
         services.userToken = data.token;
         services.userAds = data.ads;
         services.categories = data.categories;
-
         localStorage.setItem('userToken', data.token);
         localStorage.setItem('userName', data.userData.name);
         localStorage.setItem('userEmail', formDataObj.email);
@@ -74,12 +73,13 @@ function FormAnaliz(event) {
       services.isAuthorized = true;
       services.userName = data.userData.name;
       services.userToken = data.token;
+      services.categories = data.categories;
       localStorage.setItem('userToken', data.token);
       localStorage.setItem('userName', data.userData.name);
       localStorage.setItem('userEmail', formDataObj.mail);
       localStorage.setItem('pass', formDataObj.pass1);
       localStorage.setItem('categories', JSON.stringify(data.categories));
-      
+
       services.success(
         'Ви успішно зареєстровані',
         'Тепер ви можете почати подавати свої оголошення',
@@ -152,8 +152,11 @@ function hendelsLogaut(e){
   services.logout(localStorage.getItem('userEmail'), localStorage.getItem('pass'), localStorage.getItem('userToken'))
   .then(data => {
     localStorage.clear();
+    services.isAuthorized = false;
+    services.userName = false;
+    services.userToken = false;
     document.querySelector('.authorization').style.display = 'flex';
   document.querySelector('.userCabinet').style.display = 'none';
   });
 }
-services.refs.exitbtn.addEventListener('click', hendelsLogaut)
+services.refs.exitbtn.addEventListener('click', hendelsLogaut);

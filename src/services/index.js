@@ -4,6 +4,8 @@ import 'pnotify/dist/es/PNotifyButtons';
 import 'pnotify/dist/es/PNotifyStyleMaterial';
 import * as basicLightbox from 'basiclightbox';
 import infiniteScroll from 'infinite-scroll';
+import templateDisplayAdsCards from '../template/templateDisplayAdsCards.hbs';
+
 PNotify.defaults.styling = 'material';
 PNotify.defaults.icons = 'material';
 
@@ -23,7 +25,10 @@ export default {
   pageLimit: 10,
   userAds: false,
   categories: false,
-
+  page: 1,
+  trigerShe: 'all',
+  hasNextPage: null,
+  searchValue: '',
 
   refs: {
     btnRegAutoriz: document.querySelector('.authorization'),
@@ -34,11 +39,11 @@ export default {
     outputMult: document.getElementById('outputMulti'),
     fileMult: document.querySelector('#fileMulti'),
     htmlButProfile: document.querySelector('#Login'),
-    newAdBut: document.querySelector(".js-new-ad"),
-    adForm: document.querySelector(".js-ad-form"),
-    popupfom: document.querySelector(".popupfom"),
-    adWrapper: document.querySelector(".ad-wrapper"),
-    spinner: document.querySelector("#spinner"),
+    newAdBut: document.querySelector('.js-new-ad'),
+    adForm: document.querySelector('.js-ad-form'),
+    popupfom: document.querySelector('.popupfom'),
+    adWrapper: document.querySelector('.ad-wrapper'),
+    spinner: document.querySelector('#spinner'),
     exitbtn: document.querySelector('.exitbtn'),
     adsContainer: document.querySelector('#ads-container'),
   },
@@ -73,7 +78,7 @@ export default {
     //with this fn you can take chosen by user category
     return this.category;
   },
-  getCategory(category) {
+  setCategory(category) {
     //returns chosen by user category
     this.category = category;
   },
@@ -85,21 +90,7 @@ export default {
   getCategoryId(categoryid) {
     //returns chosen by user category
     this.categoryId = categoryid;
-
-    
   },
-
-  // get all ads by 10 per page
-  async getAll() {
-   
-    try {
-      const result = await this.axios.get(`${this.url}/ads/all`);
-      return result.data.ads;
-    } catch (error) {
-      throw new Error(error);
-    }
-  },
-  
 
   // search by keyword
   async searchAds(keyword, page) {
@@ -163,7 +154,7 @@ export default {
     try {
       const result = await this.axios.get(`${this.url}/ads/${adId}`, {
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
       });
       return result.data.goal;
@@ -187,69 +178,117 @@ export default {
   },
 
   // get ads by page
-async getAds(page) {
-  try {
+  async getAds() {
+    try {
       const result = await this.axios.get(
-          `${this.url}/ads/all?limit=${this.pageLimit}&page=${page}`
+        `${this.url}/ads/all?limit=${this.pageLimit}&page=${this.page}`,
       );
       return result.data.ads;
-  } catch (error) {
+    } catch (error) {
       throw new Error(error);
-  }
-},
+    }
+  },
 
-//get ad by id
-async getAd(adId) {
-  try {
+  // ++ Added new TWO METHODS
+  nextPage() {
+    this.page += 1;
+  },
+
+  resetPage() {
+    this.page = 1;
+  },
+
+  //get ad by id
+  async getAd(adId) {
+    try {
       const result = await this.axios.get(`${this.url}/ads/${adId}`);
       return result.data.goal;
-  } catch (error) {
+    } catch (error) {
       throw new Error(error);
-  }
-},
+    }
+  },
 
-//delete ad
-async deleteAd(adId, token) {
-  try {
+  //delete ad
+  async deleteAd(adId, token) {
+    try {
       let result = await this.axios.delete(`${this.url}/ads/${adId}`, {
-          headers: {
-              "Content-Type": "application/json",
-              Authorization: token
-          }
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: token,
+        },
       });
       return result;
-  } catch (error) {
+    } catch (error) {
       throw new Error(error);
-  }
-},
+    }
+  },
 
-async logout(email, password, token) {
-  const obj = {
-    email: email,
-    password: password,
-  };
-  try {
-    let result = await this.axios.post(`${this.url}/auth/logout`, obj, {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: token,
-      },
-    });
-    return result;
-  } catch (error) {
-    throw new Error(error);
+  async logout(email, password, token) {
+    const obj = {
+      email: email,
+      password: password,
+    };
+    try {
+      let result = await this.axios.post(`${this.url}/auth/logout`, obj, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: token,
+        },
+      });
+      return result;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+  //get ads by category id
+  async getAdsByCategory() {
+    try {
+      const result = await axios.get(
+        `${this.url}/ads/all?category=${this.giveCategory()}&page=${this.page}`,
+      );
+      return result.data.ads;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+
+  drawHTMLAllAdsByPage(data) {
+    const collectPage = data.docs
+      .map(elem => {
+        return templateDisplayAdsCards(elem, {
+          ...(elem.images = elem.images[0]),
+        });
+      })
+      .join('');
+    this.nextPage();
+    this.refs.adsContainer.insertAdjacentHTML('beforeend', collectPage);
+    this.hasNextPage = data.hasNextPage;
+
+    if (!this.hasNextPage) {
+      this.refs.addPageBtn.style.display = 'none';
+    } else {
+      this.refs.addPageBtn.style.display = 'inline-block';
+    }
+  },
+
+  drawHTMLbyCategoryId(data){
+      this.hasNextPage = data.hasNextPage;
+
+      if (!this.hasNextPage) {
+        this.refs.addPageBtn.style.display = 'none';
+      } else {
+        this.refs.addPageBtn.style.display = 'inline-block';
+      }
+
+      const collectPage = data.docs
+        .map(elem => {
+          return templateDisplayAdsCards(elem, {
+            ...(elem.images = elem.images[0]),
+          });
+        })
+        .join('');
+        this.nextPage();
+        this.refs.adsContainer.insertAdjacentHTML('beforeend', collectPage);
+        this.hasNextPage = data.hasNextPage;
   }
-},
-//get ads by category id
-async getAdsByCategory(categoryId, page) {
-  try {
-    services.refs.spinner.classList.remove(`is-hidden`);
-    const result = await axios.get(
-      `${this.url}/ads/all?category=${categoryId}&page=${page}`,
-    );
-    return result.data.ads;
-  } catch (error) {
-    throw new Error(error);
-  }
-},
-}
+};
