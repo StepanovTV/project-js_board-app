@@ -5,6 +5,7 @@ import './components/filterByCategory';
 import './components/displayAdsCards/displayAdsCards';
 import './components/buttonMore/buttonMore';
 import './components/inputSearch/inputSearch';
+import './components/renderingAd';
 
 
 import './components/addingNewAd';
