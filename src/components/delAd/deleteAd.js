@@ -1,77 +1,69 @@
-import services from '../../services/index.js'
+// import services from '../../services/index.js'
 
 
-// const refsdell = {
-//   // buttonDel: document.querySelector('.buttonDel'),
-//   list: document.querySelector('.list'),
-//   // buttonEdit: document.querySelector('.edit'),
-// };
 
-const actions = {
-  EDIT: 'edit',
-  DELETE: 'delete'
-}
-
-
-// deleteAd(id) {
-//   this._items = this._items.filter(item => item.id !== id); // метод удаления айди
+// const actions = {
+//   EDIT: 'edit',
+//   DELETE: 'delete'
 // }
-// const model = new Model(data);
-
-// services.deleteAd(adId);
 
 
-const deleteListItem = element => {
 
-    const parentListItem = element.closest('li');
+// const deleteListItem = element => {
 
-    const idAd = parentListItem.dataset.idAd;
+//     const parentListItem = element.closest('li');
 
-    services.deleteAd(idAd)
-      .then(() => {
-        // model.delete(id); // удаление обьекта из массива( из базы данных )
-        element.remove(); // удаление из дом дерева (интерфейс)
+//     const idAd = parentListItem.dataset.idAd;
 
-      })
-      .then(
-        PNotify.success({
-          title: 'Успешно!',
-          text: ' Ваше сообщение удалено.',
-        }),
-      )
-      .catch(error => {
-        console.error(error);
-        PNotify.error({
-          title: 'Ошибка!',
-          text: 'Ваше сообщение не было удалено.'
-        });
-      });
-    };
+//     services.deleteAd(idAd)
+//       .then(() => {
 
-    const handleListClick = ({
-      target
-    }) => {
+//         element.remove();
 
-      if (target.nodeName !== 'BUTTON') return;
+//       })
+//       .then(
+//         PNotify.success({
+//           title: 'Успешно!',
+//           text: ' Ваше сообщение удалено.',
+//         }),
+//       )
+//       .catch(error => {
+//         console.error(error);
+//         PNotify.error({
+//           title: 'Ошибка!',
+//           text: 'Ваше сообщение не было удалено.'
+//         });
+//       });
+//     };
 
-      const action = target.dataset.action;
+//     const handleListClick = ({
+//       target
+//     }) => {
+//       console.log('open')
 
-      switch (action) {
-        case actions.DELETE:
+//       if (target.nodeName !== 'BUTTON') return;
 
-          deleteListItem(target);
+//       const action = target.dataset.action;
 
-          break;
+//       switch (action) {
+//         case actions.DELETE:
 
-        case actions.EDIT:
+//           deleteListItem(target);
 
-          break;
+//           break;
 
-      };
+//         case actions.EDIT:
+//               console.log('opren file')
+//           break;
 
-    };
+//       };
+
+//     };
 
 
-    // refs.buttonDel.addEventListener('click', deleteAdFn);
-    profileRefs.htmlListAds.addEventListener('click', handleListClick);
-    // refs.buttonEdit.addEventListener('click', editAdFn);
+
+//     profileRefs.htmlListAds.addEventListener('click', handleListClick);
+//   // services.editId.addEventListener('click', handleListClick);
+
+
+

@@ -1,21 +1,20 @@
 import personalWindow from '../personal-area/html-personal-area';
-import home from '../../services/index';
+import services from '../../services/index';
 import './pers-area.css';
 import templateCard from './userInfoProfile.hbs';
 import templateList from './listCardProfile.hbs';
+import '../delAd/deleteAd';
+import '../delAd/editAd';
+
 import massAds from './demoList';
 
-const actions = {
-  EDIT: 'edit',
-  DELETE: 'delete',
-};
 
-home.refs.htmlButProfile.addEventListener('click', e => {
-  // const userProfil = home.isAuthorized;
+services.refs.htmlButProfile.addEventListener('click', e => {
+  // const userProfil = services.isAuthorized;
   const userProfil = localStorage.getItem('userName');
   
   if (!userProfil) {
-    home.info('АВТОРИЗАЦИЯ', 'Для входа в личный кабинет авторизируйтесь');
+    services.info('АВТОРИЗАЦИЯ', 'Для входа в личный кабинет авторизируйтесь');
     return;
   }
 
@@ -25,12 +24,12 @@ home.refs.htmlButProfile.addEventListener('click', e => {
 });
 
 function drawInfoProfile() {
-  const infoCardUser = { name: home.userName };
+  const infoCardUser = { name: services.userName };
   const newCards = templateCard(infoCardUser);
 
   // когда будут в базе реальные обьявки то залочить первую сроку и разлочить вторую
   // const newList = templateList(massAds);
-  const newList = templateList(home.userAds);
+  const newList = templateList(services.userAds);
 
   const profileRefs = {
     htmlHederInfo: document.querySelector('.fio'),
@@ -52,26 +51,26 @@ function handleListClick({ target }) {
   if (target.classList == 'dellIdAd') {
     const selectCard = document.querySelector(`li[id="${target.id}"]`);
 
-    home
+    services
       .deleteAd(target.id, usToken)
       .then(() => {
         selectCard.remove();
-        home.categories = JSON.parse(localStorage.getItem('categories'));
-        home.getUser().then(data => {
+        services.categories = JSON.parse(localStorage.getItem('categories'));
+        services.getUser().then(data => {
           if (data.status === 'success') {
-            home.userAds = data.ads;
+            services.userAds = data.ads;
           }
         });
       })
       .then(
-        home.PNotify.success({
+        services.PNotify.success({
           title: 'Успешно!',
           text: ' Ваше сообщение удалено.',
         }),
       )
       .catch(error => {
         console.error(error);
-        home.PNotify.error({
+        services.PNotify.error({
           title: 'Ошибка!',
           text: 'Ваше сообщение не было удалено.',
         });
