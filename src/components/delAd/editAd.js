@@ -44,9 +44,9 @@ const instance = services.basicLightbox.create(editAd(obj));
   // в obj прописуються ті поля, які змінюються
 
 
-  const usToken = localStorage.getItem('userToken');
+
     services
-      .changeAd(element.id, product, usToken )
+      .changeAd(element.id, product )
       .then(({ data }) => {
 
 
