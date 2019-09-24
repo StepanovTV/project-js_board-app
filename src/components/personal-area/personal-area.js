@@ -3,11 +3,9 @@ import services from '../../services/index';
 import './pers-area.css';
 import templateCard from './userInfoProfile.hbs';
 import templateList from './listCardProfile.hbs';
-import '../delAd/deleteAd';
+import {addListenerEditDel} from '../delAd/deleteAd';
 import '../delAd/editAd';
-
-import massAds from './demoList';
-
+// import massAds from './demoList';
 
 services.refs.htmlButProfile.addEventListener('click', e => {
   // const userProfil = services.isAuthorized;
@@ -41,39 +39,8 @@ function drawInfoProfile() {
 
   profileRefs.htmlHederInfo.insertAdjacentHTML('afterbegin', newCards);
   profileRefs.htmlListAds.insertAdjacentHTML('afterbegin', newList);
-
-  profileRefs.htmlListAds.addEventListener('click', handleListClick);
+  addListenerEditDel(); // вызывю листенер из файла deleteAd
+ 
 }
 
-function handleListClick({ target }) {
-  const usToken = localStorage.getItem('userToken');
 
-  if (target.classList == 'dellIdAd') {
-    const selectCard = document.querySelector(`li[id="${target.id}"]`);
-
-    services
-      .deleteAd(target.id, usToken)
-      .then(() => {
-        selectCard.remove();
-        services.categories = JSON.parse(localStorage.getItem('categories'));
-        services.getUser().then(data => {
-          if (data.status === 'success') {
-            services.userAds = data.ads;
-          }
-        });
-      })
-      .then(
-        services.PNotify.success({
-          title: 'Успешно!',
-          text: ' Ваше сообщение удалено.',
-        }),
-      )
-      .catch(error => {
-        console.error(error);
-        services.PNotify.error({
-          title: 'Ошибка!',
-          text: 'Ваше сообщение не было удалено.',
-        });
-      });
-  }
-}

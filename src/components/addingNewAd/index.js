@@ -46,7 +46,7 @@ services.refs.newAdBut.onclick = () => {
       .postAd(product)
       .then(({ data }) => {
         services.refs.adWrapper.insertAdjacentHTML(
-          'after]begin',
+          'afterbegin',
           `<li class="ad-item" data-adId="${data.ads.adsId}">
     <img class="ad-img" src="${data.ads.images[0]}" width="320" alt="${
             data.ads.title

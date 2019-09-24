@@ -9,7 +9,6 @@
 
 // personalArea.actions.DELETE(idAd)
 
-
 // // function handleEditClick () {
 // //   //Вітянуть ид объявления
 

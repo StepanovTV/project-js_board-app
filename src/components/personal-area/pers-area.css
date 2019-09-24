@@ -1,11 +1,13 @@
 .modalProfile {
+  
   min-width: 350px;
   max-width: 840px;
   text-align: center;
-  border: 1px solid black;
+  border: 2px solid #2b5577;
   border-radius: 15px;
-  background-color: rgba(255, 255, 255,0.8);
+  background-color: rgba(255, 255, 255, 0.8);
 }
+
 
 .list {
   padding: 0;
@@ -15,15 +17,16 @@
 }
 
 .cardProfile {
+  width: 10px;
   list-style: none;
   width: 250px;
   margin: 10px;
   padding: 10px;
-  border: 1px solid black;
-  border-radius: 10px;
+  border: 2px solid #8bb4d6;
+  border-radius: 15px;
   position: relative;
   background-color: white;
-  box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+  
 }
 
 .dellIdAd,
@@ -36,7 +39,8 @@
 
 .dellIdAd:hover,
 .editId:hover {
-  background-color: rgb(89, 208, 89);
+  background-color: #2b5577;
+
 }
 
 .dellIdAd {
@@ -46,13 +50,30 @@
 }
 
 .titleName {
+  text-align: center;
+  padding: 9px;
+  margin-left: 10px;
+  margin-right: 10px;
+  /* width: 200px; */
+  height: 40px;
   background-color: rgb(255, 255, 255);
-  border: 1px solid black;
-  border-radius: 10px;
+  border: 2px solid #8bb4d6;
+  border-radius: 15px;
 }
 
 .basicLightbox__placeholder {
   max-height: 90%;
   overflow-y: auto;
   overflow-x: hidden;
+}
+
+
+
+.miniInfoPrice{
+  font-size:  20px;
+}
+
+.miniInfotitle {
+  font-size:  20px;
+  font-weight: 700;
 }
