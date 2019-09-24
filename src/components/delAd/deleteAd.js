@@ -28,7 +28,8 @@ const deleteListItem = element => {
     const idAd = parentListItem.dataset.idAd;
 
     services.deleteAd(idAd)
-      .then(() => {
+      .then(
+        () => {
         // model.delete(id); // удаление обьекта из массива( из базы данных )
         element.remove(); // удаление из дом дерева (интерфейс)
 
