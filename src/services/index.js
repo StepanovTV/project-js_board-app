@@ -199,7 +199,7 @@ export default {
       throw new Error(error);
     }
   },
- 
+
 
   // ++ Added new TWO METHODS
   nextPage() {
@@ -294,7 +294,7 @@ export default {
       let result = await this.axios.patch(`${this.url}/ads/${adId}`, obj, {
         headers: {
           'Content-Type': 'application/json',
-          Authorization: this.token,
+          Authorization: this.userToken,
         },
       });
       return result;

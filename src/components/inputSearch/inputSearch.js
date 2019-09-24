@@ -6,6 +6,7 @@ const handelSearchSubmit = e => {
   services.searchValue = e.target.elements.search.value;
   services.resetPage();
   services.searchAds().then(data => {
+    services.spinnerOff();
     if (data.docs.length === 0) {
       services.refs.addPageBtn.style.display = 'none';
       const sorryMsg =

@@ -8,7 +8,7 @@ export default function editFn  (element)  {
 
 
 services.getAd(element.id).then ((obj) => {
-console.log(obj);
+  services.spinnerOff();
 
 
 const instance = services.basicLightbox.create(editAd(obj));
@@ -33,7 +33,7 @@ const instance = services.basicLightbox.create(editAd(obj));
     // Об'єкт форми оголошення
     const product = {
       title: e.target.elements.title.value,
-      category: 1,
+      
       price: Number(e.target.elements.price.value),
       phone: e.target.elements.phone.value,
       description: e.target.elements.description.value,
@@ -50,11 +50,13 @@ const instance = services.basicLightbox.create(editAd(obj));
       .then(({ data }) => {
 
 
+
         services.categories = JSON.parse(localStorage.getItem('categories'));
         services.getUser().then(data => {
           if (data.status == 'success') {
             services.userAds = data.ads;
             drawInfoProfile();
+            services.spinnerOff();
           }
         });
 
