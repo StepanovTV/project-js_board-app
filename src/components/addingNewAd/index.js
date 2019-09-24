@@ -53,7 +53,6 @@ services.refs.newAdBut.onclick = () => {
     services
       .postAd(product)
       .then(data => {
-
         services.spinnerOff();
         const drawHTML = templateDisplayAdsCards(data.data.ads);
         services.refs.adWrapper.insertAdjacentHTML('afterbegin', drawHTML);
