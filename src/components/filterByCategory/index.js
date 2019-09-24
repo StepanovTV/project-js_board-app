@@ -1,9 +1,9 @@
 import services from '../../services';
 import template from '../../template/templateDisplayAdsCards.hbs';
 
-
 function buttonDrow() {
   services.getAds().then(data => {
+    services.spinnerOff();
     let eachCat = data.categories
       .map(elem => {
         return `<button id='${elem._id}' class='btnCategory'>${elem.category}</button>`;
@@ -20,30 +20,32 @@ function findCategory(e) {
   if (e.target === e.currentTarget) return;
 
   if (e.target.dataset.name === 'clear') {
-    services.trigerShe='all'
+    services.trigerShe = 'all';
     services.refs.adsContainer.innerHTML = '';
     const activBtn = e.currentTarget.querySelector('.isActiveCategory');
-     if(activBtn){
-      activBtn.remove('isActiveCategory');
-     }
+    if (activBtn) {
+      activBtn.classList.remove('isActiveCategory');
+    }
     services.resetPage();
     services.getAds().then(data => {
+      services.spinnerOff();
       services.drawHTMLAllAdsByPage(data);
     });
   } else if (e.target.classList.contains('btnCategory')) {
-    services.trigerShe='category';
+    services.trigerShe = 'category';
     let chosenBut = event.target;
     if (chosenBut.classList.contains('isActiveCategory')) {
-        } else {
-          let allBut = services.refs.categoryList.querySelectorAll('button');
-          allBut.forEach(element => {
-            element.classList.remove('isActiveCategory');
-          });
-          chosenBut.classList.add('isActiveCategory');
-        }
+    } else {
+      let allBut = services.refs.categoryList.querySelectorAll('button');
+      allBut.forEach(element => {
+        element.classList.remove('isActiveCategory');
+      });
+      chosenBut.classList.add('isActiveCategory');
+    }
     services.resetPage();
     services.setCategory(e.target.id);
     services.getAdsByCategory().then(data => {
+      services.spinnerOff();
       services.hasNextPage = data.hasNextPage;
 
       if (!services.hasNextPage) {

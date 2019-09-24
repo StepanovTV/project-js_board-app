@@ -3,7 +3,6 @@ import home from '../../services/index';
 import './pers-area.css';
 import templateCard from './userInfoProfile.hbs';
 import templateList from './listCardProfile.hbs';
-import massAds from './demoList';
 
 const actions = {
   EDIT: 'edit',
