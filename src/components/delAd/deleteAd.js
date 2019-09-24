@@ -1,78 +1,64 @@
-import services from '../../services/index.js'
+import services from '../../services/index.js';
+import editFn from './editAd'
 
 
-// const refsdell = {
-//   // buttonDel: document.querySelector('.buttonDel'),
-//   list: document.querySelector('.list'),
-//   // buttonEdit: document.querySelector('.edit'),
-// };
 
 const actions = {
   EDIT: 'edit',
-  DELETE: 'delete'
-}
-
-
-// deleteAd(id) {
-//   this._items = this._items.filter(item => item.id !== id); // метод удаления айди
-// }
-// const model = new Model(data);
-
-// services.deleteAd(adId);
-
+  DELETE: 'delete',
+};
 
 const deleteListItem = element => {
+  const usToken = localStorage.getItem('userToken');
+  const parentListItem = element.closest('li');
+  const idAd = element.id;
 
-    const parentListItem = element.closest('li');
-
-    const idAd = parentListItem.dataset.idAd;
-
-    services.deleteAd(idAd)
-      .then(
-        () => {
-        // model.delete(id); // удаление обьекта из массива( из базы данных )
-        element.remove(); // удаление из дом дерева (интерфейс)
-
-      })
-      .then(
-        PNotify.success({
-          title: 'Успешно!',
-          text: ' Ваше сообщение удалено.',
-        }),
-      )
-      .catch(error => {
-        console.error(error);
-        PNotify.error({
-          title: 'Ошибка!',
-          text: 'Ваше сообщение не было удалено.'
-        });
+  services
+    .deleteAd(idAd, usToken)
+    .then(() => {
+      parentListItem.remove();
+      services.categories = JSON.parse(localStorage.getItem('categories'));
+      services.getUser().then(data => {
+        if (data.status === 'success') {
+          services.userAds = data.ads;
+        }
       });
-    };
+    })
+    .then(
+      services.PNotify.success({
+        title: 'Успішно!',
+        text: 'Ваше повідомлення видалено',
+      }),
+    )
+    .catch(error => {
+      console.error(error);
+      services.PNotify.error({
+        title: 'Помилка!',
+        text: 'Ваше повідомлення не видалено.',
+      });
+    });
+};
 
-    const handleListClick = ({
-      target
-    }) => {
+const handleListClick = ({ target }) => {
+  if (target.nodeName !== 'BUTTON') return;
 
-      if (target.nodeName !== 'BUTTON') return;
+  const action = target.dataset.action;
 
-      const action = target.dataset.action;
+  switch (action) {
+    case actions.DELETE:
+      deleteListItem(target);
 
-      switch (action) {
-        case actions.DELETE:
+      break;
 
-          deleteListItem(target);
-
-          break;
-
-        case actions.EDIT:
-
-          break;
-
-      };
-
-    };
+    case actions.EDIT:
+    editFn(target);
+      break;
+  }
+};
 
 
-    // refs.buttonDel.addEventListener('click', deleteAdFn);
-    profileRefs.htmlListAds.addEventListener('click', handleListClick);
-    // refs.buttonEdit.addEventListener('click', editAdFn);
+
+export function addListenerEditDel() {
+  const editId = document.querySelector('.list');
+  editId.addEventListener('click', handleListClick);
+}

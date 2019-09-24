@@ -200,6 +200,7 @@ export default {
     }
   },
 
+
   // ++ Added new TWO METHODS
   nextPage() {
     this.page += 1;
@@ -293,7 +294,7 @@ export default {
       let result = await this.axios.patch(`${this.url}/ads/${adId}`, obj, {
         headers: {
           'Content-Type': 'application/json',
-          Authorization: this.token,
+          Authorization: this.userToken,
         },
       });
       return result;
@@ -326,7 +327,7 @@ export default {
   },
 
   drawHtmlByInputSearch(data) {
-    
+
     const collectPage = data.docs
       .map(elem => {
         return templateDisplayAdsCards(elem, {

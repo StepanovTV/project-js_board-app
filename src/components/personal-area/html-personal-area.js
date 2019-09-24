@@ -1,17 +1,17 @@
-import home from '../../services/index';
+import services from '../../services/index';
 
-export default home.basicLightbox.create(`
+export default services.basicLightbox.create(`
 <section class="modalProfile">
 
 <div class="fio">
     <p class="titleName">
-       
+
     </p>
 </div>
 
     <ul class="list">
 
-    </ul> 
+    </ul>
 
 </section>
 `);
