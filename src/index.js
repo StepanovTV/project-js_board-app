@@ -2,8 +2,9 @@ import services from './services';
 import './components/authorization';
 import './components/personal-area/personal-area'
 import './components/filterByCategory';
-import './components/displayAdsCards/displayAdsCards.js';
+import './components/displayAdsCards/displayAdsCards';
 import './components/buttonMore/buttonMore';
+import './components/inputSearch/inputSearch';
 
 
 import './components/addingNewAd';
