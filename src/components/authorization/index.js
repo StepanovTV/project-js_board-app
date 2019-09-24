@@ -21,7 +21,6 @@ function FormAutorize(event) {
         services.userToken = data.token;
         services.userAds = data.ads;
         services.categories = data.categories;
-
         localStorage.setItem('userToken', data.token);
         localStorage.setItem('userName', data.userData.name);
         localStorage.setItem('userEmail', formDataObj.email);
@@ -74,6 +73,7 @@ function FormAnaliz(event) {
       services.isAuthorized = true;
       services.userName = data.userData.name;
       services.userToken = data.token;
+      services.categories = data.categories;
       localStorage.setItem('userToken', data.token);
       localStorage.setItem('userName', data.userData.name);
       localStorage.setItem('userEmail', formDataObj.mail);
@@ -159,4 +159,4 @@ function hendelsLogaut(e){
   document.querySelector('.userCabinet').style.display = 'none';
   });
 }
-services.refs.exitbtn.addEventListener('click', hendelsLogaut)
+services.refs.exitbtn.addEventListener('click', hendelsLogaut);
