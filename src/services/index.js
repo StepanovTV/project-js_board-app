@@ -47,6 +47,7 @@ export default {
     spinner: document.querySelector("#spinner"),
     exitbtn: document.querySelector('.exitbtn'),
     adsContainer: document.querySelector('#ads-container'),
+    
   },
 
   //Методы для всплывающих оповещений...
