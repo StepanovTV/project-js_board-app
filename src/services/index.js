@@ -286,6 +286,24 @@ export default {
     }
   },
 
+    //change ad
+  // в obj прописуються ті поля, які змінюються
+  async changeAd(adId, obj) {
+    try {
+      let result = await this.axios.patch(`${this.url}/ads/${adId}`, obj, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: this.token,
+        },
+      });
+      return result;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+
+
+
   drawHTMLbyCategoryId(data) {
     this.hasNextPage = data.hasNextPage;
 
