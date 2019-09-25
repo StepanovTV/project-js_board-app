@@ -255,6 +255,25 @@ export default {
       throw new Error(error);
     }
   },
+
+  // добавление в Избранные
+// https://dash-ads.goit.co.ua/api/v1/user/favorite/
+
+  async adFavorite(id) {
+    try {
+      let result = await this.axios.put(`${this.url}/user/favorite/${id}`,{}, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: this.userToken,
+        },
+      });
+      return result;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+
+
   //get ads by category id
   async getAdsByCategory() {
     try {
@@ -347,3 +366,4 @@ export default {
     }
   },
 };
+

@@ -1,9 +1,56 @@
+
+
 .template {
-  width: 100%;
-  height: 100%;
+  max-width: 500px;
   background-color: white;
   color: black;
-  font-size: 30px;
   list-style: none;
-  padding: 10px 20px;
+  padding: 5px 10px;
+}
+
+.title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+  font-family: 'PT Sans', sans-serif;
+  color: #497eaa;
+}
+
+.createdAt {
+  color: #7c919b;
+  font-size: 10px;
+  font-family: 'PT Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.description {
+  font-family: 'PT Sans', sans-serif;
+  font-size: 16px;
+  line-height: 20px;
+  color: black;
+  max-width: 300px;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+  margin-top: 10px;
+}
+
+.price {
+  text-align: center;
+  font-family: 'PT Sans', sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  color: #497eaa;
+}
+
+.btn {
+  display: block;
+  background-color: #497eaa;
+  color: white;
+}
+
+.btnfavorite {
+  width: 50px;
+  height: 20px;
 }

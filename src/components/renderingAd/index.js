@@ -9,8 +9,16 @@ const handlOpenAdClick = e => {
   services.getAd(adId).then(data => {
     services.spinnerOff();
     const instance = services.basicLightbox.create(renderingAd(data));
-    instance.show();
+    instance.show(() => {
+      const btnfavorite = document.querySelector('#btnfavorite');
+      const handlAddFavorite = ({target}) => {
+        if(target.checked) {
+          services.adFavorite(adId).then(console.log)
+        }
+      };
+      btnfavorite.addEventListener('change', handlAddFavorite);
+    });
   });
-};
 
+}
 services.refs.adWrapper.addEventListener('click', handlOpenAdClick);
