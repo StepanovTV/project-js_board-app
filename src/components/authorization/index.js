@@ -149,6 +149,8 @@ if (services.isAuthorized) {
   const userCabinet = document.querySelector('.userCabinet');
   userCabinet.style.display = 'flex';
   userCabinet.querySelector('.profilebtn').textContent = services.userName;
+  services.getUserFavourites().then(({ favorites }) => {
+  services.userFavorites = favorites});
 } else {
   document.querySelector('.authorization').style.display = 'flex';
   document.querySelector('.userCabinet').style.display = 'none';
@@ -165,6 +167,7 @@ function hendelsLogaut(e){
     services.userToken = false;
     document.querySelector('.authorization').style.display = 'flex';
   document.querySelector('.userCabinet').style.display = 'none';
+  services.userFavorites = [];
   });
 }
 services.refs.exitbtn.addEventListener('click', hendelsLogaut);

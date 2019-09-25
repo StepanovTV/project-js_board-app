@@ -11,14 +11,34 @@ const handlOpenAdClick = e => {
     const instance = services.basicLightbox.create(renderingAd(data));
     instance.show(() => {
       const btnfavorite = document.querySelector('#btnfavorite');
-      const handlAddFavorite = ({target}) => {
-        if(target.checked) {
-          services.adFavorite(adId).then(console.log)
+      const userFavUnickum = services.userFavorites.some(elem => elem._id === adId);
+      if(userFavUnickum) {
+        btnfavorite.setAttribute('checked', 'checked');
+      } else {
+        btnfavorite.removeAttribute('checked');
+      }
+
+      const handlAddFavorite = ({ target }) => {
+        if (services.isAuthorized){
+
+           if (target.checked) {
+               services.adFavorite(adId).then(data => {
+          });
+        } else {
+          // document.querySelector(`.cardProfiledata-adid=${adId}]`).remove();
+          console.log(document.querySelector(`[data-adid = "adId"]`));
+          services.delFavorite(adId).then(data => {
+                });
+        };} else {
+          services.notice('Увага!!!!!', 'Для додавання в обрані зайдіть або зареєструйтесь')
         }
       };
       btnfavorite.addEventListener('change', handlAddFavorite);
     });
   });
-
 }
 services.refs.adWrapper.addEventListener('click', handlOpenAdClick);
+
+export default handlOpenAdClick;
+
+

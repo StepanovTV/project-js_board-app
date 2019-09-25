@@ -33,6 +33,7 @@ export default {
   trigerShe: 'all',
   hasNextPage: null,
   searchValue: '',
+  userFavorites: [],
 
   refs: {
     btnRegAutoriz: document.querySelector('.authorization'),
@@ -267,6 +268,25 @@ export default {
           Authorization: this.userToken,
         },
       });
+      this.getUserFavourites().then(({ favorites }) => {
+      this.userFavorites = favorites});
+      return result;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+
+
+  async delFavorite(id) {
+    try {
+      let result = await this.axios.delete(`${this.url}/user/favorite/${id}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: this.userToken,
+        },
+      });
+      this.getUserFavourites().then(({ favorites }) => {
+      this.userFavorites = favorites});
       return result;
     } catch (error) {
       throw new Error(error);
@@ -322,6 +342,20 @@ export default {
     }
   },
 
+// получить фаворите юзерс https://dash-ads.goit.co.ua/api/v1/user/favorites
+  async  getUserFavourites() {
+    try {
+      let result = await this.axios.get(`${this.url}/user/favorites`,  {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: this.userToken,
+        },
+      });
+      return result.data.user;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
 
 
   drawHTMLbyCategoryId(data) {

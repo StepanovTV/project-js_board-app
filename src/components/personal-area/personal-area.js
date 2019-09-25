@@ -3,11 +3,10 @@ import services from '../../services/index';
 import './pers-area.css';
 import templateCard from './userInfoProfile.hbs';
 import templateList from './listCardProfile.hbs';
-import {addListenerEditDel} from '../delAd/deleteAd';
+import { addListenerEditDel } from '../delAd/deleteAd';
 import '../delAd/editAd';
+import favoriteAds from '../favorites/favorites';
 // import massAds from './demoList';
-
-
 
 services.refs.htmlButProfile.addEventListener('click', e => {
   // const userProfil = services.isAuthorized;
@@ -18,9 +17,10 @@ services.refs.htmlButProfile.addEventListener('click', e => {
     return;
   }
 
-  personalWindow.show();
-
-  drawInfoProfile();
+  personalWindow.show(() => {
+    drawInfoProfile();
+    favoriteAds();
+  });
 });
 
 export default function drawInfoProfile() {
@@ -42,6 +42,4 @@ export default function drawInfoProfile() {
   profileRefs.htmlHederInfo.insertAdjacentHTML('afterbegin', newCards);
   profileRefs.htmlListAds.insertAdjacentHTML('afterbegin', newList);
   addListenerEditDel(); // вызывю листенер из файла deleteAd
-
 }
-
