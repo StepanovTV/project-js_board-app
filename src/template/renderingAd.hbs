@@ -1,12 +1,16 @@
-
 <li class="template">
+    <label for="btnfavorite"> Обрані</label>
+    <input id="btnfavorite" type="checkbox" value="">
     <h2 class="title">{{title}}</h2>
-    <p class="description">{{description}}</p>
+    <p class="createdAt"> м. Київ, Печерський р-н  Додано {{createdAt}}</p>
       {{#each images}}
         <img src="{{this}}" width = '300px'>
       {{/each}}
-    <p class="createdAt">{{createdAt}}</p>
-    <p class="price">{{price}}</p>
+    <p class="description">{{description}}</p>
+    <p class="price">Ціна {{price}} грн., договірна</p>
+    <button class="btn">
+    <i data-icon="phone"></i>
     <p class="phone">{{phone}}</p>
+    </button>
     <p class="author">{{author}}</p>
 </li>

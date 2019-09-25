@@ -14,6 +14,7 @@ export default services.basicLightbox.create(`
 
     </ul>
     </section>
-
+    <section class="favorite-section">
+    </section>
 </section>
 `);
