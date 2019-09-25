@@ -25,8 +25,7 @@ const handlOpenAdClick = e => {
                services.adFavorite(adId).then(data => {
           });
         } else {
-          // document.querySelector(`.cardProfiledata-adid=${adId}]`).remove();
-          console.log(document.querySelector(`[data-adid = "adId"]`));
+          document.querySelector(`.favorit[data-adid="${adId}"]`).remove();
           services.delFavorite(adId).then(data => {
                 });
         };} else {
