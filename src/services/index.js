@@ -26,7 +26,7 @@ export default {
   userToken: false,
   isAuthorized: false,
   url: `https://dash-ads.goit.co.ua/api/v1`,
-  pageLimit: 10,
+  pageLimit: 12,
   userAds: false,
   categories: false,
   page: 1,

@@ -16,21 +16,23 @@ const deleteListItem = element => {
   services
     .deleteAd(idAd, usToken)
     .then(() => {
+      services.spinnerOff();
       parentListItem.remove();
       services.categories = JSON.parse(localStorage.getItem('categories'));
       services.getUser().then(data => {
+        services.spinnerOff();
         if (data.status === 'success') {
+          services.resetPage();
+          services.getAds().then(data => {
+            services.refs.adsContainer.innerHTML = '';
+            services.drawHTMLAllAdsByPage(data);
+            services.spinnerOff();
+          });
           services.userAds = data.ads;
+          services.success('Успішно!', 'Ваше повідомлення видалено');
         }
       });
-    })
-    .then(
-      services.PNotify.success({
-        title: 'Успішно!',
-        text: 'Ваше повідомлення видалено',
-      }),
-    )
-    .catch(error => {
+    }).catch(error => {
       console.error(error);
       services.PNotify.error({
         title: 'Помилка!',

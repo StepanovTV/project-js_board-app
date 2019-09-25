@@ -27,7 +27,7 @@ const instance = services.basicLightbox.create(editAd(obj));
     let imagesControl;
     imagesControl = services.image;
     if (services.image.length === 0) {
-      imagesControl = ['./img/no-photo-available.png'];
+      imagesControl = ['./images/no-image.jpg'];
     }
 
     // Об'єкт форми оголошення
@@ -56,7 +56,14 @@ const instance = services.basicLightbox.create(editAd(obj));
           if (data.status == 'success') {
             services.userAds = data.ads;
             drawInfoProfile();
+            services.resetPage();
+            services.getAds().then(data => {
+              services.refs.adsContainer.innerHTML = '';
+              services.drawHTMLAllAdsByPage(data);
+              services.spinnerOff();
+            });
             services.spinnerOff();
+
           }
         });
 
