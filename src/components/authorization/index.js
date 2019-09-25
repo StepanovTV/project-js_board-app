@@ -146,7 +146,9 @@ if (localStorage.getItem('userToken')) {
 
 if (services.isAuthorized) {
   document.querySelector('.authorization').style.display = 'none';
-  document.querySelector('.userCabinet').style.display = 'flex';
+  const userCabinet = document.querySelector('.userCabinet');
+  userCabinet.style.display = 'flex';
+  userCabinet.querySelector('.profilebtn').textContent = services.userName;
 } else {
   document.querySelector('.authorization').style.display = 'flex';
   document.querySelector('.userCabinet').style.display = 'none';
