@@ -278,9 +278,30 @@ html {
   margin: 0 auto;
 }
 .basicLightbox__placeholder {
+  position: relative;
   max-height: 90%;
+  max-width: 90%;
   overflow-y: auto;
   overflow-x: hidden;
+}
+
+.basicLightbox__placeholder::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+.basicLightbox__placeholder::-webkit-scrollbar
+{
+	width: 12px;
+}
+
+.basicLightbox__placeholder::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #555;
 }
 
 @media (min-width: 768px) {
@@ -489,7 +510,6 @@ header {
 }
 
 .ad-img {
-  background-color: #2b5577;
   width: 100%;
   height: 150px;
   object-fit: cover;
@@ -612,4 +632,18 @@ footer {
   background-color: green;
   background-image: url(./images/icons/008-exchange-arrows.svg);
   /* content: 'Обмін'; */
+}
+
+.basicLightbox::before{
+  content: "\e5cd";
+  font-family: 'Material Icons';
+font-size: 30px;
+line-height: 18px;
+display: block;
+position: absolute;
+top: 6px;
+right: 6px;
+cursor: pointer;
+color: #bbb;
+padding: 4px;
 }

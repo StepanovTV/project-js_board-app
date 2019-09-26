@@ -1,12 +1,9 @@
 .login-widows {
   width: 300px;
+  max-width: 100%;
   padding: 15px;
   background-color: rgb(255, 255, 255);
-  border: 1px solid black;
   border-radius: 4px;
-  -webkit-box-shadow: 0px 10px 13px -7px #000000,
-    5px 5px 15px 5px rgba(0, 0, 0, 0);
-  box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
 }
 
 .login-widows form{
@@ -57,7 +54,9 @@ display: none;
 }
 
 .form_sedn_btn1:hover,
-.form_sedn_btn2:hover {
+.form_sedn_btn2:hover,
+.form_sedn_btn1:focus,
+.form_sedn_btn2:focus  {
   color: rgb(255, 255, 255);
   background-color: rgb(240, 164, 23);
 }

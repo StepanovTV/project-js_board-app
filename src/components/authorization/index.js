@@ -28,7 +28,7 @@ function FormAutorize(event) {
         localStorage.setItem('pass', formDataObj.password);
         localStorage.setItem('categories', JSON.stringify(data.categories));
         services.success(
-          'Ви успішно авторізовані',
+          'Ви успішно авторизовані',
           'Тепер ви можете почати подавати свої оголошення',
         );
         instanseLb.close();

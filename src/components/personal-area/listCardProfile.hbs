@@ -1,23 +1,12 @@
+
 {{#each this}}
 <li class="cardProfile" id="{{_id}}">
-    <img src="{{images}}" alt="первое фото товара" class="startImgAd"
-        width="150" />
-    <div class="miniInfoAd">
-        
-        <p class="miniInfotitle">
-            {{title}}
-        </p>
-        <button class="editId" id="{{_id}}" data-action="edit">Edit</button>
-        <p class="miniInfoPrice">
-            
-        </p>
-        <p class="miniInfodescription">
-            {{description}}
-        </p>
-        <p class="miniInfoPrice">
-           Вартість: {{price}}
-        </p>
-    </div>
-    <button class="dellIdAd" id="{{_id}}" data-action="delete">X</button>
+  <img src="{{images}}" alt="первое фото товара" class="ad-img" />
+  <div class="opis">
+  <h3>{{title}}</h3>
+  <h5>Вартість: {{price}}</h5>
+  </div>
+  <button class="dellIdAd" id="{{_id}}" data-action="delete"><i class="material-icons">clear</i></button>
+  <button class="editId" id="{{_id}}" data-action="edit"><i class="material-icons">edit</i></button>
 </li>
 {{/each}}

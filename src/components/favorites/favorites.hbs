@@ -1,19 +1,13 @@
-
-    <h2 class="favorites-title">Мої Обрані</h2>
-    <ul class="favoritList">
-        {{#each this}}
-        <li class="cardProfile adsItem favorit" data-adid="{{_id}}">
-            <img src="{{images}}" alt="первое фото товара" class="startImgAd" width="150" />
-            <div class="miniInfoAd">
-
-                <p class="miniInfotitle">
-                    {{title}}
-                </p>
-
-                <p class="miniInfoPrice">
-                    Вартість: {{price}}
-                </p>
-            </div>
-        </li>
-        {{/each}}
-    </ul>
+<hr>
+<h2 class="favorites-title">Мої Обрані</h2>
+<ul class="favoritList list">
+  {{#each this}}
+  <li class="cardProfile  adsItem favorit" data-adid="{{_id}}">
+    <img src="{{images}}" alt="первое фото товара" class="ad-img" />
+    <div class="opis">
+      <h3>{{title}}</h3>
+      <h5>Вартість: {{price}}</h5>
+    </div>
+  </li>
+  {{/each}}
+</ul>

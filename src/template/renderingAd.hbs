@@ -1,16 +1,25 @@
-<li class="template">
-    <label for="btnfavorite"> Обрані</label>
-    <input id="btnfavorite" type="checkbox" value="">
-    <h2 class="title">{{title}}</h2>
-    <p class="createdAt"> м. Київ, Печерський р-н  Додано {{createdAt}}</p>
-      {{#each images}}
-        <img src="{{this}}" width = '300px'>
-      {{/each}}
-    <p class="description">{{description}}</p>
-    <p class="price">Ціна {{price}} грн., договірна</p>
-    <button class="btn">
-    <i data-icon="phone"></i>
-    <p class="phone">{{phone}}</p>
-    </button>
-    <p class="author">{{author}}</p>
-</li>
+<section class="ad-cart">
+  <div class="favor-input">
+    <input type="checkbox" value="1" id="btnfavorite" name="checkbox">
+    <label for="btnfavorite" class="js-answer-01">
+      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+        <title>star-full</title>
+        <path
+          d="M32 12.408l-11.056-1.607-4.944-10.018-4.944 10.018-11.056 1.607 8 7.798-1.889 11.011 9.889-5.199 9.889 5.199-1.889-11.011 8-7.798z">
+        </path>
+      </svg>
+    </label>
+  </div>
+  <h2 class="title">{{title}}</h2>
+
+  {{#each images}}
+  <img src="{{this}}" class="imgcatrt">
+  {{/each}}
+  <p class="description">{{description}}</p>
+  <hr>
+  <h4 class="price">Ціна {{price}} грн.</h4>
+
+  <a href="tel:{{phone}}" class="telefon">{{phone}}</a>
+<hr>
+  <p class="createdAt">Додано {{createdAt}} | автор: {{author}}</p>
+</section>

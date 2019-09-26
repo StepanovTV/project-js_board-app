@@ -24,7 +24,11 @@ services.refs.htmlButProfile.addEventListener('click', e => {
 });
 
 export default function drawInfoProfile() {
-  const infoCardUser = { name: services.userName };
+  const infoCardUser = { 
+    name: services.userName,
+    adsCount: services.userAds.length,
+    favorCount: services.userFavorites.length
+  };
   const newCards = templateCard(infoCardUser);
 
   // когда будут в базе реальные обьявки то залочить первую сроку и разлочить вторую

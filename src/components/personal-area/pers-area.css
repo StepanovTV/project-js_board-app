@@ -1,79 +1,91 @@
 .modalProfile {
-  
-  min-width: 350px;
-  max-width: 840px;
-  text-align: center;
-  border: 2px solid #2b5577;
-  border-radius: 15px;
-  background-color: rgba(255, 255, 255, 0.8);
+  width: 600px;
+  max-width: 100%;
+  padding: 15px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 4px;
 }
 
 
 .list {
+  margin: 0;
   padding: 0;
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .cardProfile {
-  width: 10px;
-  list-style: none;
-  width: 250px;
-  margin: 10px;
-  padding: 10px;
-  border: 2px solid #8bb4d6;
-  border-radius: 15px;
-  position: relative;
-  background-color: white;
-  
+  border: 2px solid #9cc3e3;
+    border-radius: 5px;
+    position: relative;
+    margin-bottom: 5%;
+    align-items: center;
+    width: 47.5%;
+    list-style: none;
+    padding-bottom: 1rem;
+    cursor: pointer;
 }
-
-.dellIdAd,
-.editId {
-  border-radius: 50px;
+.cardProfile h3, .cardProfile h4{margin: 0}
+.dellIdAd{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
   border-style: none;
   color: rgb(255, 255, 255);
-  background-color: brown;
-}
-
-.dellIdAd:hover,
-.editId:hover {
-  background-color: #2b5577;
-
-}
-
-.dellIdAd {
-  position: absolute;
+  background-color: rgb(194, 15, 15); position: absolute;
   right: -10px;
   top: -10px;
 }
+.dellIdAd i{font-size: 16px;}
+.dellIdAd:hover {
+  background-color: #2b5577;
 
-.titleName {
-  text-align: center;
-  padding: 9px;
-  margin-left: 10px;
-  margin-right: 10px;
-  /* width: 200px; */
-  height: 40px;
-  background-color: rgb(255, 255, 255);
-  border: 2px solid #8bb4d6;
-  border-radius: 15px;
+}
+.editId{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  border-style: none;
+  color: rgb(255, 255, 255);
+  background-color:  #497EAA;
+  margin-left: auto;
+  margin-right: 15px; 
+}
+.editId:hover{
+  background-color:  #2B5577
+}
+.opis {
+  padding: 0px 15px;
 }
 
-.basicLightbox__placeholder {
-  max-height: 90%;
-  overflow-y: auto;
-  overflow-x: hidden;
+
+.statistic{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
+@media (max-width: 500px) {
+.cardProfile {
+    width: 100%;
+}
+}
+@media (max-width: 767px) {
+  .statistic{
+    display: block;
+  }
+}
+@media (min-width: 768px) {
 
-
-.miniInfoPrice{
-  font-size:  20px;
 }
 
-.miniInfotitle {
-  font-size:  20px;
-  font-weight: 700;
+@media (min-width: 1200px) {
+
 }

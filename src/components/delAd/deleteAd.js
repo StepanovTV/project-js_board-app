@@ -42,18 +42,20 @@ const deleteListItem = element => {
 };
 
 const handleListClick = ({ target }) => {
-  if (target.nodeName !== 'BUTTON') return;
 
-  const action = target.dataset.action;
+  const clo = target.closest('button');
+  if (!clo) return;
+  
+  const action = clo.dataset.action;
 
   switch (action) {
     case actions.DELETE:
-      deleteListItem(target);
+      deleteListItem(clo);
 
       break;
 
     case actions.EDIT:
-    editFn(target);
+    editFn(clo);
       break;
   }
 };
@@ -62,5 +64,6 @@ const handleListClick = ({ target }) => {
 
 export function addListenerEditDel() {
   const editId = document.querySelector('.list');
+  
   editId.addEventListener('click', handleListClick);
 }

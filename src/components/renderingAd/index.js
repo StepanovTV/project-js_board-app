@@ -11,33 +11,39 @@ const handlOpenAdClick = e => {
     const instance = services.basicLightbox.create(renderingAd(data));
     instance.show(() => {
       const btnfavorite = document.querySelector('#btnfavorite');
-      const userFavUnickum = services.userFavorites.some(elem => elem._id === adId);
-      if(userFavUnickum) {
+      const userFavUnickum = services.userFavorites.some(
+        elem => elem._id === adId,
+      );
+      if (userFavUnickum) {
         btnfavorite.setAttribute('checked', 'checked');
       } else {
         btnfavorite.removeAttribute('checked');
       }
 
       const handlAddFavorite = ({ target }) => {
-        if (services.isAuthorized){
-
-           if (target.checked) {
-               services.adFavorite(adId).then(data => {
-          });
+        if (services.isAuthorized) {
+          if (target.checked) {
+            services.adFavorite(adId).then(data => {services.success("Доданно до 'Мої Обрані'", '')});
+          } else {
+            if (document.querySelector(`.favorit[data-adid="${adId}"]`)) {
+              document.querySelector(`.favorit[data-adid="${adId}"]`).remove();
+            }
+            services.delFavorite(adId).then(data => {services.notice(
+              "Вилучено з 'Мої Обрані'",
+              '',
+            );});
+          }
         } else {
-          document.querySelector(`.favorit[data-adid="${adId}"]`).remove();
-          services.delFavorite(adId).then(data => {
-                });
-        };} else {
-          services.notice('Увага!!!!!', 'Для додавання в обрані зайдіть або зареєструйтесь')
+          services.notice(
+            'Увага!!!!!',
+            'Для додавання в обрані зайдіть або зареєструйтесь',
+          );
         }
       };
       btnfavorite.addEventListener('change', handlAddFavorite);
     });
   });
-}
+};
 services.refs.adWrapper.addEventListener('click', handlOpenAdClick);
 
 export default handlOpenAdClick;
-
-
