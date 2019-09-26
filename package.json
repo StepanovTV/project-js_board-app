@@ -6,7 +6,6 @@
   "scripts": {
     "start": "webpack-dev-server --env.mode development --config ./webpack/config.js",
     "build": "webpack --env.mode production --config ./webpack/config.js",
-    "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
   "repository": {
@@ -51,10 +50,11 @@
     "babel-polyfill": "^6.26.0",
     "basiclightbox": "^5.0.2",
     "core-js": "^3.1.4",
-    "handlebars": "^4.1.2",
+    "handlebars": "^4.3.1",
     "infinite-scroll": "^3.0.6",
     "inputmask": "^4.0.8",
     "material-design-icons": "^3.0.1",
+    "microtip": "^0.2.2",
     "pnotify": "^4.0.0"
   }
 }
