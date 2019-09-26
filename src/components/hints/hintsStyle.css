@@ -1,0 +1,15 @@
+:root {
+  --microtip-transition-duration: 0.2s;
+  --microtip-transition-delay: 1s;
+  --microtip-transition-easing: ease-out;
+  --microtip-font-size: 13px;
+  /* --microtip-font-weight: bold; */
+  --microtip-text-transform: uppercase;
+}
+
+
+.tooltip {
+  --microtip-transition-duration: 0.1s;
+  --microtip-transition-delay: 0s;
+  --microtip-transition-easing: ease-in-out;
+}
