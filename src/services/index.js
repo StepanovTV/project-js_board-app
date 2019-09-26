@@ -52,6 +52,7 @@ export default {
     exitbtn: document.querySelector('.exitbtn'),
     adsContainer: document.querySelector('#ads-container'),
     searchForm: document.querySelector('#search-form'),
+    contLogo: document.querySelector('.cont-logo'),
   },
 
   spinnerOn() {

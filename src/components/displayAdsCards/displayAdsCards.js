@@ -6,4 +6,11 @@ services.getAds().then(data => {
 });
 
 
-
+services.refs.contLogo.addEventListener('click', () => {
+  services.resetPage();
+  services.refs.adsContainer.innerHTML = '';
+  services.getAds().then(data => {
+    services.drawHTMLAllAdsByPage(data);
+    services.spinnerOff();
+  });
+ });

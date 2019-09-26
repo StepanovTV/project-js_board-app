@@ -321,7 +321,7 @@ nav {
 }
 header {
   padding-top: 20px;
-  background: linear-gradient(180deg, #2b5577 68%, #497eaa 68%);
+  background: linear-gradient(180deg, #2b5577 71%, #497eaa 71%);
 }
 .logo {
   margin-bottom: 20px;
@@ -537,9 +537,9 @@ footer {
 }
 
 @media (max-width: 767px) {
-  /* .ad-item {
-    margin-bottom: %;
-  } */
+  .filter-wrap {
+    justify-content: start;
+  }
   .ad-item:not(:nth-of-type(2n)) {
     margin-right: 5%;
   }
@@ -646,4 +646,39 @@ right: 6px;
 cursor: pointer;
 color: #bbb;
 padding: 4px;
+}
+
+.addPage {
+  margin: 0 auto 15px auto;
+  outline:none;
+  height: 40px;
+  text-align: center;
+  border-radius:40px;
+  background: #fff;
+  border: 2px solid #2b5577;
+  color:#2b5577;
+  letter-spacing:1px;
+  padding: 5px 30px;
+ }
+ .addPage:hover, .addPage:focus{
+  color:white;
+  background: #2b5577;
+  outline: none;
+  transition: all .2s linear
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+.site-logo{
+  max-width: 200px;
+  height: auto;
 }
